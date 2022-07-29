@@ -35,7 +35,7 @@ public class Vuelo extends AggregateRoot<UUID> {
     try {
       this.nroVuelo = new NumeroVuelo(_nroVuelo).toString();
     } catch (BussinessRuleValidateExeption e) {
-      e.printStackTrace();
+      System.out.println("Error en el NumeroVuelo Vuelo");
       return;
     }
 

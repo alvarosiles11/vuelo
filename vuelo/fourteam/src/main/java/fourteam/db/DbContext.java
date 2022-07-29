@@ -36,8 +36,6 @@ public abstract class DbContext implements IDbContext {
           _dbSets.add(db);
         } catch (IllegalArgumentException e) {
           e.printStackTrace();
-        } catch (IllegalAccessException e) {
-          e.printStackTrace();
         }
       }
     }
