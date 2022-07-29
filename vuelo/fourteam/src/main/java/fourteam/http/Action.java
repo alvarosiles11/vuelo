@@ -112,6 +112,7 @@ public class Action {
     return true;
   }
 
+  // instance es el Controller
   public void onMessage(
     HttpExchange t,
     Response response,
@@ -121,6 +122,7 @@ public class Action {
   )
     throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, HttpException {
     Parameter[] parameters = this.method.getParameters();
+    // Class[] paramTypes = this.method.getParameterTypes();
     ArrayList<Object> values = new ArrayList<Object>();
     int i_p_v = -1;
 
@@ -155,6 +157,7 @@ public class Action {
       values.add(null);
     }
 
+    // try {
     Object resp;
     resp = invoke(instance, values.toArray());
     response.setCode(HttpStatus.OK);
