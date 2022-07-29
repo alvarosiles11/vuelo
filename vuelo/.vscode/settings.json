@@ -1,0 +1,14 @@
+{
+	"java.configuration.updateBuildConfiguration": "automatic",
+	"liveServer.settings.port": 5501,
+	// "problems.decorations.enabled": false,
+	// /target/
+	// !.mvn/wrapper/maven-wrapper.jar
+	"files.exclude": {
+		// "**/test": true,
+		// "**/target": true,
+		// "**/pom.xml": true,
+		// "**/fourteam": true,
+		// "**/SharedKernel": true,
+	}
+}
