@@ -1,5 +1,7 @@
 package fourteam.db;
 
+// import core.DomainEvent;
+// import core.Entity;
 import fourteam.db.IDbSet.BooleanFunction;
 import fourteam.mediator.Notification;
 import java.lang.reflect.Field;
@@ -55,6 +57,8 @@ public class DbSet<T> {
                 }
               }
             } catch (IllegalArgumentException e) {
+              e.printStackTrace();
+            } catch (IllegalAccessException e) {
               e.printStackTrace();
             }
           }
