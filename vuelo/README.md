@@ -19,3 +19,6 @@ mvn archetype:generate -DgroupId=dmsnur -DartifactId=Infraestructure
 mvn archetype:generate -DgroupId=dmsnur -DartifactId=SharedKernel
 mvn archetype:generate -DgroupId=dmsnur -DartifactId=WebApi
 ```
+
+mvn clean  jacoco:prepare-agent test install jacoco:report
+mvn clean  jacoco:prepare-agent

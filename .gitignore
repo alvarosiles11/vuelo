@@ -95,10 +95,10 @@ yarn-error.log*
 # package-lock.json
 # package.json
 
-**/target/
+# **/target/
 .classpath
 **/.classpath
 .project
 **/.project
 .settings/
-**/.settings/
+# **/.settings/
