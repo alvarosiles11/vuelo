@@ -36,8 +36,6 @@ public class WriteDbContext extends IWriteDbContext {
 
   @Override
   public void onModelCreating(List<DbSet> sets) {
-    Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
-    mongoLogger.setLevel(Level.SEVERE);
     // MongoClientURI uri = new MongoClientURI(
     // "mongodb://" +
     // DB_USER +
