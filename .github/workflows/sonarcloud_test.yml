@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: cd vuelo && mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=alvarosiles11_dms-vuelos
+        run: cd vuelo && mvn jacoco:prepare-agent test install jacoco:report && mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=alvarosiles11_dms-vuelos
     # ojo el coverage es formato xml
     # dotnet test --no-build --verbosity normal
     # dotnet-coverage collect 'dotnet test Pedidos.test' -f xml  -o 'coverage.xml'
