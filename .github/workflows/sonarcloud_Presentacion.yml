@@ -5,9 +5,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: ["main"]
+    branches: ["presentacion"]
   pull_request:
-    branches: ["main"]
+    branches: ["presentacion"]
     types: [opened, synchronize, reopened]
 jobs:
   build:
@@ -33,21 +33,8 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      # - name: Install dotnet code coverage tool
-      # run: dotnet tool install --global dotnet-coverage
-
-      #  <sonar.coverage.jacoco.xmlReportPaths>${basedir}/imagetool/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-
-      # - name: Install jacoco maven coverage
-      # run: mvn install:install-file -Dfile=jacoco-maven-agent.jar -DgroupId=org.jacoco -DartifactId=jacoco-maven-agent -Dversion=0.9.5 -Dpackaging=jar -DgeneratePom=true
-      # - name: Install jacoco maven coverage
-      # run: mvn install:install-file -Dfile=jacoco-maven-agent.jar -DgroupId=org.jacoco -DartifactId=jacoco-maven-agent -Dversion=0.9.5 -Dpackaging=jar -DgeneratePom=true
-
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd vuelo && mvn jacoco:prepare-agent test install jacoco:report && mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=alvarosiles11_dms-vuelos
-    # ojo el coverage es formato xml
-    # dotnet test --no-build --verbosity normal
-    # dotnet-coverage collect 'dotnet test Pedidos.test' -f xml  -o 'coverage.xml'

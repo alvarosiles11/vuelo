@@ -1,7 +1,7 @@
 name: Compile docker
 on:
   push:
-    branches: ["main"]
+    branches: ["presentacion"]
 jobs:
   ssh_deploy:
     runs-on: ubuntu-latest
