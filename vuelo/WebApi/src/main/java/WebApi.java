@@ -9,6 +9,6 @@ public class WebApi {
     Rest.addController(TripulanteController.class);
     Rest.createSwagger();
 
-    Rest.start(80);
+    Rest.start(8080);
   }
 }
