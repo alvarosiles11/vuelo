@@ -4,7 +4,7 @@ on:
   push:
     branches: ['feature/jobrelease']
   pull_request:
-    branches: ['main']
+    branches: ['feature/jobrelease']
     types: [opened, synchronize, reopened]
 jobs:
   build:
