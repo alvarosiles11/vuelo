@@ -2,9 +2,6 @@ name: Compile docker
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
-    types: [opened, synchronize, reopened]
 jobs:
   ssh_deploy:
     runs-on: ubuntu-latest
