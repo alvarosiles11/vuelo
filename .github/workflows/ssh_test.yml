@@ -2,6 +2,7 @@ name: SSH Test
 
 on:
   push:
+    branches: ['feature/jobrelease']
 
 jobs:
   compilacion:
