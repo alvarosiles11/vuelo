@@ -132,7 +132,7 @@
 				</plugin>
 
 				<sonar.coverage.jacoco.xmlReportPaths>
-            ${project.basedir}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml
+            ${basedir}/target/site/jacoco-aggregate/jacoco.xml
 				</sonar.coverage.jacoco.xmlReportPaths>
 
 			</plugins>
