@@ -57,3 +57,23 @@ El **action de Release** solo debería ejecutarse cuando se está haciendo un pu
 
 **rama release: Job de release** ejecutar los comandos necesarios para realizar un release del código dentro de una máquina virtual en internet. puede hacerse mediante **conexión a SSH o docker**
 esto es prueba
+
+<p align='left'>
+<h3> 🤝🏻 Connect with Me
+  &nbsp; <a href="https://www.linkedin.com/in/alvarosiles11/" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/NZN06Jg.png" width="30" /></a>
+
+</h3>
+
+</p>
+
+
+
+<h3 align='center'>
+<img src="https://activity-graph.herokuapp.com/graph?username=alvarosiles11&area=true&hide_border=true&line=3AFC30&theme=react-dark"/>
+</h3>
+
+<p align="center"> 
+  Visitors count:<br>
+  <meta http-equiv="refresh" content="0.6">
+  <img src="https://profile-counter.glitch.me/alvarosiles11/count.svg" />
+</p>
