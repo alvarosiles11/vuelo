@@ -8,13 +8,13 @@ import org.mockito.Mockito;
 
 public class GetAllVueloHandlerTest {
 
-  IVueloRepository _IVueloRepository = Mockito.mock(IVueloRepository.class);
+	IVueloRepository _IVueloRepository = Mockito.mock(IVueloRepository.class);
 
-  @Test
-  public void dataValid() {
-    GetAllVueloHandler handler = new GetAllVueloHandler(_IVueloRepository);
-    GetAllVueloQuery query = new GetAllVueloQuery();
-    List<Vuelo> listaVuelos = handler.handle(query);
-    System.out.println(listaVuelos);
-  }
+	@Test
+	public void dataValid() throws Exception {
+		GetAllVueloHandler handler = new GetAllVueloHandler(_IVueloRepository);
+		GetAllVueloQuery query = new GetAllVueloQuery();
+		List<Vuelo> listaVuelos = handler.handle(query);
+		System.out.println(listaVuelos);
+	}
 }

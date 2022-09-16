@@ -3,7 +3,7 @@ package UseCases.Consumers;
 import fourteam.massTransit.IConsumer;
 import fourteam.mediator.IMediator;
 
-public class TripulacionCreadoConsumer extends IConsumer<IntegrationEvents.VueloCreado> {
+public class TripulacionCreadoConsumer extends IConsumer<IntegrationEvents.TripulacionCreado> {
 
 	public static String QueueName = "vuelo-creado-vuelo-Tripulacion";
 
@@ -12,7 +12,7 @@ public class TripulacionCreadoConsumer extends IConsumer<IntegrationEvents.Vuelo
 	}
 
 	@Override
-	public void Consume(IntegrationEvents.VueloCreado object) {
+	public void Consume(IntegrationEvents.TripulacionCreado object) {
 		System.out.println("Entro al consumers tripulacion chaval");
 	}
 }

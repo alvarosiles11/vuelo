@@ -13,7 +13,7 @@ public class GetAllTripulanteHandlerTest {
   );
 
   @Test
-  public void dataValid() {
+  public void dataValid() throws Exception{
     GetAllTripulanteHandler handler = new GetAllTripulanteHandler(
       _ITripulanteRepository
     );

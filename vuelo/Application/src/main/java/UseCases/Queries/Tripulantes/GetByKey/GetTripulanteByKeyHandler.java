@@ -20,7 +20,7 @@ public class GetTripulanteByKeyHandler
 
   @Override
   public TripulanteDto handle(GetTripulanteByKeyQuery request)
-    throws HttpException {
+    throws Exception {
     Tripulante tripulante = iTripulanteRepository.FindByKey(request.key);
     if (tripulante == null) {
       throw new HttpException(

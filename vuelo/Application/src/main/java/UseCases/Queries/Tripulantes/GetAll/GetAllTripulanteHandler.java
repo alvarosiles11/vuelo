@@ -15,7 +15,7 @@ public class GetAllTripulanteHandler
   }
 
   @Override
-  public List<Tripulante> handle(GetAllTripulanteQuery request) {
+  public List<Tripulante> handle(GetAllTripulanteQuery request) throws Exception {
     return iTripulanteRepository.GetAll();
   }
 }

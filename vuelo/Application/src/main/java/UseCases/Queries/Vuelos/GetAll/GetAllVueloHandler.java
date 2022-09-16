@@ -15,7 +15,7 @@ public class GetAllVueloHandler
   }
 
   @Override
-  public List<Vuelo> handle(GetAllVueloQuery request) {
+  public List<Vuelo> handle(GetAllVueloQuery request) throws Exception{
     return iVueloRepository.GetAll();
   }
 }
