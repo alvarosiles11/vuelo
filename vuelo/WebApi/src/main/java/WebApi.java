@@ -11,13 +11,13 @@ public class WebApi {
   public static void AddControllers() {
     Rest.addController(VueloController.class);
     Rest.addController(TripulanteController.class);
-    Rest.start(Integer.parseInt(Config.getProperty("http.port")));
+    Rest.start(8080);
 		Rest.createSwagger();
-		openApi();
+		//openApi();
   }
 
 
-	public static void openApi() {
+	/*public static void openApi() {
 		if (java.awt.Desktop.isDesktopSupported()) {
 			java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 			if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
@@ -28,6 +28,6 @@ public class WebApi {
 				}
 			}
 		}
-	}
+	}*/
 
 }
