@@ -1,8 +1,11 @@
 package fourteam.db;
 
+import fourteam.mediator.Notification;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+// import core.DomainEvent;
 
 public abstract class DbContext implements IDbContext {
 
@@ -27,9 +30,7 @@ public abstract class DbContext implements IDbContext {
   public void instanceDbSet() {
     Field[] fields = _dbContextClass.getFields();
     for (Field field : fields) {
-      if (
-        field.getType().getName().contains(fourteam.db.DbSet.class.getName())
-      ) {
+      if (field.getType().getName().contains(fourteam.db.DbSet.class.getName())) {
         try {
           DbSet db = new DbSet<>(this, field);
           field.set(this, db);

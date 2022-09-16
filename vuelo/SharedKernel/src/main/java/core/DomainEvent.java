@@ -4,7 +4,7 @@ import fourteam.mediator.Notification;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class DomainEvent implements Notification {
+public abstract class DomainEvent implements Notification {
 
   public LocalDateTime OcurredOn;
   public UUID Key;

@@ -14,7 +14,7 @@ public class Entity_Test {
     Entity entity = new Entity() {};
     entity.setKey(UUID.randomUUID());
     entity.getKey();
-    entity.addDomainEvent(new DomainEvent());
+    entity.addDomainEvent(new DomainEvent() {});
     entity.getDomainEvents();
     entity.clearDomainEvent();
     BussinessRule rule = Mockito.mock(BussinessRule.class);

@@ -7,8 +7,7 @@ public class WebApi {
   public static void AddControllers() {
     Rest.addController(VueloController.class);
     Rest.addController(TripulanteController.class);
-    Rest.createSwagger();
-
     Rest.start(8080);
+		Rest.createSwagger();
   }
 }

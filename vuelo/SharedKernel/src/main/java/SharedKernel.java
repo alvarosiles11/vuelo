@@ -11,12 +11,13 @@ public class SharedKernel {
 
     // rule
     rule.NotNullRule.class,
-    rule.StringNotNullOrEmptyRule.class
+    rule.StringNotNullOrEmptyRule.class,
     // mediator
 
   };
 
   public static void AddKernel() {
+    FourTeam.AddFourTeam();
     int i = 0;
     int l = classes.length;
     for (Class clas : classes) {

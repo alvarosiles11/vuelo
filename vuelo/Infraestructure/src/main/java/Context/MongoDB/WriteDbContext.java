@@ -36,16 +36,7 @@ public class WriteDbContext extends IWriteDbContext {
 
   @Override
   public void onModelCreating(List<DbSet> sets) {
-    // MongoClientURI uri = new MongoClientURI(
-    // "mongodb://" +
-    // DB_USER +
-    // ":" +
-    // DB_PASS +
-    // "@" +
-    // DB_HOST +
-    // ":" +
-    // DB_PORT +
-    // "/?authSource=admin");
+    // MongoClientURI uri = new MongoClientURI("mongodb://" +DB_USER +":" + DB_PASS + "@" + DB_HOST + ":" + DB_PORT + "/?authSource=admin");
     MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017");
     this.client = new MongoClient(uri);
     this.db = client.getDatabase(DB_NAME);

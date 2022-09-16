@@ -30,7 +30,7 @@ public class Action {
     GET,
     POST,
     PUT,
-    DELETE
+    DELETE,
   }
 
   private ActionType type;
@@ -68,9 +68,7 @@ public class Action {
       this.type = ActionType.DELETE;
       return;
     }
-    throw new HttpCodeException(
-      "El metodo no tiene la anotacion GetMapping o PostMapping"
-    );
+    throw new HttpCodeException("El metodo no tiene la anotacion GetMapping o PostMapping");
   }
 
   private static final Pattern p = Pattern.compile("\\{(.*?)\\}");
@@ -140,9 +138,7 @@ public class Action {
 
         int i = lis.indexOf("{" + this.params.get(i_p_v) + "}");
         if (i == -1) {
-          throw new RuntimeException(
-            "No se encontro el parametro " + this.params.get(i_p_v)
-          );
+          throw new RuntimeException("No se encontro el parametro " + this.params.get(i_p_v));
         }
         value = path.split("/")[i];
         values.add(parseValue(value, parameter.getType()));

@@ -2,9 +2,7 @@ package core;
 
 import java.io.Serializable;
 
-public class BussinessRuleValidateExeption
-  extends Exception
-  implements Serializable {
+public class BussinessRuleValidateExeption extends Exception implements Serializable {
 
   public BussinessRule BrokenRule;
   public String Details;
@@ -36,9 +34,7 @@ public class BussinessRuleValidateExeption
 
   @Override
   public String toString() {
-    String name = BrokenRule == null
-      ? "BussinessRule"
-      : BrokenRule.getClass().getName();
+    String name = BrokenRule == null ? "BussinessRule" : BrokenRule.getClass().getName();
     return name + ':' + Details;
   }
 }

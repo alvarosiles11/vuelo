@@ -15,7 +15,7 @@ public class FourTeam {
     // DB
     fourteam.db.DbContext.class,
     fourteam.db.DbSet.class,
-    fourteam.db.ModelBuilder.class
+    fourteam.db.ModelBuilder.class,
   };
 
   public static void AddFourTeam() {

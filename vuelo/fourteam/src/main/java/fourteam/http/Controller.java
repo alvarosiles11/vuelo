@@ -1,5 +1,6 @@
 package fourteam.http;
 
+import fourteam.extensions.DependencyInjection;
 import fourteam.http.Exception.HttpCodeException;
 import fourteam.http.Exception.HttpException;
 import fourteam.http.annotation.RequestMapping;
@@ -22,9 +23,7 @@ public class Controller {
   public Controller(Class controller) throws Exception {
     Annotation annotation = controller.getAnnotation(RestController.class);
     if (!(annotation instanceof RestController)) {
-      throw new RuntimeException(
-        "El controlador no tiene la anotacion RestController"
-      );
+      throw new RuntimeException("El controlador no tiene la anotacion RestController");
     }
     annotation = controller.getAnnotation(RequestMapping.class);
     this.route = controller.getName();
@@ -53,9 +52,7 @@ public class Controller {
         continue;
       }
       actions.add(action);
-      System.out.println(
-        "" + action.getType() + ":\t" + this.route + action.getRoute()
-      );
+      System.out.println("" + action.getType() + ":\t" + this.route + action.getRoute());
     }
     System.out.println("--------------------------------------");
   }
@@ -77,8 +74,7 @@ public class Controller {
     boolean exito = false;
     for (Action action : actions) {
       if (action.equal(requestMethod, path)) {
-        Constructor<?> cos =
-          this.controller.getConstructor(new Class[] { Mediator.class });
+        Constructor<?> cos = this.controller.getConstructor(new Class[] { Mediator.class });
         IMediator m = new IMediator();
         action.onMessage(t, response, path, data, cos.newInstance(m));
         exito = true;

@@ -22,9 +22,7 @@ public class JSON {
 
   static class LocalDateSerializer implements JsonSerializer<LocalDate> {
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-      formatDate
-    );
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDate);
 
     @Override
     public JsonElement serialize(
@@ -36,12 +34,9 @@ public class JSON {
     }
   }
 
-  static class LocalDateTimeSerializer
-    implements JsonSerializer<LocalDateTime> {
+  static class LocalDateTimeSerializer implements JsonSerializer<LocalDateTime> {
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-      formatDateTime
-    );
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDateTime);
 
     @Override
     public JsonElement serialize(
@@ -68,8 +63,7 @@ public class JSON {
     }
   }
 
-  static class LocalDateTimeDeserializer
-    implements JsonDeserializer<LocalDateTime> {
+  static class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime> {
 
     @Override
     public LocalDateTime deserialize(
@@ -79,9 +73,7 @@ public class JSON {
     ) throws JsonParseException {
       return LocalDateTime.parse(
         json.getAsString(),
-        DateTimeFormatter
-          .ofPattern(formatDateTime)
-          .withLocale(Locale.getDefault())
+        DateTimeFormatter.ofPattern(formatDateTime).withLocale(Locale.getDefault())
       );
     }
   }

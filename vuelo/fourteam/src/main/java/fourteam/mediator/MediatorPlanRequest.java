@@ -22,17 +22,14 @@ public class MediatorPlanRequest<T, E> {
     this.mediator = mediator;
     handlerInstanceBuilder = getBean(handlerType, messageType);
     try {
-      instance =
-        DependencyInjection.createInstance(handlerInstanceBuilder, mediator);
+      instance = DependencyInjection.createInstance(handlerInstanceBuilder, mediator);
     } catch (Exception e) {
       e.printStackTrace();
     }
-    handleMethod =
-      handlerInstanceBuilder.getMethod(handlerMethodName, messageType);
+    handleMethod = handlerInstanceBuilder.getMethod(handlerMethodName, messageType);
   }
 
-  private Class getBean(Class<?> handlerType, Class<?> messageType)
-    throws ClassNotFoundException {
+  private Class getBean(Class<?> handlerType, Class<?> messageType) throws ClassNotFoundException {
     ArrayList<Class> mediators = IMediator.getHandlers();
     for (Class mediator : mediators) {
       String name = mediator.getGenericInterfaces()[0].getTypeName();
@@ -44,9 +41,7 @@ public class MediatorPlanRequest<T, E> {
       }
     }
 
-    throw new ClassNotFoundException(
-      "Handler not found. Did you forget to register this?"
-    );
+    throw new ClassNotFoundException("Handler not found. Did you forget to register this?");
   }
 
   public E invoke(Request<T> request)
