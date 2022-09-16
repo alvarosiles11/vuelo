@@ -27,7 +27,7 @@ public class CrearAeronaveHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     UUID keyAeronave = UUID.randomUUID();
     String matricula = "xyz-1990";
 

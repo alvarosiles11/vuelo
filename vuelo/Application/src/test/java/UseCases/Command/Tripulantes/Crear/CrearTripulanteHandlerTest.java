@@ -29,7 +29,7 @@ public class CrearTripulanteHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     UUID keyVuelo = UUID.randomUUID();
     String keyTripulante = "12345";
     String cargo = "Piloto";

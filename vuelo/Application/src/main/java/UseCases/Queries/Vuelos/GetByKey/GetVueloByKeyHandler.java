@@ -18,7 +18,7 @@ public class GetVueloByKeyHandler
   }
 
   @Override
-  public VueloDto handle(GetVueloByKeyQuery request) throws HttpException {
+  public VueloDto handle(GetVueloByKeyQuery request) throws Exception {
     Vuelo vuelo = iVueloRepository.FindByKey(request.Key);
 
     if (vuelo == null) {

@@ -32,7 +32,10 @@ public class Infraestructure {
 			config.AddConsumer(TripulacionCreadoConsumer.class);
 
 			config.UsingRabbitMq((context, cfg) -> {
-				cfg.Host = "192.168.3.2";
+				cfg.Host = "147.182.209.156";
+				cfg.User = "admin";
+				cfg.Password = "admin";
+				// cfg.Host = "192.168.3.2";
 				// cfg.ReceiveEndpoint(CheckInCreadoConsumer.QueueName, endpoint -> {
 				// endpoint.ConfigureConsumer(CheckInCreadoConsumer.class);
 				// });

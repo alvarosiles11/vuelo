@@ -20,7 +20,7 @@ public class GetVueloByKeyHandlerTest {
   IVueloRepository _IVueloRep = Mockito.mock(IVueloRepository.class);
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     UUID key = UUID.randomUUID();
     String nroVuelo = "A12345";
     String keyAeronave = "xyz-1990";
@@ -116,7 +116,7 @@ public class GetVueloByKeyHandlerTest {
   }
 
   @Test
-  public void HandleFailed() throws HttpException {
+  public void HandleFailed() throws Exception {
     Vuelo vuelo = new Vuelo();
     when(_IVueloRep.FindByKey(any())).thenReturn(any());
 

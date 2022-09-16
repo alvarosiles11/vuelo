@@ -28,7 +28,7 @@ public class EliminarVueloHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     Vuelo vuelo = new Vuelo(
       "A12345",
       "xyz-1990",
@@ -59,7 +59,7 @@ public class EliminarVueloHandlerTest {
   }
 
   @Test
-  public void HandleFailed() throws HttpException {
+  public void HandleFailed() throws Exception {
     when(_IVueloRep.FindByKey(any())).thenReturn(null);
     EliminarVueloHandler handler = new EliminarVueloHandler(
       _IVueloFact,

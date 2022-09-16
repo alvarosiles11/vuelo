@@ -27,7 +27,7 @@ public class EliminarTripulanteHandler
 
   @Override
   public Tripulante handle(EliminarTripulanteCommand request)
-    throws HttpException {
+    throws Exception {
     Tripulante tripulante = iTripulanteRepository.FindByKey(
       request.tripulanteDto.getKey()
     );

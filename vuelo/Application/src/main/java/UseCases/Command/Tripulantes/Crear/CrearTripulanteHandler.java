@@ -26,7 +26,7 @@ public class CrearTripulanteHandler
 
   // hilo de ejecucion
   @Override
-  public Tripulante handle(CrearTripulanteCommand arg0) throws HttpException {
+  public Tripulante handle(CrearTripulanteCommand arg0) throws Exception {
     Tripulante tripulante = _ITripulanteFactory.Create(
       arg0.keyVuelo,
       arg0.keyTripulante,

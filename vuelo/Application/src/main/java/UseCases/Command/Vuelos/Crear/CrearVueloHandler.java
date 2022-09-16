@@ -25,7 +25,7 @@ public class CrearVueloHandler
   }
 
   @Override
-  public Vuelo handle(CrearVueloCommand arg0) throws HttpException {
+  public Vuelo handle(CrearVueloCommand arg0) throws Exception {
     Vuelo vuelo = iVueloFactory.Create(
       arg0.nroVuelo,
       arg0.keyAeronave,

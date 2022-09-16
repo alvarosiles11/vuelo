@@ -28,7 +28,7 @@ public class CrearVueloHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     UUID key = UUID.randomUUID();
     String nroVuelo = "A12345";
     String keyAeronave = "xyz-1990";

@@ -36,7 +36,7 @@ public class EditarVueloHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     Vuelo vuelo = new Vuelo(
       nroVuelo,
       keyAeronave,
@@ -77,7 +77,7 @@ public class EditarVueloHandlerTest {
   }
 
   @Test
-  public void HandleFailed() throws HttpException {
+  public void HandleFailed() throws Exception {
     when(_IVueloRep.FindByKey(any())).thenReturn(null);
     EditarVueloHandler handler = new EditarVueloHandler(
       _IVueloFact,

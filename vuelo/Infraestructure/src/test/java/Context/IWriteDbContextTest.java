@@ -1,6 +1,8 @@
 package Context;
 
 import fourteam.db.DbSet;
+import fourteam.db.Exception.DataBaseException;
+
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +11,7 @@ public class IWriteDbContextTest {
 
   public static class Context extends IWriteDbContext {
 
-    public Context() {
+    public Context() throws DataBaseException {
       super(Context.class);
     }
 
@@ -56,7 +58,7 @@ public class IWriteDbContextTest {
   }
 
   @Test
-  public void constructor_accept() {
+  public void constructor_accept()throws Exception {
     IWriteDbContext context = new Context();
     Assert.assertNotNull(context);
   }

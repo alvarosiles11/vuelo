@@ -15,7 +15,7 @@ public class WriteDbContextTest {
   DbSet dbSet = Mockito.mock(DbSet.class);
 
   @Test
-  public void CheckConstructor() {
+  public void CheckConstructor() throws Exception {
     MongoClient client = Mockito.mock(MongoClient.class);
     MongoDatabase db = Mockito.mock(MongoDatabase.class);
 
@@ -31,7 +31,7 @@ public class WriteDbContextTest {
   }
 
   @Test
-  public void test() {
+  public void test() throws Exception{
     WriteDbContext writeDbContext = new WriteDbContext();
     writeDbContext.onModelCreating(new ArrayList<DbSet>());
     writeDbContext.isConnected();
@@ -45,13 +45,13 @@ public class WriteDbContextTest {
   }
 
   @Test
-  public void constructor_accept() {
+  public void constructor_accept() throws Exception {
     WriteDbContext context = new WriteDbContext();
     Assert.assertNotNull(context);
   }
 
   @Test
-  public void FindByKey_accept() {
+  public void FindByKey_accept() throws Exception {
     // Mockito.verify(_aeronaves).Single(obj -> obj.key.equals(UUID.randomUUID()));
     // Aeronave a = new Aeronave();
     // when(_aeronaves.Single(any())).thenReturn(a);

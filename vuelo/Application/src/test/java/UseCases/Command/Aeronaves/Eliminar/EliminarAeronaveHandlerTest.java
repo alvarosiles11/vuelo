@@ -26,7 +26,7 @@ public class EliminarAeronaveHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     String matricula = "xyz-1990";
 
     Aeronave aeronave = new Aeronave(matricula);
@@ -51,7 +51,7 @@ public class EliminarAeronaveHandlerTest {
   }
 
   @Test
-  public void HandleFailed() throws HttpException {
+  public void HandleFailed() throws Exception {
     when(_IAeroRep.FindByKey(any())).thenReturn(null);
     EliminarAeronaveHandler handler = new EliminarAeronaveHandler(
       _IAeroFact,

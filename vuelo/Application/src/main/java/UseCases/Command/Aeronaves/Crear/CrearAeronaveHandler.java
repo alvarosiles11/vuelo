@@ -25,9 +25,9 @@ public class CrearAeronaveHandler
   }
 
   @Override
-  public Aeronave handle(CrearAeronaveCommand arg0) throws HttpException {
+  public Aeronave handle(CrearAeronaveCommand arg0) throws Exception {
     Aeronave aeronave = iAeronaveFactory.Create(arg0.matricula);
-    iAeronaveRepository.Create(aeronave);
+     iAeronaveRepository.Create(aeronave);
     unitOfWor.commit();
     return aeronave;
   }

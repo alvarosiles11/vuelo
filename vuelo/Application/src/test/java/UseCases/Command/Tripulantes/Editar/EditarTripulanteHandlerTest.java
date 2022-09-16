@@ -30,7 +30,7 @@ public class EditarTripulanteHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     Tripulante tripulante = new Tripulante(keyVuelo, keyTripulante, cargo);
     when(_ITripRep.FindByKey(any())).thenReturn(tripulante);
 
@@ -57,7 +57,7 @@ public class EditarTripulanteHandlerTest {
   }
 
   @Test
-  public void HandleFailed() throws HttpException {
+  public void HandleFailed() throws Exception {
     when(_ITripRep.FindByKey(any())).thenReturn(null);
 
     EditarTripulanteHandler handler = new EditarTripulanteHandler(

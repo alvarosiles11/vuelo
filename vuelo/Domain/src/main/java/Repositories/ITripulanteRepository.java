@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ITripulanteRepository extends IRepository<Tripulante, UUID> {
-  public List<Tripulante> GetAll();
+  public List<Tripulante> GetAll() throws Exception;
 
-  public Tripulante Delete(Tripulante tripulante);
+  public Tripulante Delete(Tripulante tripulante) throws Exception;
 
-  public Tripulante Update(Tripulante tripulante);
+  public Tripulante Update(Tripulante tripulante) throws Exception;
 }

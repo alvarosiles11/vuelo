@@ -7,6 +7,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import fourteam.JSON;
 import fourteam.db.DbSet;
+import fourteam.db.Exception.DataBaseException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,7 +32,7 @@ public class WriteDbContext extends IWriteDbContext {
   // private final String DB_HOST = "localhost";
   // private final int DB_PORT = 27017;
 
-  public WriteDbContext() {
+  public WriteDbContext() throws DataBaseException {
     super(WriteDbContext.class);
   }
 

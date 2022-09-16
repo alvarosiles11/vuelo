@@ -26,15 +26,16 @@ public class EditarAeronaveHandler
   }
 
   @Override
-  public Aeronave handle(EditarAeronaveCommand request) throws HttpException {
-    Aeronave aeronave = iAeronaveRepository.FindByKey(
-      request.aeronaveDto.getKeyAeronave()
-    );
-    if (aeronave == null) {
+  public Aeronave handle(EditarAeronaveCommand request) throws Exception {
+    Aeronave aeronave = iAeronaveRepository.FindByKey(request.aeronaveDto.getKeyAeronave());
+
+		if (aeronave == null) {
       throw new HttpException(HttpStatus.BAD_REQUEST, "Aeronave no encontrada");
     }
     aeronave.matricula = request.aeronaveDto.getMatricula();
     iAeronaveRepository.Update(aeronave);
     return aeronave;
-  }
+
+
+	}
 }

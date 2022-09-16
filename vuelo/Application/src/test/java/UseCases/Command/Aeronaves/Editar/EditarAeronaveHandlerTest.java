@@ -25,7 +25,7 @@ public class EditarAeronaveHandlerTest {
   public void setUp() {}
 
   @Test
-  public void HandleCorrectly() throws HttpException {
+  public void HandleCorrectly() throws Exception {
     UUID keyAeronave = UUID.randomUUID();
     String matricula = "xyz-1990";
 
@@ -53,7 +53,7 @@ public class EditarAeronaveHandlerTest {
   }
 
   @Test
-  public void HandleFailed() throws HttpException {
+  public void HandleFailed() throws Exception {
     when(_IAeroRep.FindByKey(any())).thenReturn(null);
     EditarAeronaveHandler handler = new EditarAeronaveHandler(
       _IAeroFact,

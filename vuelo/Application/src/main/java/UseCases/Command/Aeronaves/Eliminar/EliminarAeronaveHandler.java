@@ -26,7 +26,7 @@ public class EliminarAeronaveHandler
   }
 
   @Override
-  public Aeronave handle(EliminarAeronaveCommand request) throws HttpException {
+  public Aeronave handle(EliminarAeronaveCommand request) throws Exception {
     Aeronave aeronave = iAeronaveRepository.FindByKey(
       request.aeronaveDto.getKeyAeronave()
     );

@@ -26,7 +26,7 @@ public class EditarVueloHandler
   }
 
   @Override
-  public Vuelo handle(EditarVueloCommand request) throws HttpException {
+  public Vuelo handle(EditarVueloCommand request) throws Exception {
     Vuelo vuelo = iVueloRepository.FindByKey(request.vueloDto.getKey());
     if (vuelo == null) {
       throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrada");
