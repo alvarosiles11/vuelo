@@ -1,11 +1,12 @@
 package Context;
 
-import fourteam.db.DbSet;
-import fourteam.db.Exception.DataBaseException;
-
 import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import fourteam.db.DbSet;
+import fourteam.db.Exception.DataBaseException;
 
 public class IWriteDbContextTest {
 

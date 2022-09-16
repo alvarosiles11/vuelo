@@ -4,7 +4,6 @@ import Factories.ITripulanteFactory;
 import Model.Vuelos.Tripulante;
 import Repositories.ITripulanteRepository;
 import Repositories.IUnitOfWork;
-import fourteam.http.Exception.HttpException;
 import fourteam.mediator.RequestHandler;
 
 public class CrearTripulanteHandler

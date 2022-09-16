@@ -4,7 +4,6 @@ import Factories.IVueloFactory;
 import Model.Vuelos.Vuelo;
 import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
-import fourteam.http.Exception.HttpException;
 import fourteam.mediator.RequestHandler;
 
 public class CrearVueloHandler

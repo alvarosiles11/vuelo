@@ -3,6 +3,14 @@ package UseCases.Command.Vuelos2.Crear;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Date;
+import java.util.UUID;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
 import Dto.VueloDto;
 import Factories.IVueloFactory;
 import Model.Vuelos.Vuelo;
@@ -10,13 +18,6 @@ import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
 import UseCases.Command.Vuelos.Crear.CrearVueloCommand;
 import UseCases.Command.Vuelos.Crear.CrearVueloHandler;
-import fourteam.http.Exception.HttpException;
-import java.util.Date;
-import java.util.UUID;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
 
 public class CrearVueloHandlerTest {
 

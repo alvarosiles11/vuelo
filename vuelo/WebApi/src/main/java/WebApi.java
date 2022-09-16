@@ -1,9 +1,9 @@
-import java.io.IOException;
-import java.net.URISyntaxException;
+// import java.io.IOException;
+// import java.net.URISyntaxException;
 
 import Controllers.TripulanteController;
 import Controllers.VueloController;
-import fourteam.config.Config;
+// import fourteam.config.Config;
 import fourteam.http.Rest;
 
 public class WebApi {

@@ -1,14 +1,17 @@
 package Context.MongoDB;
 
-import Model.Aeronaves.Aeronave;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoDatabase;
-import fourteam.db.DbSet;
 import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoDatabase;
+
+import Model.Aeronaves.Aeronave;
+import fourteam.db.DbSet;
 
 public class WriteDbContextTest {
 
