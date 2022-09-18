@@ -27,7 +27,7 @@ public class WriteDbContext extends IWriteDbContext {
 	// private String DB_HOST;
 	// private int DB_PORT = 27017;
 
-	private final String DB_NAME = "dmsnur_vuelo";
+	private final String DB_NAME = "dmsnur_vuelos";
   private final String DB_USER = "root";
   private final String DB_PASS = "rootpassword";
   private final String DB_HOST = "servisofts.com";
