@@ -11,7 +11,8 @@ public class WebApi {
   public static void AddControllers() {
     Rest.addController(VueloController.class);
     Rest.addController(TripulanteController.class);
-    Rest.start(Integer.parseInt(Config.getProperty("http.port")));
+    // Rest.start(Integer.parseInt(Config.getProperty("http.port")));
+    Rest.start(8080);
 		// Rest.createSwagger();
 		// openApi();
   }
