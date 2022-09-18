@@ -1,6 +1,9 @@
 // import java.io.IOException;
 // import java.net.URISyntaxException;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 import Controllers.TripulanteController;
 import Controllers.VueloController;
 import Fourteam.config.Config;
@@ -14,11 +17,11 @@ public class WebApi {
     Rest.addController(TripulanteController.class);
     Rest.start(Integer.parseInt(Config.getProperty("http.port")));
 		Rest.createSwagger();
-		//openApi();
+		openApi();
   }
 
 
-	/*public static void openApi() {
+	public static void openApi() {
 		if (java.awt.Desktop.isDesktopSupported()) {
 			java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 			if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
@@ -29,6 +32,6 @@ public class WebApi {
 				}
 			}
 		}
-	}*/
+	}
 
 }

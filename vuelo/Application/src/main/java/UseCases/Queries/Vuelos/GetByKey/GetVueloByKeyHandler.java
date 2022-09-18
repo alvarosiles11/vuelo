@@ -1,13 +1,12 @@
 package UseCases.Queries.Vuelos.GetByKey;
 
 import Dto.AsientoDto;
-import Dto.TripulanteDto;
 import Dto.VueloDto;
+import Fourteam.http.HttpStatus;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.mediator.RequestHandler;
 import Model.Vuelos.Vuelo;
 import Repositories.IVueloRepository;
-import Fourteam.http.Exception.HttpException;
-import Fourteam.http.HttpStatus;
-import Fourteam.mediator.RequestHandler;
 
 public class GetVueloByKeyHandler
 		implements RequestHandler<GetVueloByKeyQuery, VueloDto> {

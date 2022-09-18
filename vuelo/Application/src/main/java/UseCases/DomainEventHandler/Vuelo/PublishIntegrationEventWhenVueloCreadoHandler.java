@@ -3,7 +3,6 @@ package UseCases.DomainEventHandler.Vuelo;
 import java.util.ArrayList;
 import java.util.List;
 
-import Dto.AsientoDto;
 import Event.VueloCreado;
 import Fourteam.massTransit.IPublishEndpoint;
 import Fourteam.mediator.Notification;
@@ -32,13 +31,14 @@ public class PublishIntegrationEventWhenVueloCreadoHandler
 		evento.setFechaSalida(vuelo.getFechaSalida());
 		evento.setFechaArribe(vuelo.getFechaArribe());
 		evento.setKeyTripulacion(vuelo.getKeyTripulacion());
-		List<IntegrationEvents.dto.AsientoDto> arr =  new ArrayList<>();
+		List<IntegrationEvents.dto.AsientoDto> arr = new ArrayList<>();
 		vuelo.getListaAsientos().iterator().forEachRemaining(asiento -> {
 			IntegrationEvents.dto.AsientoDto asientoDto = new IntegrationEvents.dto.AsientoDto();
 			asientoDto.key = asiento.key;
 			asientoDto.numero = asiento.numero + "";
-			asientoDto.clase =asiento.clase;
-			// IntegrationEvents.VueloCreado.Asiento asient = new IntegrationEvents.VueloCreado.Asiento();
+			asientoDto.clase = asiento.clase;
+			// IntegrationEvents.VueloCreado.Asiento asient = new
+			// IntegrationEvents.VueloCreado.Asiento();
 			arr.add(asientoDto);
 		});
 
