@@ -1,15 +1,15 @@
-package UseCases.Command.Tripulantes.Eliminar;
+// package UseCases.Command.Tripulantes.Eliminar;
 
-import Dto.TripulanteDto;
-import fourteam.mediator.Request;
-import java.util.UUID;
+// import Dto.TripulanteDto;
+// import Fourteam.mediator.Request;
+// import java.util.UUID;
 
-public class EliminarTripulanteCommand implements Request<TripulanteDto> {
+// public class EliminarTripulanteCommand implements Request<TripulanteDto> {
 
-  TripulanteDto tripulanteDto;
+//   TripulanteDto tripulanteDto;
 
-  public EliminarTripulanteCommand(UUID key) {
-    this.tripulanteDto = new TripulanteDto();
-    this.tripulanteDto.setKey(key);
-  }
-}
+//   public EliminarTripulanteCommand(UUID key) {
+//     this.tripulanteDto = new TripulanteDto();
+//     this.tripulanteDto.setKey(key);
+//   }
+// }

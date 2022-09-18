@@ -1,7 +1,7 @@
 package UseCases.Command.Tripulantes.Crear;
 
 import Dto.TripulanteDto;
-import fourteam.mediator.Request;
+import Fourteam.mediator.Request;
 import java.util.UUID;
 
 public class CrearTripulanteCommand implements Request<TripulanteDto> {
@@ -11,8 +11,8 @@ public class CrearTripulanteCommand implements Request<TripulanteDto> {
   protected String cargo; // cargo
 
   public CrearTripulanteCommand(TripulanteDto tripulanteDto) {
-    this.keyVuelo = tripulanteDto.getKeyVuelo();
-    this.keyTripulante = tripulanteDto.getKeyTripulante();
-    this.cargo = tripulanteDto.getCargo();
+    // this.keyVuelo = tripulanteDto.getKeyVuelo();
+    // this.keyTripulante = tripulanteDto.getKeyTripulante();
+    // this.cargo = tripulanteDto.getCargo();
   }
 }

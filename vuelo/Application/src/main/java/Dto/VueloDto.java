@@ -7,80 +7,103 @@ import java.util.UUID;
 
 public class VueloDto {
 
-  private UUID key;
-  private String nroVuelo;
-  private String keyAeronave;
-  private String keyAeropuertoOrigen;
-  private String keyAeropuertoDestino;
-  private Date fechaSalida;
-  private Date fechaArribe;
-  public List<TripulanteDto> listaTripulante;
+	public UUID key;
+	public String nroVuelo;
+	public String keyAeronave;
+	public List<AsientoDto> listaAsientos;
 
-  public VueloDto() {
-    listaTripulante = new ArrayList<>();
-  }
+	public String keyAeropuertoOrigen;
+	public String keyAeropuertoDestino;
+	public Date fechaSalida;
+	public Date fechaArribe;
 
-  public UUID getKey() {
-    return key;
-  }
+	public String keyTripulacion;
+	public List<TripulanteDto> listaTripulantes;
 
-  public void setKey(UUID key) {
-    this.key = key;
-  }
+	public VueloDto() {
+		listaAsientos = new ArrayList<>();
+		listaTripulantes = new ArrayList<>();
+	}
 
-  public List<TripulanteDto> getListaTripulante() {
-    return listaTripulante;
-  }
+	public UUID getKey() {
+		return key;
+	}
 
-  public void setListaTripulante(List<TripulanteDto> listaTripulante) {
-    this.listaTripulante = listaTripulante;
-  }
+	public void setKey(UUID key) {
+		this.key = key;
+	}
 
-  public String getNroVuelo() {
-    return nroVuelo;
-  }
+	public String getNroVuelo() {
+		return nroVuelo;
+	}
 
-  public void setNroVuelo(String nroVuelo) {
-    this.nroVuelo = nroVuelo;
-  }
+	public void setNroVuelo(String nroVuelo) {
+		this.nroVuelo = nroVuelo;
+	}
 
-  public String getKeyAeronave() {
-    return keyAeronave;
-  }
+	public String getKeyAeronave() {
+		return keyAeronave;
+	}
 
-  public void setKeyAeronave(String keyAeronave) {
-    this.keyAeronave = keyAeronave;
-  }
+	public void setKeyAeronave(String keyAeronave) {
+		this.keyAeronave = keyAeronave;
+	}
 
-  public String getKeyAeropuertoOrigen() {
-    return keyAeropuertoOrigen;
-  }
+	public List<AsientoDto> getListaAsientos() {
+		return listaAsientos;
+	}
 
-  public void setKeyAeropuertoOrigen(String keyAeropuertoOrigen) {
-    this.keyAeropuertoOrigen = keyAeropuertoOrigen;
-  }
+	public void setListaAsientos(List<AsientoDto> listaAsientos) {
+		this.listaAsientos = listaAsientos;
+	}
 
-  public String getKeyAeropuertoDestino() {
-    return keyAeropuertoDestino;
-  }
+	public String getKeyAeropuertoOrigen() {
+		return keyAeropuertoOrigen;
+	}
 
-  public void setKeyAeropuertoDestino(String keyAeropuertoDestino) {
-    this.keyAeropuertoDestino = keyAeropuertoDestino;
-  }
+	public void setKeyAeropuertoOrigen(String keyAeropuertoOrigen) {
+		this.keyAeropuertoOrigen = keyAeropuertoOrigen;
+	}
 
-  public Date getfechaSalida() {
-    return fechaSalida;
-  }
+	public String getKeyAeropuertoDestino() {
+		return keyAeropuertoDestino;
+	}
 
-  public void setfechaSalida(Date fechaSalida) {
-    this.fechaSalida = fechaSalida;
-  }
+	public void setKeyAeropuertoDestino(String keyAeropuertoDestino) {
+		this.keyAeropuertoDestino = keyAeropuertoDestino;
+	}
 
-  public Date getfechaArribe() {
-    return fechaArribe;
-  }
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
 
-  public void setfechaArribe(Date fechaArribe) {
-    this.fechaArribe = fechaArribe;
-  }
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
+
+	public Date getFechaArribe() {
+		return fechaArribe;
+	}
+
+	public void setFechaArribe(Date fechaArribe) {
+		this.fechaArribe = fechaArribe;
+	}
+
+	public String getKeyTripulacion() {
+		return keyTripulacion;
+	}
+
+	public void setKeyTripulacion(String keyTripulacion) {
+		this.keyTripulacion = keyTripulacion;
+	}
+
+	public List<TripulanteDto> getListaTripulantes() {
+		return listaTripulantes;
+	}
+
+	public void setListaTripulantes(List<TripulanteDto> listaTripulantes) {
+		this.listaTripulantes = listaTripulantes;
+	}
+
+
 }

@@ -3,16 +3,16 @@ package UseCases.Consumers;
 import Fourteam.massTransit.IConsumer;
 import Fourteam.mediator.IMediator;
 
-public class TripulacionCreadoConsumer extends IConsumer<IntegrationEvents.TripulacionCreado> {
+public class TripulacionChangeConsumer extends IConsumer<IntegrationEvents.TripulacionChange> {
 
 	public static String QueueName = "vuelo-creado-vuelo-Tripulacion";
 
-	public TripulacionCreadoConsumer(IMediator mediator) {
+	public TripulacionChangeConsumer(IMediator mediator) {
 		System.out.println("Entro al constructor del consumer");
 	}
 
 	@Override
-	public void Consume(IntegrationEvents.TripulacionCreado object) {
+	public void Consume(IntegrationEvents.TripulacionChange object) {
 		System.out.println("Entro al consumers tripulacion chaval");
 	}
 }

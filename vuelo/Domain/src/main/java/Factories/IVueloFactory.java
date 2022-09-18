@@ -10,6 +10,8 @@ public interface IVueloFactory {
     String _keyAeropuertoOrigen,
     String _keyAeropuertoDestino,
     Date _fecha_salida,
-    Date _fecha_arribe
+    Date _fecha_arribe,
+		String _keyTripulacion
+
   );
 }

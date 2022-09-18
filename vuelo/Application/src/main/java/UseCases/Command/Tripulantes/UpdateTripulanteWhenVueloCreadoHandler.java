@@ -2,8 +2,8 @@ package UseCases.Command.Tripulantes;
 
 import Event.VueloCreado;
 import Repositories.ITripulanteRepository;
-import fourteam.mediator.Notification;
-import fourteam.mediator.NotificationHandler;
+import Fourteam.mediator.Notification;
+import Fourteam.mediator.NotificationHandler;
 
 public class UpdateTripulanteWhenVueloCreadoHandler
   implements NotificationHandler<VueloCreado> {

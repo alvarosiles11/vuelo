@@ -1,7 +1,7 @@
 package UseCases.Command.Aeronaves.Crear;
 
 import Dto.AeronaveDto;
-import fourteam.mediator.Request;
+import Fourteam.mediator.Request;
 
 public class CrearAeronaveCommand implements Request<AeronaveDto> {
 

@@ -11,20 +11,21 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
 import Context.IWriteDbContext;
-import fourteam.JSON;
-import fourteam.db.DbSet;
-import fourteam.db.Exception.DataBaseException;
+import Fourteam.JSON;
+import Fourteam.config.Config;
+import Fourteam.db.DbSet;
+import Fourteam.db.Exception.DataBaseException;
 
 public class WriteDbContext extends IWriteDbContext {
 
 	private MongoClient client;
 	private MongoDatabase db;
 
-	private final String DB_NAME = "dmsnur_vuelo";
-	private final String DB_USER = "root";
-	private final String DB_PASS = "rootpassword";
-	private final String DB_HOST = "localhost";
-	private final int DB_PORT = 27017;
+	private String DB_NAME;
+	private String DB_USER;
+	private String DB_PASS;
+	private String DB_HOST;
+	private int DB_PORT = 27017;
 
 	public WriteDbContext() throws DataBaseException {
 		super(WriteDbContext.class);
@@ -32,9 +33,31 @@ public class WriteDbContext extends IWriteDbContext {
 
 	@Override
 	public void onModelCreating(List<DbSet> sets) {
-		// MongoClientURI uri = new MongoClientURI("mongodb://" + DB_USER + ":" + DB_PASS
-		// 		+ "@" + DB_HOST + ":" + DB_PORT + "/?authSource=admin");
-		MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017");
+
+		DB_NAME = Config.getProperty("mongo.dbname");
+		DB_USER = Config.getProperty("mongo.user");
+		DB_PASS = Config.getProperty("mongo.pass");
+		DB_HOST = Config.getProperty("mongo.host");
+		DB_PORT = Integer.parseInt(Config.getProperty("mongo.port"));
+		MongoClientURI uri;
+		if (DB_PASS != null && DB_USER != null) {
+			uri = new MongoClientURI(
+					"mongodb://" +
+							DB_USER +
+							":" +
+							DB_PASS +
+							"@" +
+							DB_HOST +
+							":" +
+							DB_PORT +
+							"/?authSource=admin");
+		} else {
+			uri = new MongoClientURI(
+					"mongodb://" +
+							DB_HOST +
+							":" +
+							DB_PORT);
+		}
 		this.client = new MongoClient(uri);
 		this.db = client.getDatabase(DB_NAME);
 		sets

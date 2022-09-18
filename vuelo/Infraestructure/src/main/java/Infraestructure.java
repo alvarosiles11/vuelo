@@ -8,8 +8,8 @@ import Repository.TripulanteRepository;
 import Repository.VueloRepository;
 import UseCases.Consumers.AeronaveCreadoConsumer;
 import UseCases.Consumers.TripulacionCreadoConsumer;
-import fourteam.config.Config;
-import fourteam.extensions.IServiceCollection;
+import Fourteam.config.Config;
+import Fourteam.extensions.IServiceCollection;
 
 public class Infraestructure {
 

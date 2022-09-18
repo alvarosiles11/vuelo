@@ -1,7 +1,7 @@
 package UseCases.Queries.Tripulantes.GetByKey;
 
 import Dto.VueloDto;
-import fourteam.mediator.Request;
+import Fourteam.mediator.Request;
 import java.util.UUID;
 
 public class GetTripulanteByKeyQuery implements Request<VueloDto> {

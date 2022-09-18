@@ -4,9 +4,9 @@ import Factories.IVueloFactory;
 import Model.Vuelos.Vuelo;
 import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
-import fourteam.http.Exception.HttpException;
-import fourteam.http.HttpStatus;
-import fourteam.mediator.RequestHandler;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.HttpStatus;
+import Fourteam.mediator.RequestHandler;
 
 public class EditarVueloHandler
   implements RequestHandler<EditarVueloCommand, Vuelo> {
@@ -34,10 +34,16 @@ public class EditarVueloHandler
 
     vuelo.setNroVuelo(request.vueloDto.getNroVuelo());
     vuelo.setKeyAeronave(request.vueloDto.getKeyAeronave());
-    vuelo.setKeyAeropuertoOrigen(request.vueloDto.getKeyAeropuertoOrigen());
+    // vuelo.listaAsientos= request.vueloDto.listaAsientos;
+
+		vuelo.setKeyAeropuertoOrigen(request.vueloDto.getKeyAeropuertoOrigen());
     vuelo.setKeyAeropuertoDestino(request.vueloDto.getKeyAeropuertoDestino());
-    vuelo.setfechaSalida(request.vueloDto.getfechaSalida());
-    vuelo.setfechaArribe(request.vueloDto.getfechaArribe());
+    vuelo.setFechaSalida(request.vueloDto.getFechaSalida());
+    vuelo.setFechaArribe(request.vueloDto.getFechaArribe());
+		vuelo.setKeyTripulacion(request.vueloDto.getKeyTripulacion());
+    // vuelo.setListaTripulante(request.vueloDto.listaTripulantes);
+
+
     iVueloRepository.Update(vuelo);
     return vuelo;
   }

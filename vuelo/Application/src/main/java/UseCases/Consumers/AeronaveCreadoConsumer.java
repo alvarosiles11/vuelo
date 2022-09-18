@@ -1,18 +1,18 @@
 package UseCases.Consumers;
 
-import fourteam.massTransit.IConsumer;
-import fourteam.mediator.IMediator;
+import Fourteam.massTransit.IConsumer;
 
 public class AeronaveCreadoConsumer extends IConsumer<IntegrationEvents.AeronaveCreado> {
 
-	public static String QueueName = "vuelo-creado-vuelo-aeronave";
 
-	public AeronaveCreadoConsumer(IMediator mediator) {
-		System.out.println("Entro al constructor del consumer");
+	public AeronaveCreadoConsumer() {
 	}
 
 	@Override
 	public void Consume(IntegrationEvents.AeronaveCreado object) {
-		System.out.println("Entro al consumers aeronave chaval");
+		System.out.println(object);
+		// _AeronaveRepository.Create(arg0);
+		// TODO: guardar aeronave en la base
+
 	}
 }

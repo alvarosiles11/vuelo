@@ -2,7 +2,8 @@ import Context.IWriteDbContext;
 import Repositories.IUnitOfWork;
 import core.ConfirmedDomainEvent;
 import core.DomainEvent;
- import fourteam.mediator.Mediator;
+import Fourteam.db.Exception.DataBaseException;
+import Fourteam.mediator.Mediator;
 import java.util.List;
 
 public class UnitOfWork implements IUnitOfWork {
@@ -19,13 +20,23 @@ public class UnitOfWork implements IUnitOfWork {
 	public void commit() throws Exception {
 		List<Object> events = _context.getDomainEvents();
 		for (Object domainEvent : events) {
-			DomainEvent event = (DomainEvent) domainEvent;
-			_mediator.notify(event);
+			try {
+				DomainEvent event = (DomainEvent) domainEvent;
+				_mediator.notify(event);
+			} catch (Exception e) {
+			}
 		}
-		_context.Commit();
+		try {
+			_context.Commit();
+		} catch (DataBaseException e) {
+			e.printStackTrace();
+		}
 		for (Object domainEvent : events) {
-			DomainEvent event = (DomainEvent) domainEvent;
-			_mediator.notify(MakeGeneryc(event));
+			try {
+				DomainEvent event = (DomainEvent) domainEvent;
+				_mediator.notify(MakeGeneryc(event));
+			} catch (Exception e) {
+			}
 		}
 	}
 

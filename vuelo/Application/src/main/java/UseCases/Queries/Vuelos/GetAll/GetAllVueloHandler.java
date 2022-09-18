@@ -2,7 +2,7 @@ package UseCases.Queries.Vuelos.GetAll;
 
 import Model.Vuelos.Vuelo;
 import Repositories.IVueloRepository;
-import fourteam.mediator.RequestHandler;
+import Fourteam.mediator.RequestHandler;
 import java.util.List;
 
 public class GetAllVueloHandler

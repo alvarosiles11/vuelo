@@ -1,7 +1,7 @@
 package UseCases.Queries.Tripulantes.GetAll;
 
 import Dto.TripulanteDto;
-import fourteam.mediator.Request;
+import Fourteam.mediator.Request;
 
 public class GetAllTripulanteQuery implements Request<TripulanteDto> {
 

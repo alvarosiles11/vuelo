@@ -2,10 +2,10 @@ import Factories.ITripulanteFactory;
 import Factories.IVueloFactory;
 import Factories.TripulanteFactory;
 import Factories.VueloFactory;
-import UseCases.Command.Tripulantes.Crear.CrearTripulanteHandler;
-import UseCases.Command.Tripulantes.Editar.EditarTripulanteHandler;
-import UseCases.Command.Tripulantes.Eliminar.EliminarTripulanteHandler;
-import UseCases.Command.Tripulantes.UpdateTripulanteWhenVueloCreadoHandler;
+// import UseCases.Command.Tripulantes.Crear.CrearTripulanteHandler;
+// import UseCases.Command.Tripulantes.Editar.EditarTripulanteHandler;
+// import UseCases.Command.Tripulantes.Eliminar.EliminarTripulanteHandler;
+// import UseCases.Command.Tripulantes.UpdateTripulanteWhenVueloCreadoHandler;
 import UseCases.Command.Vuelos.Crear.CrearVueloHandler;
 import UseCases.Command.Vuelos.Editar.EditarVueloHandler;
 import UseCases.Command.Vuelos.Eliminar.EliminarVueloHandler;
@@ -14,8 +14,8 @@ import UseCases.Queries.Tripulantes.GetAll.GetAllTripulanteHandler;
 import UseCases.Queries.Tripulantes.GetByKey.GetTripulanteByKeyHandler;
 import UseCases.Queries.Vuelos.GetAll.GetAllVueloHandler;
 import UseCases.Queries.Vuelos.GetByKey.GetVueloByKeyHandler;
-import fourteam.extensions.IServiceCollection;
-import fourteam.mediator.IMediator;
+import Fourteam.extensions.IServiceCollection;
+import Fourteam.mediator.IMediator;
 
 public class Application {
 
@@ -30,11 +30,11 @@ public class Application {
 		// INFO:Tripulante
 		IMediator.registerHandler(GetAllTripulanteHandler.class);
 		IMediator.registerHandler(GetTripulanteByKeyHandler.class);
-		IMediator.registerHandler(CrearTripulanteHandler.class);
-		IMediator.registerHandler(EditarTripulanteHandler.class);
-		IMediator.registerHandler(EliminarTripulanteHandler.class);
+		// IMediator.registerHandler(CrearTripulanteHandler.class);
+		// IMediator.registerHandler(EditarTripulanteHandler.class);
+		// IMediator.registerHandler(EliminarTripulanteHandler.class);
 
-		IMediator.registerHandler(UpdateTripulanteWhenVueloCreadoHandler.class);
+		// IMediator.registerHandler(UpdateTripulanteWhenVueloCreadoHandler.class);
 		IMediator.registerHandler(PublishIntegrationEventWhenVueloCreadoHandler.class);
 		IServiceCollection.AddTransient(IVueloFactory.class, VueloFactory.class);
 		IServiceCollection.AddTransient(ITripulanteFactory.class, TripulanteFactory.class);

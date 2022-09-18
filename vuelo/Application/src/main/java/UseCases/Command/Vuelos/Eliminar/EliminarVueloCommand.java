@@ -1,7 +1,7 @@
 package UseCases.Command.Vuelos.Eliminar;
 
 import Dto.VueloDto;
-import fourteam.mediator.Request;
+import Fourteam.mediator.Request;
 import java.util.UUID;
 
 public class EliminarVueloCommand implements Request<VueloDto> {

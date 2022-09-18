@@ -7,17 +7,17 @@ import UseCases.Command.Vuelos.Editar.EditarVueloCommand;
 import UseCases.Command.Vuelos.Eliminar.EliminarVueloCommand;
 import UseCases.Queries.Vuelos.GetAll.GetAllVueloQuery;
 import UseCases.Queries.Vuelos.GetByKey.GetVueloByKeyQuery;
-import fourteam.http.Exception.HttpException;
-import fourteam.http.annotation.DeleteMapping;
-import fourteam.http.annotation.GetMapping;
-import fourteam.http.annotation.PathVariable;
-import fourteam.http.annotation.PostMapping;
-import fourteam.http.annotation.PutMapping;
-import fourteam.http.annotation.RequestBody;
-import fourteam.http.annotation.RequestMapping;
-import fourteam.http.annotation.RestController;
-import fourteam.mediator.Mediator;
-import fourteam.mediator.Response;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.annotation.DeleteMapping;
+import Fourteam.http.annotation.GetMapping;
+import Fourteam.http.annotation.PathVariable;
+import Fourteam.http.annotation.PostMapping;
+import Fourteam.http.annotation.PutMapping;
+import Fourteam.http.annotation.RequestBody;
+import Fourteam.http.annotation.RequestMapping;
+import Fourteam.http.annotation.RestController;
+import Fourteam.mediator.Mediator;
+import Fourteam.mediator.Response;
 import java.util.List;
 
 @RestController
@@ -42,13 +42,9 @@ public class VueloController {
 	}
 
 	@PostMapping("/registro")
-	public Response<Vuelo> register(@RequestBody CrearVueloCommand vuelo)
-			throws HttpException {
-		try {
-			return _mediator.send(vuelo);
-		} catch (Exception e) {
-			throw new HttpException(404, e.getMessage());
-		}
+	public Vuelo register(@RequestBody CrearVueloCommand vuelo)
+			throws Exception {
+		return (Vuelo) _mediator.send(vuelo).data;
 	}
 
 	@GetMapping("/{key}")
@@ -69,8 +65,10 @@ public class VueloController {
 		request.vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
 		request.vueloDto.setKeyAeropuertoOrigen(vuelo.getKeyAeropuertoOrigen());
 		request.vueloDto.setKeyAeropuertoDestino(vuelo.getKeyAeropuertoDestino());
-		request.vueloDto.setfechaSalida(vuelo.getfechaSalida());
-		request.vueloDto.setfechaArribe(vuelo.getfechaArribe());
+		request.vueloDto.setFechaSalida(vuelo.getFechaSalida());
+		request.vueloDto.setFechaArribe(vuelo.getFechaArribe());
+		request.vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
+
 		try {
 			return _mediator.send(request);
 		} catch (Exception e) {

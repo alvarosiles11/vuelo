@@ -3,49 +3,72 @@ package Dto;
 import java.util.UUID;
 
 public class TripulanteDto {
+	public UUID keyTripulacion;
+	public UUID keyTripulante;
+	public String nombre;
+	public String apellido;
+	public String tipo;
+	public String estado;
 
-  private UUID key; // key del tripulante
-  private UUID keyVuelo; // key del vuelo
-  private String keyTripulante; // tripulante
-  private String cargo; // cargo
+	public TripulanteDto() {
+	}
 
-  public TripulanteDto() {}
+	public TripulanteDto(UUID keyTripulacion, UUID keyTripulante, String nombre, String apellido, String tipo,
+			String estado) {
+		this.keyTripulacion = keyTripulacion;
+		this.keyTripulante = keyTripulante;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipo = tipo;
+		this.estado = estado;
+	}
 
-  public TripulanteDto(UUID keyVuelo, String keyTripulante, String cargo) {
-    this.keyVuelo = keyVuelo;
-    this.keyTripulante = keyTripulante;
-    this.cargo = cargo;
-  }
+	public UUID getKeyTripulacion() {
+		return keyTripulacion;
+	}
 
-  public UUID getKeyVuelo() {
-    return keyVuelo;
-  }
+	public void setKeyTripulacion(UUID keyTripulacion) {
+		this.keyTripulacion = keyTripulacion;
+	}
 
-  public UUID getKey() {
-    return key;
-  }
+	public UUID getKeyTripulante() {
+		return keyTripulante;
+	}
 
-  public void setKey(UUID key) {
-    this.key = key;
-  }
+	public void setKeyTripulante(UUID keyTripulante) {
+		this.keyTripulante = keyTripulante;
+	}
 
-  public void setKeyVuelo(UUID keyVuelo) {
-    this.keyVuelo = keyVuelo;
-  }
+	public String getNombre() {
+		return nombre;
+	}
 
-  public String getKeyTripulante() {
-    return keyTripulante;
-  }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-  public void setKeyTripulante(String keyTripulante) {
-    this.keyTripulante = keyTripulante;
-  }
+	public String getApellido() {
+		return apellido;
+	}
 
-  public String getCargo() {
-    return cargo;
-  }
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 
-  public void setCargo(String cargo) {
-    this.cargo = cargo;
-  }
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 }
