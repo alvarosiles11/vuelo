@@ -5,46 +5,58 @@ import java.util.List;
 
 import Event.VueloCreado;
 import Fourteam.massTransit.IPublishEndpoint;
-import Fourteam.mediator.Notification;
 import Fourteam.mediator.NotificationHandler;
+import Model.Aeronaves.Aeronave;
+import Repositories.IAeronaveRepository;
 import core.ConfirmedDomainEvent;
 
 public class PublishIntegrationEventWhenVueloCreadoHandler
 		implements NotificationHandler<ConfirmedDomainEvent<VueloCreado>> {
 
 	private IPublishEndpoint publishEndpoint;
+	private IAeronaveRepository iAeronaveRepository;
 
-	public PublishIntegrationEventWhenVueloCreadoHandler(IPublishEndpoint publishEndpoint) {
+	public PublishIntegrationEventWhenVueloCreadoHandler(IPublishEndpoint publishEndpoint,
+			IAeronaveRepository iAeronaveRepository) {
 		this.publishEndpoint = publishEndpoint;
+		this.iAeronaveRepository = iAeronaveRepository;
 	}
 
 	@Override
-	public void handle(Notification notification) {
-		ConfirmedDomainEvent event = (ConfirmedDomainEvent) notification;
+	public void handle(ConfirmedDomainEvent<VueloCreado> event) {
+
 		VueloCreado vuelo = (VueloCreado) event.DomainEvent;
-		IntegrationEvents.VueloCreado evento = new IntegrationEvents.VueloCreado();
-		evento.Key = vuelo.getKey();
-		evento.setNroVuelo(vuelo.getNroVuelo());
-		evento.setKeyAeronave(vuelo.getKeyAeronave());
-		evento.setKeyAeropuertoOrigen(vuelo.getKeyAeropuertoOrigen());
-		evento.setKeyAeropuertoDestino(vuelo.getKeyAeropuertoDestino());
-		evento.setFechaSalida(vuelo.getFechaSalida());
-		evento.setFechaArribe(vuelo.getFechaArribe());
-		evento.setKeyTripulacion(vuelo.getKeyTripulacion());
-		List<IntegrationEvents.dto.AsientoDto> arr = new ArrayList<>();
-		vuelo.getListaAsientos().iterator().forEachRemaining(asiento -> {
-			IntegrationEvents.dto.AsientoDto asientoDto = new IntegrationEvents.dto.AsientoDto();
-			asientoDto.key = asiento.key;
-			asientoDto.numero = asiento.numero + "";
-			asientoDto.clase = asiento.clase;
-			// IntegrationEvents.VueloCreado.Asiento asient = new
-			// IntegrationEvents.VueloCreado.Asiento();
-			arr.add(asientoDto);
-		});
 
-		evento.setListaAsientos(arr);
-		// evento.setListaTripulantes(vuelo.getListaTripulantes());
+		try {
+			Aeronave aeronave = iAeronaveRepository.FindByKey(vuelo.keyAeronave);
+			IntegrationEvents.VueloCreado evento = new IntegrationEvents.VueloCreado();
 
-		this.publishEndpoint.Publish(evento);
+			evento.setKey(vuelo.getKey());
+			evento.setNroVuelo(vuelo.getNroVuelo());
+			evento.setFechaSalida(vuelo.getFechaSalida());
+			evento.setFechaArribe(vuelo.getFechaArribe());
+			evento.setKeyAeronave(vuelo.getKeyAeronave());
+			evento.setOrigen(vuelo.getOrigen());
+			evento.setDestino(vuelo.getDestino());
+			evento.setKeyTripulacion(vuelo.getKeyTripulacion());
+
+			List<IntegrationEvents.dto.AsientoDto> arr = new ArrayList<>();
+			aeronave.asientos.iterator().forEachRemaining(asiento -> {
+				IntegrationEvents.dto.AsientoDto asientoDto = new IntegrationEvents.dto.AsientoDto();
+				asientoDto.key = asiento.key;
+				asientoDto.keyAeronave = asiento.keyAeronave;
+				asientoDto.numero = asiento.numero;
+				asientoDto.clase = asiento.clase;
+				asientoDto.precio = asiento.precio;
+				asientoDto.disponibilidad = asiento.disponibilidad;
+				arr.add(asientoDto);
+			});
+
+			evento.setListaAsientos(arr);
+
+			this.publishEndpoint.Publish(evento);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

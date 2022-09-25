@@ -6,10 +6,10 @@ import java.util.UUID;
 
 public class EditarAeronaveCommand implements Request<AeronaveDto> {
 
-  protected AeronaveDto aeronaveDto;
+  public AeronaveDto aeronaveDto;
 
-  public EditarAeronaveCommand(UUID keyAeronave) {
+  public EditarAeronaveCommand(UUID key) {
     this.aeronaveDto = new AeronaveDto();
-    this.aeronaveDto.setKeyAeronave(keyAeronave);
+    this.aeronaveDto.setKeyAeronave(key);
   }
 }

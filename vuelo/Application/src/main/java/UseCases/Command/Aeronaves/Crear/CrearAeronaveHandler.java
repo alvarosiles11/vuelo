@@ -9,9 +9,9 @@ import Fourteam.mediator.RequestHandler;
 public class CrearAeronaveHandler
 		implements RequestHandler<CrearAeronaveCommand, Aeronave> {
 
-	protected IAeronaveFactory iAeronaveFactory;
-	protected IAeronaveRepository iAeronaveRepository;
-	protected IUnitOfWork unitOfWor;
+	private IAeronaveFactory iAeronaveFactory;
+	private IAeronaveRepository iAeronaveRepository;
+	private IUnitOfWork unitOfWor;
 
 	public CrearAeronaveHandler(
 			IAeronaveFactory iAeronaveFactory,
@@ -24,7 +24,7 @@ public class CrearAeronaveHandler
 
 	@Override
 	public Aeronave handle(CrearAeronaveCommand arg0) throws Exception {
-		Aeronave aeronave = iAeronaveFactory.Create(arg0.matricula);
+		Aeronave aeronave = iAeronaveFactory.Create(arg0.key, arg0.matricula, arg0.estado);
 		iAeronaveRepository.Create(aeronave);
 		unitOfWor.commit();
 		return aeronave;

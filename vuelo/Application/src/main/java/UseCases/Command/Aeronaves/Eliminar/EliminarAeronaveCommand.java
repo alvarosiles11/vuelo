@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class EliminarAeronaveCommand implements Request<AeronaveDto> {
 
-  protected AeronaveDto aeronaveDto;
+  public AeronaveDto aeronaveDto;
 
   public EliminarAeronaveCommand(UUID keyAeronave) {
     aeronaveDto = new AeronaveDto();

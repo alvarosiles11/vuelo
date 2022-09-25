@@ -10,6 +10,7 @@ public class AsientoDto {
 	public int numero;
 	public String clase;
 	public Double precio;
+	public int disponibilidad;
 
 	public AsientoDto() {}
 

@@ -1,29 +1,15 @@
 package Dto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class TripulacionDto {
 
-	public UUID keyVuelo; // vuelo registrado
-
 	public UUID keyTripulacion;
 	public String descripcion;
-	public int estado;
-	public List<TripulanteDto> listaTripulantes;
+	public String estado;
 
-	public TripulacionDto() {
-    listaTripulantes = new ArrayList<>();
-  }
-
-	public UUID getKeyVuelo() {
-		return keyVuelo;
-	}
-
-	public void setKeyVuelo(UUID keyVuelo) {
-		this.keyVuelo = keyVuelo;
-	}
+	public List<TripulanteDto> tripulantes;
 
 	public UUID getKeyTripulacion() {
 		return keyTripulacion;
@@ -41,23 +27,19 @@ public class TripulacionDto {
 		this.descripcion = descripcion;
 	}
 
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public List<TripulanteDto> getListaTripulantes() {
-		return listaTripulantes;
+	public List<TripulanteDto> getTripulantes() {
+		return tripulantes;
 	}
 
-	public void setListaTripulantes(List<TripulanteDto> listaTripulantes) {
-		this.listaTripulantes = listaTripulantes;
+	public void setTripulantes(List<TripulanteDto> tripulantes) {
+		this.tripulantes = tripulantes;
 	}
-
-
-
-
 }

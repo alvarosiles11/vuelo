@@ -1,15 +1,17 @@
 
 import Context.IWriteDbContext;
 import Context.MongoDB.WriteDbContext;
-import Repositories.ITripulanteRepository;
-import Repositories.IUnitOfWork;
-import Repositories.IVueloRepository;
-import Repository.TripulanteRepository;
-import Repository.VueloRepository;
-import UseCases.Consumers.AeronaveCreadoConsumer;
-import UseCases.Consumers.TripulacionCreadoConsumer;
 import Fourteam.config.Config;
 import Fourteam.extensions.IServiceCollection;
+import Repositories.IAeronaveRepository;
+import Repositories.ITripulacionRepository;
+import Repositories.IUnitOfWork;
+import Repositories.IVueloRepository;
+import Repository.AeronaveRepository;
+import Repository.TripulacionRepository;
+import Repository.VueloRepository;
+import UseCases.Consumers.AeronaveChangeConsumer;
+import UseCases.Consumers.TripulacionChangeConsumer;
 
 public class Infraestructure {
 
@@ -18,16 +20,17 @@ public class Infraestructure {
 		IServiceCollection.AddScoped(IWriteDbContext.class, WriteDbContext.class);
 		IServiceCollection.AddScoped(IUnitOfWork.class, UnitOfWork.class);
 		IServiceCollection.AddScoped(IVueloRepository.class, VueloRepository.class);
-		IServiceCollection.AddScoped(ITripulanteRepository.class, TripulanteRepository.class);
+		IServiceCollection.AddScoped(ITripulacionRepository.class, TripulacionRepository.class);
+		IServiceCollection.AddScoped(IAeronaveRepository.class, AeronaveRepository.class);
+
 		Application.AddApplication();
 		AddRabbitMq();
 	}
 
 	private static void AddRabbitMq() {
 		IServiceCollection.AddMassTransit(config -> {
-			config.AddConsumer(AeronaveCreadoConsumer.class);
-			config.AddConsumer(TripulacionCreadoConsumer.class);
-
+			config.AddConsumer(AeronaveChangeConsumer.class);
+			config.AddConsumer(TripulacionChangeConsumer.class);
 			config.UsingRabbitMq((context, cfg) -> {
 				cfg.Host = Config.getProperty("rabit.host");
 				cfg.User = Config.getProperty("rabit.user");

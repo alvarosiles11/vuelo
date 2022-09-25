@@ -1,12 +1,8 @@
 package Controllers;
 
+import java.util.List;
+
 import Dto.VueloDto;
-import Model.Vuelos.Vuelo;
-import UseCases.Command.Vuelos.Crear.CrearVueloCommand;
-import UseCases.Command.Vuelos.Editar.EditarVueloCommand;
-import UseCases.Command.Vuelos.Eliminar.EliminarVueloCommand;
-import UseCases.Queries.Vuelos.GetAll.GetAllVueloQuery;
-import UseCases.Queries.Vuelos.GetByKey.GetVueloByKeyQuery;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.http.annotation.DeleteMapping;
 import Fourteam.http.annotation.GetMapping;
@@ -18,7 +14,12 @@ import Fourteam.http.annotation.RequestMapping;
 import Fourteam.http.annotation.RestController;
 import Fourteam.mediator.Mediator;
 import Fourteam.mediator.Response;
-import java.util.List;
+import Model.Vuelos.Vuelo;
+import UseCases.Command.Vuelos.Crear.CrearVueloCommand;
+import UseCases.Command.Vuelos.Editar.EditarVueloCommand;
+import UseCases.Command.Vuelos.Eliminar.EliminarVueloCommand;
+import UseCases.Queries.Vuelos.GetAll.GetAllVueloQuery;
+import UseCases.Queries.Vuelos.GetByKey.GetVueloByKeyQuery;
 
 @RestController
 @RequestMapping("/vuelo")
@@ -31,9 +32,9 @@ public class VueloController {
 	}
 
 	@GetMapping("/")
-	public List<Vuelo> getAll() throws HttpException {
+	public List<VueloDto> getAll() throws HttpException {
 		try {
-			Response<List<Vuelo>> lista = _mediator.send(new GetAllVueloQuery());
+			Response<List<VueloDto>> lista = _mediator.send(new GetAllVueloQuery());
 			return lista.data;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,26 +59,25 @@ public class VueloController {
 	}
 
 	@PutMapping("/{key}")
-	public Response<Vuelo> edit(
+	public VueloDto edit(
 			@RequestBody Vuelo vuelo,
 			@PathVariable EditarVueloCommand request) throws HttpException {
 		request.vueloDto.setNroVuelo(vuelo.getNroVuelo());
 		request.vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
-		request.vueloDto.setKeyAeropuertoOrigen(vuelo.getKeyAeropuertoOrigen());
-		request.vueloDto.setKeyAeropuertoDestino(vuelo.getKeyAeropuertoDestino());
+		request.vueloDto.setOrigen(vuelo.getOrigen());
+		request.vueloDto.setDestino(vuelo.getDestino());
 		request.vueloDto.setFechaSalida(vuelo.getFechaSalida());
 		request.vueloDto.setFechaArribe(vuelo.getFechaArribe());
 		request.vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
-
 		try {
-			return _mediator.send(request);
+			return (VueloDto) _mediator.send(request).data;
 		} catch (Exception e) {
-			throw new HttpException(404, e.getMessage());
+			throw (HttpException) e.getCause();
 		}
 	}
 
 	@DeleteMapping("/{key}")
-	public Response<Vuelo> delete(@PathVariable EliminarVueloCommand request)
+	public Response<VueloDto> delete(@PathVariable EliminarVueloCommand request)
 			throws HttpException {
 		try {
 			return _mediator.send(request);
@@ -85,5 +85,4 @@ public class VueloController {
 			throw new HttpException(404, e.getMessage());
 		}
 	}
-
 }

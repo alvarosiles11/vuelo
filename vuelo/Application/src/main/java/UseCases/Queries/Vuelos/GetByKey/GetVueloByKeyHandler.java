@@ -1,15 +1,20 @@
 package UseCases.Queries.Vuelos.GetByKey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Dto.AsientoDto;
+import Dto.TripulanteDto;
 import Dto.VueloDto;
 import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulante;
 import Model.Vuelos.Vuelo;
 import Repositories.IVueloRepository;
 
-public class GetVueloByKeyHandler
-		implements RequestHandler<GetVueloByKeyQuery, VueloDto> {
+public class GetVueloByKeyHandler implements RequestHandler<GetVueloByKeyQuery, VueloDto> {
 
 	private IVueloRepository iVueloRepository;
 
@@ -22,28 +27,31 @@ public class GetVueloByKeyHandler
 		Vuelo vuelo = iVueloRepository.FindByKey(request.Key);
 
 		if (vuelo == null) {
-			throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrado");
+			throw new HttpException(HttpStatus.BAD_REQUEST, "vuelo no encontrada");
 		}
 
-		VueloDto vueloDto = new VueloDto();
-
+		VueloDto vueloDto= new VueloDto();
+		vueloDto.setKey(vuelo.getKey());
 		vueloDto.setNroVuelo(vuelo.getNroVuelo());
 		vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
-		vueloDto.setKeyAeropuertoOrigen(vuelo.getKeyAeropuertoOrigen());
-		vueloDto.setKeyAeropuertoDestino(vuelo.getKeyAeropuertoDestino());
+		vueloDto.setOrigen(vuelo.getOrigen());
+		vueloDto.setDestino(vuelo.getDestino());
 		vueloDto.setFechaSalida(vuelo.getFechaSalida());
 		vueloDto.setFechaArribe(vuelo.getFechaArribe());
-
 		vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
 
-		vuelo.listaAsientos.iterator().forEachRemaining(obj -> {
-			vueloDto.listaAsientos.add(new AsientoDto(obj.keyAeronave, obj.numero, obj.clase, obj.precio));
-		});
+		List<AsientoDto> asientosDtos = new ArrayList<>();
+		for (Asiento asiento : vuelo.asientos) {
+			asientosDtos.add(new AsientoDto(asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
+		}
+		vueloDto.setAsientoDtos(asientosDtos);
 
-		// retorno lista de tripulante el dto
-		// vuelo.listaTripulante.iterator().forEachRemaining(obj -> {
-		// 	vueloDto.listaTripulantes.add(new TripulanteDto(obj.));
-		// });
+		List<TripulanteDto> tripulanteDtos= new ArrayList<>();
+		for (Tripulante tripulante: vuelo.tripulantes) {
+			tripulanteDtos.add(new TripulanteDto(tripulante.keyTripulacion, tripulante.key, tripulante.nombre, tripulante.apellido, tripulante.cargo, tripulante.estado));
+		}
+		vueloDto.setTripulanteDtos(tripulanteDtos);
+
 		return vueloDto;
 	}
 }

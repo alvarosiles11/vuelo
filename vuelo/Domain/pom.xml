@@ -13,7 +13,7 @@
   <version>1.0</version>
 
 <dependencies>
-  <dependency>
+	<dependency>
     <groupId>dmsnur</groupId>
     <artifactId>SharedKernel</artifactId>
     <version>1.8</version>

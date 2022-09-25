@@ -1,7 +1,8 @@
 package Model.Aeronaves;
 
-import core.Entity;
 import java.util.UUID;
+
+import core.Entity;
 
 public class Asiento extends Entity<UUID> {
 
@@ -9,14 +10,17 @@ public class Asiento extends Entity<UUID> {
 	public int numero;
 	public String clase;
 	public Double precio;
+	public int disponibilidad;
 
-	public Asiento(UUID keyAeronave, int numero, String clase, Double precio) {
-		key = UUID.randomUUID();
+	public Asiento(UUID key, UUID keyAeronave, int numero, String clase, Double precio, int disponibilidad) {
+		this.key = key;
 		this.keyAeronave = keyAeronave;
 		this.numero = numero;
 		this.clase = clase;
 		this.precio = precio;
+		this.disponibilidad = disponibilidad;
 	}
+
 
 	public UUID getKeyAeronave() {
 		return keyAeronave;
@@ -50,7 +54,11 @@ public class Asiento extends Entity<UUID> {
 		this.precio = precio;
 	}
 
+	public int getDisponibilidad() {
+		return disponibilidad;
+	}
 
-
-
+	public void setDisponibilidad(int disponibilidad) {
+		this.disponibilidad = disponibilidad;
+	}
 }

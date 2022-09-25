@@ -2,13 +2,13 @@ servers:
 - {url: 'http://localhost:8080/api/'}
 openapi: 3.0.0
 paths:
-  /tripulante/:
+  /aeronave/:
     get:
-      summary: /tripulante getAll
-      operationId: /tripulante_getAll
+      summary: /aeronave getAll
+      operationId: /aeronave_getAll
       responses:
         '200': {description: Response 200}
-      tags: [/tripulante]
+      tags: [/aeronave]
   /vuelo/{key}:
     get:
       summary: /vuelo getByKey
@@ -65,10 +65,10 @@ paths:
       responses:
         '200': {description: Response 200}
       tags: [/vuelo]
-  /tripulante/{key}:
+  /aeronave/{key}:
     get:
-      summary: /tripulante getByKey
-      operationId: /tripulante_getByKey
+      summary: /aeronave getByKey
+      operationId: /aeronave_getByKey
       responses:
         '200': {description: Response 200}
       parameters:
@@ -76,8 +76,58 @@ paths:
         in: path
         name: key
         required: true
-      tags: [/tripulante]
+      tags: [/aeronave]
+    put:
+      summary: /aeronave edit
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /aeronave_edit
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/aeronave]
+  /tripulacion/:
+    get:
+      summary: /tripulacion getAll
+      operationId: /tripulacion_getAll
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulacion]
+  /tripulacion/{key}:
+    get:
+      summary: /tripulacion getByKey
+      operationId: /tripulacion_getByKey
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
+    put:
+      summary: /tripulacion edit
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulacion_edit
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
 info: {description: FuourTeam API description, title: FourTeam API, version: 1.0.1}
 tags:
-- {name: /tripulante, description: /tripulante_descripcion}
 - {name: /vuelo, description: /vuelo_descripcion}
+- {name: /tripulacion, description: /tripulacion_descripcion}
+- {name: /aeronave, description: /aeronave_descripcion}

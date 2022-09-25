@@ -3,23 +3,24 @@ package Dto;
 import java.util.UUID;
 
 public class TripulanteDto {
+
 	public UUID keyTripulacion;
+
 	public UUID keyTripulante;
 	public String nombre;
 	public String apellido;
-	public String tipo;
+	public String cargo;
 	public String estado;
 
-	public TripulanteDto() {
-	}
+	public TripulanteDto() {}
 
-	public TripulanteDto(UUID keyTripulacion, UUID keyTripulante, String nombre, String apellido, String tipo,
+	public TripulanteDto(UUID keyTripulacion, UUID keyTripulante, String nombre, String apellido, String cargo,
 			String estado) {
 		this.keyTripulacion = keyTripulacion;
 		this.keyTripulante = keyTripulante;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.tipo = tipo;
+		this.cargo = cargo;
 		this.estado = estado;
 	}
 
@@ -55,12 +56,12 @@ public class TripulanteDto {
 		this.apellido = apellido;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public String getEstado() {

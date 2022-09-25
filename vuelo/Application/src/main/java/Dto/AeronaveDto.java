@@ -1,25 +1,49 @@
 package Dto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class AeronaveDto {
 
-  private UUID keyAeronave;
-  private String matricula;
+	public UUID keyAeronave;
+	public String matricula;
+	public List<AsientoDto> listaAsientos;
+	public String estado;
 
-  public UUID getKeyAeronave() {
-    return keyAeronave;
-  }
+	public AeronaveDto() {
+		listaAsientos = new ArrayList<>();
+	}
 
-  public void setKeyAeronave(UUID keyAeronave) {
-    this.keyAeronave = keyAeronave;
-  }
+	public UUID getKeyAeronave() {
+		return keyAeronave;
+	}
 
-  public String getMatricula() {
-    return matricula;
-  }
+	public void setKeyAeronave(UUID keyAeronave) {
+		this.keyAeronave = keyAeronave;
+	}
 
-  public void setMatricula(String matricula) {
-    this.matricula = matricula;
-  }
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public List<AsientoDto> getListaAsientos() {
+		return listaAsientos;
+	}
+
+	public void setListaAsientos(List<AsientoDto> listaAsientos) {
+		this.listaAsientos = listaAsientos;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 }

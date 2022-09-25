@@ -1,11 +1,12 @@
 package Repository;
 
-import Context.IWriteDbContext;
-import Model.Vuelos.Vuelo;
-import Repositories.IVueloRepository;
-import Fourteam.db.DbSet;
 import java.util.List;
 import java.util.UUID;
+
+import Context.IWriteDbContext;
+import Fourteam.db.DbSet;
+import Model.Vuelos.Vuelo;
+import Repositories.IVueloRepository;
 
 public class VueloRepository implements IVueloRepository {
 
@@ -42,4 +43,8 @@ public class VueloRepository implements IVueloRepository {
 		return objVuelo;
 	}
 
+	@Override
+	public Vuelo findNroVuelo(String nro) throws Exception {
+		return _vuelos.Single(obj -> obj.nroVuelo.equals(nro));
+	}
 }

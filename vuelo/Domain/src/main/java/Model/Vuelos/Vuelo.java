@@ -1,44 +1,43 @@
 package Model.Vuelos;
 
-import Event.VueloCreado;
-import Model.Aeronaves.Asiento;
-import Model.Vuelos.ValueObjects.NumeroVuelo;
-import core.AggregateRoot;
-import core.BussinessRuleValidateExeption;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import Event.VueloCreado;
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulante;
+import Model.Vuelos.ValueObjects.NumeroVuelo;
+import core.AggregateRoot;
+import core.BussinessRuleValidateExeption;
+
 public class Vuelo extends AggregateRoot<UUID> {
 
-	public UUID keyVuelo;
-
 	public String nroVuelo;
-	public String keyAeronave;
-	public List<Asiento> listaAsientos;
-
-	public String keyAeropuertoOrigen;
-	public String keyAeropuertoDestino;
+	public UUID keyAeronave;
+	public String origen;
+	public String destino;
 	public Date fechaSalida;
 	public Date fechaArribe;
+	public UUID keyTripulacion;
 
-	public String keyTripulacion;
-	public List<Tripulante> listaTripulantes;
+	// para ver mi getllHandler
+	public List<Tripulante> tripulantes;
+	public List<Asiento> asientos;
 
 	public Vuelo() {
 	}
 
 	public Vuelo(
 			String _nroVuelo,
-			String _keyAeronave,
-			String _keyAeropuertoOrigen,
-			String _keyAeropuertoDestino,
+			UUID _keyAeronave,
+			String _origen,
+			String _destino,
 			Date _fechaSalida,
 			Date _fechaArribe,
-			String _keyTripulacion) {
-		key = UUID.randomUUID();
-		keyVuelo = UUID.randomUUID();
+			UUID _keyTripulacion,
+			List<Asiento> _asientos,
+			List<Tripulante> _tripulantes) {
 		// validaciones value objects y reglas de negocio
 		try {
 			this.nroVuelo = new NumeroVuelo(_nroVuelo).toString();
@@ -46,45 +45,24 @@ public class Vuelo extends AggregateRoot<UUID> {
 			System.out.println("Error en el NumeroVuelo Vuelo");
 			return;
 		}
-
+		key = UUID.randomUUID();
 		nroVuelo = _nroVuelo;
 		keyAeronave = _keyAeronave;
-		listaAsientos = new ArrayList<Asiento>();
-		keyAeropuertoOrigen = _keyAeropuertoOrigen;
-		keyAeropuertoDestino = _keyAeropuertoDestino;
+		origen = _origen;
+		destino = _destino;
 		fechaSalida = _fechaSalida;
 		fechaArribe = _fechaArribe;
 		keyTripulacion = _keyTripulacion;
-		listaTripulantes = new ArrayList<Tripulante>();
+		asientos = _asientos;
+		tripulantes = _tripulantes;
+
 		System.out.println("Se a creado un nuevo vuelo");
 	}
 
 	public void eventCreado() {
-		addDomainEvent(new VueloCreado(keyVuelo,nroVuelo, keyAeronave, keyAeropuertoOrigen, keyAeropuertoDestino, fechaSalida,
-				fechaArribe, keyTripulacion, listaTripulantes, listaAsientos));
-
-	}
-
-	public void AgregarTripulante(Tripulante tripulante) {
-		listaTripulantes
-				.parallelStream()
-				.filter(p -> p.getKey() == tripulante.getKey())
-				.findFirst()
-				.ifPresent(p -> {
-					throw new RuntimeException("El tripulante ya existe");
-				});
-		listaTripulantes.add(tripulante);
-	}
-
-	public void agregarAsiento(Asiento asiento) {
-		listaAsientos
-				.parallelStream()
-				.filter(p -> p.getKey() == asiento.getKey())
-				.findFirst()
-				.ifPresent(p -> {
-					throw new RuntimeException("El asiento ya existe");
-				});
-		listaAsientos.add(asiento);
+		addDomainEvent(
+				new VueloCreado(key, nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe,
+						keyTripulacion));
 	}
 
 	public String getNroVuelo() {
@@ -95,36 +73,44 @@ public class Vuelo extends AggregateRoot<UUID> {
 		this.nroVuelo = nroVuelo;
 	}
 
-	public String getKeyAeronave() {
+	public UUID getKeyAeronave() {
 		return keyAeronave;
 	}
 
-	public void setKeyAeronave(String keyAeronave) {
+	public void setKeyAeronave(UUID keyAeronave) {
 		this.keyAeronave = keyAeronave;
 	}
 
-	public List<Asiento> getListaAsientos() {
-		return listaAsientos;
+	public String getOrigen() {
+		return origen;
 	}
 
-	public void setListaAsientos(List<Asiento> listaAsientos) {
-		this.listaAsientos = listaAsientos;
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
 
-	public String getKeyAeropuertoOrigen() {
-		return keyAeropuertoOrigen;
+	public String getDestino() {
+		return destino;
 	}
 
-	public void setKeyAeropuertoOrigen(String keyAeropuertoOrigen) {
-		this.keyAeropuertoOrigen = keyAeropuertoOrigen;
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
 
-	public String getKeyAeropuertoDestino() {
-		return keyAeropuertoDestino;
+	public List<Tripulante> getTripulantes() {
+		return tripulantes;
 	}
 
-	public void setKeyAeropuertoDestino(String keyAeropuertoDestino) {
-		this.keyAeropuertoDestino = keyAeropuertoDestino;
+	public void setTripulantes(List<Tripulante> tripulantes) {
+		this.tripulantes = tripulantes;
+	}
+
+	public List<Asiento> getAsientos() {
+		return asientos;
+	}
+
+	public void setAsientos(List<Asiento> asientos) {
+		this.asientos = asientos;
 	}
 
 	public Date getFechaSalida() {
@@ -143,20 +129,11 @@ public class Vuelo extends AggregateRoot<UUID> {
 		this.fechaArribe = fechaArribe;
 	}
 
-	public String getKeyTripulacion() {
+	public UUID getKeyTripulacion() {
 		return keyTripulacion;
 	}
 
-	public void setKeyTripulacion(String keyTripulacion) {
+	public void setKeyTripulacion(UUID keyTripulacion) {
 		this.keyTripulacion = keyTripulacion;
 	}
-
-	public List<Tripulante> getListaTripulantes() {
-		return listaTripulantes;
-	}
-
-	public void setListaTripulantes(List<Tripulante> listaTripulantes) {
-		this.listaTripulantes = listaTripulantes;
-	}
-
 }
