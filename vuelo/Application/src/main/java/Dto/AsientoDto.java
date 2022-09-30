@@ -12,7 +12,8 @@ public class AsientoDto {
 	public Double precio;
 	public int disponibilidad;
 
-	public AsientoDto() {}
+	public AsientoDto() {
+	}
 
 	public AsientoDto(UUID keyAeronave, int numero, String clase, Double precio) {
 		this.keyAeronave = keyAeronave;
@@ -62,6 +63,11 @@ public class AsientoDto {
 		this.precio = precio;
 	}
 
+	public int getDisponibilidad() {
+		return disponibilidad;
+	}
 
-
+	public void setDisponibilidad(int disponibilidad) {
+		this.disponibilidad = disponibilidad;
+	}
 }
