@@ -7,33 +7,46 @@ import org.junit.Test;
 
 public class AsientoDtoTest {
 
-  @Test
-  public void CheckPropertiesValid() {
-    UUID keyAeronave = UUID.randomUUID();
-    int numero = 1;
-    String clase = "comercial";
-    Double precio = 20.20;
-    int disponibilidad = 1;
+	UUID keyAeronave = UUID.randomUUID();
+	int numero = 1;
+	String clase = "comercial";
+	Double precio = 20.20;
+	int disponibilidad = 1;
 
-    AsientoDto asientoDto = new AsientoDto();
+	@Test
+	public void CheckPropertiesValid() {
 
-    Assert.assertEquals(null, asientoDto.getKeyAeronave());
-    Assert.assertEquals(0, asientoDto.getNumero());
-    Assert.assertEquals(null, asientoDto.getClase());
-    Assert.assertEquals(null, asientoDto.getPrecio());
-    Assert.assertEquals(0, asientoDto.getDisponibilidad());
+		final AsientoDto asientoDto = new AsientoDto();
 
-    asientoDto.setKeyAeronave(keyAeronave);
-    asientoDto.setNumero(numero);
-    asientoDto.setClase(clase);
-    asientoDto.setPrecio(precio);
-    asientoDto.setDisponibilidad(disponibilidad);
+		Assert.assertEquals(null, asientoDto.getKeyAeronave());
+		Assert.assertEquals(0, asientoDto.getNumero());
+		Assert.assertEquals(null, asientoDto.getClase());
+		Assert.assertEquals(null, asientoDto.getPrecio());
+		Assert.assertEquals(0, asientoDto.getDisponibilidad());
 
-    Assert.assertEquals(keyAeronave, asientoDto.getKeyAeronave());
-    Assert.assertEquals(numero, asientoDto.getNumero());
-    Assert.assertEquals(clase, asientoDto.getClase());
-    Assert.assertEquals(precio, asientoDto.getPrecio());
-    Assert.assertEquals(disponibilidad, asientoDto.getDisponibilidad());
+		asientoDto.setKeyAeronave(keyAeronave);
+		asientoDto.setNumero(numero);
+		asientoDto.setClase(clase);
+		asientoDto.setPrecio(precio);
+		asientoDto.setDisponibilidad(disponibilidad);
 
-  }
+		Assert.assertEquals(keyAeronave, asientoDto.getKeyAeronave());
+		Assert.assertEquals(numero, asientoDto.getNumero());
+		Assert.assertEquals(clase, asientoDto.getClase());
+		Assert.assertEquals(precio, asientoDto.getPrecio());
+		Assert.assertEquals(disponibilidad, asientoDto.getDisponibilidad());
+
+	}
+
+	@Test
+	public void CheckConstructor() {
+
+		final AsientoDto asientoDto = new AsientoDto(keyAeronave, numero, clase, precio);
+
+		Assert.assertEquals(keyAeronave, asientoDto.getKeyAeronave());
+		Assert.assertEquals(numero, asientoDto.getNumero());
+		Assert.assertEquals(clase, asientoDto.getClase());
+		Assert.assertEquals(precio, asientoDto.getPrecio());
+		Assert.assertEquals(disponibilidad, asientoDto.getDisponibilidad());
+	}
 }

@@ -5,14 +5,14 @@ import java.util.UUID;
 public class TripulanteDto {
 
 	public UUID keyTripulacion;
-
 	public UUID keyTripulante;
 	public String nombre;
 	public String apellido;
 	public String cargo;
 	public String estado;
 
-	public TripulanteDto() {}
+	public TripulanteDto() {
+	}
 
 	public TripulanteDto(UUID keyTripulacion, UUID keyTripulante, String nombre, String apellido, String cargo,
 			String estado) {

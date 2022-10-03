@@ -9,29 +9,33 @@ import org.junit.Test;
 
 public class AeronaveDtoTest {
 
-  @Test
-  public void CheckPropertiesValid() {
+	@Test
+	public void CheckPropertiesValid() {
 
-    UUID keyAeronave = UUID.randomUUID();
-    String matricula = "xyz-1990";
-    List<AsientoDto> listdaAsientos = new ArrayList<>();
-    String estado = "0";
+		final UUID keyAeronave = UUID.randomUUID();
+		final String matricula = "xyz-1990";
+		final List<AsientoDto> listdaAsientos = getListdaAsientos();
+		final String estado = "0";
 
-    AeronaveDto aeronaveDto = new AeronaveDto();
+		final AeronaveDto aeronaveDto = new AeronaveDto();
 
-    Assert.assertEquals(null, aeronaveDto.getKeyAeronave());
-    Assert.assertEquals(null, aeronaveDto.getMatricula());
-    Assert.assertEquals(null, aeronaveDto.getListaAsientos());
-    Assert.assertEquals(null, aeronaveDto.getEstado());
+		Assert.assertEquals(null, aeronaveDto.getKeyAeronave());
+		Assert.assertNull(aeronaveDto.getMatricula());
+		Assert.assertEquals(0, listdaAsientos.size());
+		Assert.assertNull(null, aeronaveDto.getEstado());
 
-    aeronaveDto.setKeyAeronave(keyAeronave);
-    aeronaveDto.setMatricula(matricula);
-    aeronaveDto.setListaAsientos(listdaAsientos);
-    aeronaveDto.setEstado(estado);
+		aeronaveDto.setKeyAeronave(keyAeronave);
+		aeronaveDto.setMatricula(matricula);
+		aeronaveDto.setListaAsientos(listdaAsientos);
+		aeronaveDto.setEstado(estado);
 
-    Assert.assertEquals(keyAeronave, aeronaveDto.getKeyAeronave());
-    Assert.assertEquals(matricula, aeronaveDto.getMatricula());
-    Assert.assertEquals(listdaAsientos, aeronaveDto.getListaAsientos());
-    Assert.assertEquals(estado, aeronaveDto.getEstado());
-  }
+		Assert.assertEquals(keyAeronave, aeronaveDto.getKeyAeronave());
+		Assert.assertEquals(matricula, aeronaveDto.getMatricula());
+		Assert.assertEquals(listdaAsientos, aeronaveDto.getListaAsientos());
+		Assert.assertEquals(estado, aeronaveDto.getEstado());
+	}
+
+	private List<AsientoDto> getListdaAsientos() {
+		return new ArrayList();
+	}
 }

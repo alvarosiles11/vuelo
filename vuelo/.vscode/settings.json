@@ -1,5 +1,17 @@
 {
-  "java.configuration.updateBuildConfiguration": "automatic",
-  "maven.view": "flat",
-  "java.format.settings.url": "eclipse-formatter.xml"
-}
+  // "java.configuration.updateBuildConfiguration": "automatic",
+  // "maven.view": "flat",
+  // "java.format.settings.url": "eclipse-formatter.xml",
+	// "java.saveActions.organizeImports": true,
+
+
+
+
+	//🍕 organizador
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true
+	},
+	// 📒 formateador
+	"editor.formatOnSave": true,
+
+  }

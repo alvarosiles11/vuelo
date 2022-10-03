@@ -70,4 +70,8 @@ public class AsientoDto {
 	public void setDisponibilidad(int disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
+
+	public static void main(String[] args) {
+		System.out.println("hola");
+	}
 }

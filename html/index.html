@@ -17,36 +17,28 @@
 		<img src="src/img/vuelo.png" alt="">
 	</a>
 
-	<div>
-		<!-- <p id="ip"> IP</p> -->
-		<span id="title"> TITLE</span>
-	</div>
-	<div class="  d-flex">
-		<div style="width:80px ;  height: 80px; border-radius: 10px; background-color:red ;"></div>
-		<div style="width:80px ;  height: 80px; border-radius: 10px; background-color:yellow ;"></div>
-		<div style="width:80px ;  height: 80px; border-radius: 10px; background-color:green ;"></div>
-	</div>
+	<div class="container">
+		<div class="  flex " style="width: 100%; background-color: transparent; justify-content: center;">
+			<a href="http://190.104.5.211/api/aeronave">
+				<img src="src/img/maeronave.png" alt="img" style="width: 80px; height: 80px;">
+			</a>
 
+			<a href="http://190.104.5.211/api/tripulacion">
+				<img src="src/img/mtripulacion.png" alt="img" style="width: 80px; height: 80px;">
+			</a>
+
+			<a href="http://190.104.5.211/api/vuelo">
+				<img src="src/img/mvuelo.png" alt="img" style="width: 80px; height: 80px;">
+			</a>
+		</div>
+	</div>
 
 	<!-- https://api.db-ip.com/v2/free/s -->
 	<!-- http://ip-api.com/json -->
 	<!-- https://www.cloudflare.com/cdn-cgi/trace -->
 
-	<script>
-		// document.getElementById("ip").innerHTML += "IP";
-
-		var requestOptions = {
-			method: 'GET',
-			redirect: 'follow'
-		};
-		fetch("https://api.db-ip.com/v2/free/self", requestOptions)
-			// fetch("http://localhost:8080/api/vuelo", requestOptions)
-			.then(response => response.text())
-			.then(result =>
-				document.getElementById("title").innerHTML += "hola " + result
-			)
-			.catch(error => console.log('error', error));
-	</script>
+	<!-- sudo chmod -R -f 777
+permiso total a la carpeta -->
 
 </body>
 

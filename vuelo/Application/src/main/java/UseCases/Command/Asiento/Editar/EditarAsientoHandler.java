@@ -21,7 +21,6 @@ public class EditarAsientoHandler
 	private IVueloFactory iVueloFactory;
 	private IVueloRepository iVueloRepository;
 	private IAeronaveRepository iAeronaveRepository;
-
 	private IUnitOfWork unitOfWor;
 
 	public EditarAsientoHandler(
