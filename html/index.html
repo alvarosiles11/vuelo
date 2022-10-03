@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Document</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
 
-  <body>
-    <h1>presentacion</h1>
-    <h1>presentacion</h1>
-    <h1>presentacion</h1>
-  </body>
+<head>
+	<title>Document</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body class="text-center">
+	<h1>Microservicio Vuelo</h1>
+	<a href="https://localhost/api/vuelo">
+		<img src="src/img/vuelo.png" alt="">
+	</a>
+
+	<div>
+		<!-- <p id="ip"> IP</p> -->
+		<span id="title"> TITLE</span>
+	</div>
+	<div class="  d-flex">
+		<div style="width:80px ;  height: 80px; border-radius: 10px; background-color:red ;"></div>
+		<div style="width:80px ;  height: 80px; border-radius: 10px; background-color:yellow ;"></div>
+		<div style="width:80px ;  height: 80px; border-radius: 10px; background-color:green ;"></div>
+	</div>
+
+
+	<!-- https://api.db-ip.com/v2/free/s -->
+	<!-- http://ip-api.com/json -->
+	<!-- https://www.cloudflare.com/cdn-cgi/trace -->
+
+	<script>
+		// document.getElementById("ip").innerHTML += "IP";
+
+		var requestOptions = {
+			method: 'GET',
+			redirect: 'follow'
+		};
+		fetch("https://api.db-ip.com/v2/free/self", requestOptions)
+			// fetch("http://localhost:8080/api/vuelo", requestOptions)
+			.then(response => response.text())
+			.then(result =>
+				document.getElementById("title").innerHTML += "hola " + result
+			)
+			.catch(error => console.log('error', error));
+	</script>
+
+</body>
+
 </html>
