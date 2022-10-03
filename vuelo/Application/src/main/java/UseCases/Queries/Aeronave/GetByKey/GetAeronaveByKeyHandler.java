@@ -1,7 +1,6 @@
 package UseCases.Queries.Aeronave.GetByKey;
 
 import Dto.AeronaveDto;
-import Dto.AsientoDto;
 import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
@@ -28,11 +27,13 @@ public class GetAeronaveByKeyHandler implements RequestHandler<GetAeronaveByKeyQ
 		aeronaveDto.matricula = aeronave.matricula;
 		aeronaveDto.estado = aeronave.estado;
 
-		aeronave.asientos
-				.iterator()
-				.forEachRemaining(obj -> {
-					aeronaveDto.listaAsientos.add(new AsientoDto(obj.keyAeronave, obj.numero, obj.clase, obj.precio));
-				});
+		// aeronave.asientos
+		// .iterator()
+		// .forEachRemaining(obj -> {
+		// aeronaveDto.listaAsientos.add(new AsientoDto(obj.keyAeronave, obj.numero,
+		// obj.clase, obj.precio));
+		// });
+
 		return aeronaveDto;
 	}
 }

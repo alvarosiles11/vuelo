@@ -18,6 +18,7 @@ public class GetAllAeronaveHandler implements RequestHandler<GetAllAeronaveQuery
 		this.iAeronaveRepository = iAeronaveRepository;
 	}
 
+	// todo a ricky que cuando getbykey aeroanve, vuelo, etc quitar el staatus
 	@Override
 	public List<AeronaveDto> handle(GetAllAeronaveQuery request) throws Exception {
 

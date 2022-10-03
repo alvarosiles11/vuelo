@@ -20,6 +20,7 @@ public class GetAllVueloHandler implements RequestHandler<GetAllVueloQuery, List
 		this.iVueloRepository = iVueloRepository;
 	}
 
+	// todo cancelar vuelo, venta y ticke tienen que tener estado. porsi se cambio
 	@Override
 	public List<VueloDto> handle(GetAllVueloQuery request) throws Exception {
 
@@ -27,7 +28,7 @@ public class GetAllVueloHandler implements RequestHandler<GetAllVueloQuery, List
 		List<VueloDto> resp = new ArrayList<>();
 
 		for (Vuelo vuelo : lista) {
-			VueloDto vueloDto= new VueloDto();
+			VueloDto vueloDto = new VueloDto();
 			vueloDto.setKey(vuelo.getKey());
 			vueloDto.setNroVuelo(vuelo.getNroVuelo());
 			vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
@@ -41,15 +42,16 @@ public class GetAllVueloHandler implements RequestHandler<GetAllVueloQuery, List
 
 			List<AsientoDto> asientosDtos = new ArrayList<>();
 			for (Asiento asiento : vuelo.asientos) {
-        asientosDtos.add(new AsientoDto(asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
-      }
-			vueloDto.setAsientoDtos(asientosDtos);
+				asientosDtos.add(new AsientoDto(asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
+			}
+			vueloDto.setAsientos(asientosDtos);
 
-			List<TripulanteDto> tripulanteDtos= new ArrayList<>();
-			for (Tripulante tripulante: vuelo.tripulantes) {
-        tripulanteDtos.add(new TripulanteDto(tripulante.keyTripulacion, tripulante.key, tripulante.nombre, tripulante.apellido, tripulante.cargo, tripulante.estado));
-      }
-			vueloDto.setTripulanteDtos(tripulanteDtos);
+			List<TripulanteDto> tripulanteDtos = new ArrayList<>();
+			for (Tripulante tripulante : vuelo.tripulantes) {
+				tripulanteDtos.add(new TripulanteDto(tripulante.keyTripulacion, tripulante.key, tripulante.nombre,
+						tripulante.apellido, tripulante.cargo, tripulante.estado));
+			}
+			vueloDto.setTripulantes(tripulanteDtos);
 		}
 
 		return resp;

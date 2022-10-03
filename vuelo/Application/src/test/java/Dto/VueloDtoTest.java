@@ -45,24 +45,24 @@ public class VueloDtoTest {
 		vueloDto.setKey(key);
 		vueloDto.setNroVuelo(nroVuelo);
 		vueloDto.setKeyAeronave(keyAeronave);
-		vueloDto.setAsientoDtos(asientos);
+		vueloDto.setAsientos(asientos);
 		vueloDto.setOrigen(origen);
 		vueloDto.setDestino(destino);
 		vueloDto.setFechaSalida(fechaSalida);
 		vueloDto.setFechaArribe(fechaArribe);
 		vueloDto.setKeyTripulacion(keyTripulacion);
-		vueloDto.setTripulanteDtos(tripulantes);
+		vueloDto.setTripulantes(tripulantes);
 
 		Assert.assertEquals(key, vueloDto.getKey());
 		Assert.assertEquals(nroVuelo, vueloDto.getNroVuelo());
 		Assert.assertEquals(keyAeronave, vueloDto.getKeyAeronave());
-		Assert.assertEquals(asientos, vueloDto.getAsientoDtos());
+		Assert.assertEquals(asientos, vueloDto.getAsientos());
 		Assert.assertEquals(origen, vueloDto.getOrigen());
 		Assert.assertEquals(destino, vueloDto.getDestino());
 		Assert.assertEquals(fechaSalida, vueloDto.getFechaSalida());
 		Assert.assertEquals(fechaArribe, vueloDto.getFechaArribe());
 		Assert.assertEquals(keyTripulacion, vueloDto.getKeyTripulacion());
-		Assert.assertEquals(tripulantes, vueloDto.getTripulanteDtos());
+		Assert.assertEquals(tripulantes, vueloDto.getTripulantes());
 	}
 
 	private List<AsientoDto> getListAsiento() {

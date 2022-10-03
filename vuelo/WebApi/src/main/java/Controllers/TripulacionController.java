@@ -6,14 +6,10 @@ import Dto.TripulacionDto;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.http.annotation.GetMapping;
 import Fourteam.http.annotation.PathVariable;
-import Fourteam.http.annotation.PutMapping;
-import Fourteam.http.annotation.RequestBody;
 import Fourteam.http.annotation.RequestMapping;
 import Fourteam.http.annotation.RestController;
 import Fourteam.mediator.Mediator;
 import Fourteam.mediator.Response;
-import Model.Tripulacion.Tripulacion;
-import UseCases.Command.Tripulacion.Editar.EditarTripulacionCommand;
 import UseCases.Queries.Aeronave.GetByKey.GetAeronaveByKeyQuery;
 import UseCases.Queries.Tripulacion.GetAll.GetAllTripulacionQuery;
 
@@ -48,15 +44,15 @@ public class TripulacionController {
 		}
 	}
 
-	@PutMapping("/{key}")
-	public TripulacionDto edit(
-			@RequestBody Tripulacion tripulacion,
-			@PathVariable EditarTripulacionCommand request) throws HttpException {
-		request.tripulacionDto.setEstado(tripulacion.getEstado());
-		try {
-			return (TripulacionDto) _mediator.send(request).data;
-		} catch (Exception e) {
-			throw (HttpException) e.getCause();
-		}
-	}
+	// @PutMapping("/{key}")
+	// public TripulacionDto edit(
+	// @RequestBody Tripulacion tripulacion,
+	// @PathVariable EditarTripulacionCommand request) throws HttpException {
+	// request.tripulacionDto.setEstado(tripulacion.getEstado());
+	// try {
+	// return (TripulacionDto) _mediator.send(request).data;
+	// } catch (Exception e) {
+	// throw (HttpException) e.getCause();
+	// }
+	// }
 }

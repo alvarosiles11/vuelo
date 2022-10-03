@@ -6,13 +6,6 @@ import Factories.TripulacionFactory;
 import Factories.VueloFactory;
 import Fourteam.extensions.IServiceCollection;
 import Fourteam.mediator.IMediator;
-import UseCases.Command.Aeronaves.Crear.CrearAeronaveHandler;
-import UseCases.Command.Aeronaves.Editar.EditarAeronaveHandler;
-import UseCases.Command.Aeronaves.Eliminar.EliminarAeronaveHandler;
-import UseCases.Command.Asiento.Editar.EditarAsientoHandler;
-import UseCases.Command.Tripulacion.Crear.CrearTripulacionHandler;
-import UseCases.Command.Tripulacion.Editar.EditarTripulacionHandler;
-import UseCases.Command.Tripulacion.Eliminar.EliminarTripulacionHandler;
 import UseCases.Command.Vuelos.Crear.CrearVueloHandler;
 import UseCases.Command.Vuelos.Editar.EditarVueloHandler;
 import UseCases.Command.Vuelos.Eliminar.EliminarVueloHandler;
@@ -37,19 +30,19 @@ public class Application {
 		// USE CASE:Tripulacion
 		IMediator.registerHandler(GetAllTripulacionHandler.class);
 		IMediator.registerHandler(GetTripulacionByKeyHandler.class);
-		IMediator.registerHandler(CrearTripulacionHandler.class);
-		IMediator.registerHandler(EditarTripulacionHandler.class);
-		IMediator.registerHandler(EliminarTripulacionHandler.class);
+		// IMediator.registerHandler(CrearTripulacionHandler.class);
+		// IMediator.registerHandler(EditarTripulacionHandler.class);
+		// IMediator.registerHandler(EliminarTripulacionHandler.class);
 
 		// USE CASE:Aeronave
 		IMediator.registerHandler(GetAllAeronaveHandler.class);
 		IMediator.registerHandler(GetAeronaveByKeyHandler.class);
-		IMediator.registerHandler(CrearAeronaveHandler.class);
-		IMediator.registerHandler(EditarAeronaveHandler.class);
-		IMediator.registerHandler(EliminarAeronaveHandler.class);
+		// IMediator.registerHandler(CrearAeronaveHandler.class);
+		// IMediator.registerHandler(EditarAeronaveHandler.class);
+		// IMediator.registerHandler(EliminarAeronaveHandler.class);
 
 		// USE CASE:Asiento
-		IMediator.registerHandler(EditarAsientoHandler.class);
+		// IMediator.registerHandler(EditarAsientoHandler.class);
 
 		// publish
 		IMediator.registerHandler(PublishIntegrationEventWhenVueloCreadoHandler.class);

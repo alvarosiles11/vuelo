@@ -6,14 +6,10 @@ import Dto.AeronaveDto;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.http.annotation.GetMapping;
 import Fourteam.http.annotation.PathVariable;
-import Fourteam.http.annotation.PutMapping;
-import Fourteam.http.annotation.RequestBody;
 import Fourteam.http.annotation.RequestMapping;
 import Fourteam.http.annotation.RestController;
 import Fourteam.mediator.Mediator;
 import Fourteam.mediator.Response;
-import Model.Aeronaves.Aeronave;
-import UseCases.Command.Aeronaves.Editar.EditarAeronaveCommand;
 import UseCases.Queries.Aeronave.GetAll.GetAllAeronaveQuery;
 import UseCases.Queries.Aeronave.GetByKey.GetAeronaveByKeyQuery;
 
@@ -48,15 +44,15 @@ public class AeronaveController {
 		}
 	}
 
-	@PutMapping("/{key}")
-	public AeronaveDto edit(
-			@RequestBody Aeronave aeronave,
-			@PathVariable EditarAeronaveCommand request) throws HttpException {
-		request.aeronaveDto.setEstado(aeronave.getEstado());
-		try {
-			return (AeronaveDto) _mediator.send(request).data;
-		} catch (Exception e) {
-			throw (HttpException) e.getCause();
-		}
-	}
+	// @PutMapping("/{key}")
+	// public AeronaveDto edit(
+	// @RequestBody Aeronave aeronave,
+	// @PathVariable EditarAeronaveCommand request) throws HttpException {
+	// request.aeronaveDto.setEstado(aeronave.getEstado());
+	// try {
+	// return (AeronaveDto) _mediator.send(request).data;
+	// } catch (Exception e) {
+	// throw (HttpException) e.getCause();
+	// }
+	// }
 }

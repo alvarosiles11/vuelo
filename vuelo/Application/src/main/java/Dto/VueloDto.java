@@ -9,13 +9,13 @@ public class VueloDto {
 	public UUID key;
 	public String nroVuelo;
 	public UUID keyAeronave;
-	public List<AsientoDto> asientoDtos;
+	public List<AsientoDto> asientos;
 	public String origen;
 	public String destino;
 	public Date fechaSalida;
 	public Date fechaArribe;
 	public UUID keyTripulacion;
-	public List<TripulanteDto> tripulanteDtos;
+	public List<TripulanteDto> tripulantes;
 
 	public UUID getKey() {
 		return key;
@@ -81,19 +81,20 @@ public class VueloDto {
 		this.keyTripulacion = keyTripulacion;
 	}
 
-	public List<AsientoDto> getAsientoDtos() {
-		return asientoDtos;
+	public List<AsientoDto> getAsientos() {
+		return asientos;
 	}
 
-	public void setAsientoDtos(List<AsientoDto> asientoDtos) {
-		this.asientoDtos = asientoDtos;
+	public void setAsientos(List<AsientoDto> asientos) {
+		this.asientos = asientos;
 	}
 
-	public List<TripulanteDto> getTripulanteDtos() {
-		return tripulanteDtos;
+	public List<TripulanteDto> getTripulantes() {
+		return tripulantes;
 	}
 
-	public void setTripulanteDtos(List<TripulanteDto> tripulanteDtos) {
-		this.tripulanteDtos = tripulanteDtos;
+	public void setTripulantes(List<TripulanteDto> tripulantes) {
+		this.tripulantes = tripulantes;
 	}
+
 }

@@ -30,7 +30,7 @@ public class GetVueloByKeyHandler implements RequestHandler<GetVueloByKeyQuery, 
 			throw new HttpException(HttpStatus.BAD_REQUEST, "vuelo no encontrada");
 		}
 
-		VueloDto vueloDto= new VueloDto();
+		VueloDto vueloDto = new VueloDto();
 		vueloDto.setKey(vuelo.getKey());
 		vueloDto.setNroVuelo(vuelo.getNroVuelo());
 		vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
@@ -44,13 +44,14 @@ public class GetVueloByKeyHandler implements RequestHandler<GetVueloByKeyQuery, 
 		for (Asiento asiento : vuelo.asientos) {
 			asientosDtos.add(new AsientoDto(asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
 		}
-		vueloDto.setAsientoDtos(asientosDtos);
+		vueloDto.setAsientos(asientosDtos);
 
-		List<TripulanteDto> tripulanteDtos= new ArrayList<>();
-		for (Tripulante tripulante: vuelo.tripulantes) {
-			tripulanteDtos.add(new TripulanteDto(tripulante.keyTripulacion, tripulante.key, tripulante.nombre, tripulante.apellido, tripulante.cargo, tripulante.estado));
+		List<TripulanteDto> tripulanteDtos = new ArrayList<>();
+		for (Tripulante tripulante : vuelo.tripulantes) {
+			tripulanteDtos.add(new TripulanteDto(tripulante.keyTripulacion, tripulante.key, tripulante.nombre,
+					tripulante.apellido, tripulante.cargo, tripulante.estado));
 		}
-		vueloDto.setTripulanteDtos(tripulanteDtos);
+		vueloDto.setTripulantes(tripulanteDtos);
 
 		return vueloDto;
 	}

@@ -7,9 +7,9 @@ import Fourteam.mediator.Request;
 
 public class GetAeronaveByKeyQuery implements Request<AeronaveDto> {
 
-  public UUID key;
+	public UUID key;
 
-  public GetAeronaveByKeyQuery(UUID key) {
-    this.key = key;
-  }
+	public GetAeronaveByKeyQuery(UUID key) {
+		this.key = key;
+	}
 }

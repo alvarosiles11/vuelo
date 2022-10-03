@@ -77,21 +77,6 @@ paths:
         name: key
         required: true
       tags: [/aeronave]
-    put:
-      summary: /aeronave edit
-      requestBody:
-        content:
-          application/json:
-            schema: {type: object}
-      operationId: /aeronave_edit
-      responses:
-        '200': {description: Response 200}
-      parameters:
-      - schema: {type: string}
-        in: path
-        name: key
-        required: true
-      tags: [/aeronave]
   /tripulacion/:
     get:
       summary: /tripulacion getAll
@@ -103,21 +88,6 @@ paths:
     get:
       summary: /tripulacion getByKey
       operationId: /tripulacion_getByKey
-      responses:
-        '200': {description: Response 200}
-      parameters:
-      - schema: {type: string}
-        in: path
-        name: key
-        required: true
-      tags: [/tripulacion]
-    put:
-      summary: /tripulacion edit
-      requestBody:
-        content:
-          application/json:
-            schema: {type: object}
-      operationId: /tripulacion_edit
       responses:
         '200': {description: Response 200}
       parameters:
