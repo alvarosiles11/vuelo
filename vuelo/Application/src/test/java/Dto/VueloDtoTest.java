@@ -66,10 +66,10 @@ public class VueloDtoTest {
 	}
 
 	private List<AsientoDto> getListAsiento() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 
 	private List<TripulanteDto> getListdaTripulantes() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 }

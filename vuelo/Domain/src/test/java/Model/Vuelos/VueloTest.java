@@ -21,7 +21,7 @@ public class VueloTest {
 
 	@Test
 	public void constructor_accept() {
-		final UUID key = UUID.randomUUID();
+		// final UUID key = UUID.randomUUID();
 		final String nroVuelo = "scz-cba-513184";
 		final UUID keyAeronave = UUID.randomUUID();
 		final List<Asiento> asientos = new ArrayList<>();
@@ -48,7 +48,7 @@ public class VueloTest {
 
 	@Test
 	public void constructor_denied() {
-		final UUID key = null;
+		// final UUID key = null;
 		final String nroVuelo = "";
 		final UUID keyAeronave = null;
 		final List<Asiento> asientos = null;
@@ -77,7 +77,7 @@ public class VueloTest {
 	@Test
 	public void addDomainEvent_accept() {
 
-		final UUID key = UUID.randomUUID();
+		// final UUID key = UUID.randomUUID();
 		final String nroVuelo = "scz-cba-513184";
 		final UUID keyAeronave = UUID.randomUUID();
 		final List<Asiento> asientos = new ArrayList<>();

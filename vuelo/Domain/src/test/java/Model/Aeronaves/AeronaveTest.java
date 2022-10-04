@@ -29,7 +29,7 @@ public class AeronaveTest extends AggregateRoot<UUID> {
 	public void constructor_denied() {
 		final UUID keyAeronave = null;
 		final String matricula = "";
-		final List<Asiento> listdaAsientos = null;
+		// final List<Asiento> listdaAsientos = null;
 		final String estado = "";
 		final Aeronave aeronave = new Aeronave(keyAeronave, matricula, estado);
 		Assert.assertEquals(aeronave.key, null);
@@ -42,7 +42,7 @@ public class AeronaveTest extends AggregateRoot<UUID> {
 	public void addAsiento_accept() {
 		final UUID keyAeronave = UUID.randomUUID();
 		final String matricula = "xyz-1990";
-		final List<Asiento> listdaAsientos = new ArrayList<>();
+		// final List<Asiento> listdaAsientos = new ArrayList<>();
 		final String estado = "0";
 
 		Aeronave aeronave = new Aeronave(keyAeronave, matricula, estado);
@@ -56,7 +56,7 @@ public class AeronaveTest extends AggregateRoot<UUID> {
 
 		final UUID keyAeronave = UUID.randomUUID();
 		final String matricula = "xyz-1990";
-		final List<Asiento> listdaAsientos = new ArrayList<>();
+		// final List<Asiento> listdaAsientos = new ArrayList<>();
 		final String estado = "0";
 
 		Aeronave aeronave = new Aeronave(keyAeronave, matricula, estado);

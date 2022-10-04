@@ -36,6 +36,6 @@ public class AeronaveDtoTest {
 	}
 
 	private List<AsientoDto> getListdaAsientos() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 }

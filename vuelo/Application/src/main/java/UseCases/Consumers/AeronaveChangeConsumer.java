@@ -8,7 +8,7 @@ import Repositories.IUnitOfWork;
 
 public class AeronaveChangeConsumer extends IConsumer<IntegrationEvents.AeronaveChange> {
 
-	private static String QueueName = "[Vuelo]-aeronave-change";
+	// private static String QueueName = "[Vuelo]-aeronave-change";
 	private IAeronaveRepository iAeronaveRepository;
 	private IAeronaveFactory iAeronaveFactory;
 	private IUnitOfWork iUnitOfWork;

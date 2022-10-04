@@ -35,7 +35,7 @@ public class TripulacionDtoTest {
 	}
 
 	private List<TripulanteDto> getListdaTripulantes() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 
 }

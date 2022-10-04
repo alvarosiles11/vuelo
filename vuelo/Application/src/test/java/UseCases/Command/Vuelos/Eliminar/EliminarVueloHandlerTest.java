@@ -88,11 +88,11 @@ public class EliminarVueloHandlerTest {
 	}
 
 	private List<Asiento> getListAsiento() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 
 	private List<Tripulante> getListdaTripulantes() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 
 	@Test
@@ -127,7 +127,7 @@ public class EliminarVueloHandlerTest {
     EliminarVueloCommand  command = new EliminarVueloCommand(vueloDto.getKey());
     try {
       Vuelo resp = handler.handle(command);
-      // System.out.println(resp);
+      System.out.println(resp);
      } catch (HttpException e) {
       Assert.assertEquals(400, e.getCode());
     }

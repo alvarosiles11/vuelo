@@ -91,10 +91,10 @@ public class CrearVueloHandlerTest {
 	}
 
 	private List<Asiento> getListAsiento() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 
 	private List<Tripulante> getListdaTripulantes() {
-		return new ArrayList();
+		return new ArrayList<>();
 	}
 }

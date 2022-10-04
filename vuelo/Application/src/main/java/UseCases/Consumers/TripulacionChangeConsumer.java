@@ -8,7 +8,7 @@ import Repositories.IUnitOfWork;
 
 public class TripulacionChangeConsumer extends IConsumer<IntegrationEvents.TripulacionChange> {
 
-	private static String QueueName = "[Vuelo]-tripulacion-change";
+	// private static String QueueName = "[Vuelo]-tripulacion-change";
 	private ITripulacionRepository iTripulacionRepository;
 	private ITripulacionFactory iTripulacionFactory;
 	private IUnitOfWork iUnitOfWork;
