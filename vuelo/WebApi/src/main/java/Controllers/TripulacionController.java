@@ -12,6 +12,7 @@ import Fourteam.mediator.Mediator;
 import Fourteam.mediator.Response;
 import UseCases.Queries.Aeronave.GetByKey.GetAeronaveByKeyQuery;
 import UseCases.Queries.Tripulacion.GetAll.GetAllTripulacionQuery;
+import UseCases.Queries.Tripulacion.GetByKey.GetTripulacionByKeyQuery;
 
 @RestController
 @RequestMapping("/tripulacion")
@@ -42,6 +43,9 @@ public class TripulacionController {
 		} catch (Exception e) {
 			throw new HttpException(404, e.getMessage());
 		}
+	}
+
+	public void getByKey(GetTripulacionByKeyQuery getTripulacionByKeyQuery) {
 	}
 
 	// @PutMapping("/{key}")
