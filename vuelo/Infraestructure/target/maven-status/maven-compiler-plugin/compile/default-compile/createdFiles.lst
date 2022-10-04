@@ -1,0 +1,7 @@
+Repository/AeronaveRepository.class
+Context/MongoDB/WriteDbContext.class
+UnitOfWork.class
+Repository/VueloRepository.class
+Context/IWriteDbContext.class
+Repository/TripulacionRepository.class
+Infraestructure.class

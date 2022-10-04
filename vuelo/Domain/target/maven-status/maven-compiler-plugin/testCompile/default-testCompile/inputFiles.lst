@@ -1,0 +1,11 @@
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Factories/TripulacionFactoryTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Model/Tripulacion/TripulanteTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/DomainTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Model/Aeronaves/AsientoTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Model/Tripulacion/TripulacionTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Model/Aeronaves/AeronaveTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Model/Vuelos/VueloTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Model/Vuelos/ValueObjects/NumeroVueloTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Factories/VueloFactoryTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Factories/AeronaveFactoryTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Domain/src/test/java/Event/VueloCreadoTest.java

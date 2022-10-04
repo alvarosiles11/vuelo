@@ -1,0 +1,13 @@
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/Dto/VueloDtoTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/UseCases/Command/Vuelos/Editar/EditarVueloHandlerTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/Dto/TripulanteDtoTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/UseCases/Command/Vuelos/Eliminar/EliminarVueloHandlerTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/ApplicationTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/Dto/AsientoDtoTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/UseCases/Command/Vuelos/Editar/EditarVueloCommandTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/UseCases/Command/Vuelos/Eliminar/EliminarVueloCommandTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/Dto/TripulacionDtoTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/Dto/AeronaveDtoTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/App_test.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/UseCases/Command/Vuelos/Crear/CrearVueloHandlerTest.java
+/home/alvaro/Documentos/GitHub/dms-vuelos/vuelo/Application/src/test/java/UseCases/Command/Vuelos/Crear/CrearVueloCommandTest.java

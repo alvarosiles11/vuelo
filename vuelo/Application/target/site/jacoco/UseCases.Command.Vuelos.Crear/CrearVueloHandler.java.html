@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CrearVueloHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Application</a> &gt; <a href="index.source.html" class="el_package">UseCases.Command.Vuelos.Crear</a> &gt; <span class="el_source">CrearVueloHandler.java</span></div><h1>CrearVueloHandler.java</h1><pre class="source lang-java linenums">package UseCases.Command.Vuelos.Crear;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Factories.IVueloFactory;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.mediator.RequestHandler;
+import Model.Aeronaves.Aeronave;
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulacion;
+import Model.Tripulacion.Tripulante;
+import Model.Vuelos.Vuelo;
+import Repositories.IAeronaveRepository;
+import Repositories.ITripulacionRepository;
+import Repositories.IUnitOfWork;
+import Repositories.IVueloRepository;
+
+public class CrearVueloHandler
+		implements RequestHandler&lt;CrearVueloCommand, Vuelo&gt; {
+
+	private IVueloFactory iVueloFactory;
+	private IVueloRepository iVueloRepository;
+	private IAeronaveRepository iAeronaveRepository;
+	private ITripulacionRepository iTripulacionRepository;
+
+	private IUnitOfWork unitOfWor;
+
+	public CrearVueloHandler(
+			IVueloFactory iVueloFactory,
+			IVueloRepository iVueloRepository,
+			IAeronaveRepository iAeronaveRepository,
+			ITripulacionRepository iTripulacionRepository,
+<span class="nc" id="L34">			IUnitOfWork unitOfWork) {</span>
+<span class="nc" id="L35">		this.iVueloFactory = iVueloFactory;</span>
+<span class="nc" id="L36">		this.iVueloRepository = iVueloRepository;</span>
+<span class="nc" id="L37">		this.iAeronaveRepository = iAeronaveRepository;</span>
+<span class="nc" id="L38">		this.iTripulacionRepository = iTripulacionRepository;</span>
+<span class="nc" id="L39">		this.unitOfWor = unitOfWork;</span>
+<span class="nc" id="L40">	}</span>
+
+	@Override
+	public Vuelo handle(CrearVueloCommand arg0) throws Exception {
+
+		// ✅ verifico nro aeronave si existe en la BD
+<span class="nc" id="L46">		Vuelo vueloNro = iVueloRepository.findNroVuelo(arg0.nroVuelo);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">		if (vueloNro != null)</span>
+<span class="nc" id="L48">			throw new HttpException(404, &quot;el numero de vuelo existe, otro ingresar&quot;);</span>
+
+		// ✅ verifico aeropuerto el origen y destino
+<span class="nc bnc" id="L51" title="All 2 branches missed.">		if (arg0.origen == arg0.destino)</span>
+<span class="nc" id="L52">			throw new HttpException(404, &quot;son iguales origen y destino, ingresar otro &quot;);</span>
+
+		// ✅ verifico aeronave si existe en la BD
+<span class="nc" id="L55">		Aeronave aeronave = iAeronaveRepository.FindByKey(arg0.keyAeronave);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if (aeronave == null)</span>
+<span class="nc" id="L57">			throw new HttpException(404, &quot;no existe la eronave&quot;);</span>
+
+		// ⚠️ verifico si la tripulacion, ya esta en vuelo
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		if (aeronave.estado.equals(&quot;2&quot;))</span>
+<span class="nc" id="L61">			throw new HttpException(404, &quot;aeronave esta en vuelo, usar otra&quot;);</span>
+
+		// ✅ validar la fecha distinto
+<span class="nc bnc" id="L64" title="All 2 branches missed.">		if (arg0.fechaArribe.before(arg0.fechaSalida))</span>
+<span class="nc" id="L65">			throw new HttpException(404, &quot;debe ingresar otra hora&quot;);</span>
+
+		// ⚠️ verifico si la aeronave, ya esta en vuelo
+
+		// ✅ verifico tripulacion si existe en la BD
+<span class="nc" id="L70">		Tripulacion tripulacion = iTripulacionRepository.FindByKey(arg0.keyTripulacion);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		if (tripulacion == null)</span>
+<span class="nc" id="L72">			throw new HttpException(404, &quot;no existe la tripulacion&quot;);</span>
+
+		// ⚠️ verifico si la tripulacion, ya esta en vuelo
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		if (tripulacion.estado.equals(&quot;2&quot;))</span>
+<span class="nc" id="L76">			throw new HttpException(404, &quot;la tripulacion esta en vuelo, usar otra&quot;);</span>
+
+<span class="nc" id="L78">		List&lt;Asiento&gt; asientos = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">		for (Asiento asientoDto : aeronave.asientos) {</span>
+<span class="nc" id="L80">			asientos.add(new Asiento(asientoDto.key, asientoDto.keyAeronave, asientoDto.numero, asientoDto.clase, 200.00, 0));</span>
+<span class="nc" id="L81">		}</span>
+
+<span class="nc" id="L83">		List&lt;Tripulante&gt; tripulantes = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">		for (Tripulante tripulante : tripulacion.tripulantes) {</span>
+<span class="nc" id="L85">			tripulantes.add(new Tripulante(tripulante.key, tripulante.keyTripulacion, tripulante.nombre, tripulante.apellido,</span>
+					tripulante.cargo, tripulante.estado));
+<span class="nc" id="L87">		}</span>
+
+<span class="nc" id="L89">		Vuelo vuelo = iVueloFactory.Create(arg0.nroVuelo, arg0.keyAeronave, arg0.origen,</span>
+				arg0.destino, arg0.fechaSalida, arg0.fechaArribe, arg0.keyTripulacion, asientos, tripulantes);
+
+<span class="nc" id="L92">		tripulacion.setEstado(&quot;2&quot;);</span>
+<span class="nc" id="L93">		Tripulacion tripulacion2 = iTripulacionRepository.Update(tripulacion);</span>
+<span class="nc" id="L94">		aeronave.setEstado(&quot;2&quot;);</span>
+<span class="nc" id="L95">		Aeronave aeronave2 = iAeronaveRepository.Update(aeronave);</span>
+
+<span class="nc" id="L97">		vuelo.eventCreado();</span>
+<span class="nc" id="L98">		iVueloRepository.Create(vuelo);</span>
+<span class="nc" id="L99">		unitOfWor.commit();</span>
+<span class="nc" id="L100">		return vuelo;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

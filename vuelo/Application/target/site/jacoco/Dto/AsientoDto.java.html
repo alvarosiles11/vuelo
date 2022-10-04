@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AsientoDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Application</a> &gt; <a href="index.source.html" class="el_package">Dto</a> &gt; <span class="el_source">AsientoDto.java</span></div><h1>AsientoDto.java</h1><pre class="source lang-java linenums">package Dto;
+
+import java.util.UUID;
+
+public class AsientoDto {
+
+	public UUID keyAeronave;
+
+	public UUID keyAsiento;
+	public int numero;
+	public String clase;
+	public Double precio;
+	public int disponibilidad;
+
+<span class="fc" id="L15">	public AsientoDto() {</span>
+<span class="fc" id="L16">	}</span>
+
+<span class="fc" id="L18">	public AsientoDto(UUID keyAeronave, int numero, String clase, Double precio) {</span>
+<span class="fc" id="L19">		this.keyAeronave = keyAeronave;</span>
+<span class="fc" id="L20">		this.numero = numero;</span>
+<span class="fc" id="L21">		this.clase = clase;</span>
+<span class="fc" id="L22">		this.clase = clase;</span>
+<span class="fc" id="L23">		this.precio = precio;</span>
+<span class="fc" id="L24">	}</span>
+
+	public UUID getKeyAeronave() {
+<span class="fc" id="L27">		return keyAeronave;</span>
+	}
+
+	public void setKeyAeronave(UUID keyAeronave) {
+<span class="fc" id="L31">		this.keyAeronave = keyAeronave;</span>
+<span class="fc" id="L32">	}</span>
+
+	public UUID getKeyAsiento() {
+<span class="nc" id="L35">		return keyAsiento;</span>
+	}
+
+	public void setKeyAsiento(UUID keyAsiento) {
+<span class="nc" id="L39">		this.keyAsiento = keyAsiento;</span>
+<span class="nc" id="L40">	}</span>
+
+	public int getNumero() {
+<span class="fc" id="L43">		return numero;</span>
+	}
+
+	public void setNumero(int numero) {
+<span class="fc" id="L47">		this.numero = numero;</span>
+<span class="fc" id="L48">	}</span>
+
+	public String getClase() {
+<span class="fc" id="L51">		return clase;</span>
+	}
+
+	public void setClase(String clase) {
+<span class="fc" id="L55">		this.clase = clase;</span>
+<span class="fc" id="L56">	}</span>
+
+	public Double getPrecio() {
+<span class="fc" id="L59">		return precio;</span>
+	}
+
+	public void setPrecio(Double precio) {
+<span class="fc" id="L63">		this.precio = precio;</span>
+<span class="fc" id="L64">	}</span>
+
+	public int getDisponibilidad() {
+<span class="fc" id="L67">		return disponibilidad;</span>
+	}
+
+	public void setDisponibilidad(int disponibilidad) {
+<span class="fc" id="L71">		this.disponibilidad = disponibilidad;</span>
+<span class="fc" id="L72">	}</span>
+
+	public static void main(String[] args) {
+<span class="nc" id="L75">		System.out.println(&quot;hola&quot;);</span>
+<span class="nc" id="L76">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

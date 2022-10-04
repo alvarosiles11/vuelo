@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AeronaveController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WebApi</a> &gt; <a href="index.source.html" class="el_package">Controllers</a> &gt; <span class="el_source">AeronaveController.java</span></div><h1>AeronaveController.java</h1><pre class="source lang-java linenums">package Controllers;
+
+import java.util.List;
+
+import Dto.AeronaveDto;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.annotation.GetMapping;
+import Fourteam.http.annotation.PathVariable;
+import Fourteam.http.annotation.RequestMapping;
+import Fourteam.http.annotation.RestController;
+import Fourteam.mediator.Mediator;
+import Fourteam.mediator.Response;
+import UseCases.Queries.Aeronave.GetAll.GetAllAeronaveQuery;
+import UseCases.Queries.Aeronave.GetByKey.GetAeronaveByKeyQuery;
+
+@RestController
+@RequestMapping(&quot;/aeronave&quot;)
+public class AeronaveController {
+
+	private Mediator _mediator;
+
+<span class="fc" id="L22">	public AeronaveController(Mediator mediator) {</span>
+<span class="fc" id="L23">		_mediator = mediator;</span>
+<span class="fc" id="L24">	}</span>
+
+	@GetMapping(&quot;/&quot;)
+	public List&lt;AeronaveDto&gt; getAll() throws HttpException {
+		try {
+<span class="nc" id="L29">			Response&lt;List&lt;AeronaveDto&gt;&gt; lista = _mediator.send(new GetAllAeronaveQuery());</span>
+<span class="nc" id="L30">			return lista.data;</span>
+<span class="fc" id="L31">		} catch (Exception e) {</span>
+<span class="fc" id="L32">			e.printStackTrace();</span>
+<span class="fc" id="L33">			throw new HttpException(404, &quot;Error &quot; + e.getMessage());</span>
+		}
+	}
+
+	@GetMapping(&quot;/{key}&quot;)
+	public Response&lt;AeronaveDto&gt; getByKey(@PathVariable GetAeronaveByKeyQuery request)
+			throws HttpException {
+		try {
+<span class="nc" id="L41">			return _mediator.send(request);</span>
+<span class="nc" id="L42">		} catch (Exception e) {</span>
+<span class="nc" id="L43">			throw new HttpException(404, e.getMessage());</span>
+		}
+	}
+
+	// @PutMapping(&quot;/{key}&quot;)
+	// public AeronaveDto edit(
+	// @RequestBody Aeronave aeronave,
+	// @PathVariable EditarAeronaveCommand request) throws HttpException {
+	// request.aeronaveDto.setEstado(aeronave.getEstado());
+	// try {
+	// return (AeronaveDto) _mediator.send(request).data;
+	// } catch (Exception e) {
+	// throw (HttpException) e.getCause();
+	// }
+	// }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

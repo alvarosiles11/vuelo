@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VueloController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WebApi</a> &gt; <a href="index.source.html" class="el_package">Controllers</a> &gt; <span class="el_source">VueloController.java</span></div><h1>VueloController.java</h1><pre class="source lang-java linenums">package Controllers;
+
+import java.util.List;
+
+import Dto.VueloDto;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.annotation.DeleteMapping;
+import Fourteam.http.annotation.GetMapping;
+import Fourteam.http.annotation.PathVariable;
+import Fourteam.http.annotation.PostMapping;
+import Fourteam.http.annotation.PutMapping;
+import Fourteam.http.annotation.RequestBody;
+import Fourteam.http.annotation.RequestMapping;
+import Fourteam.http.annotation.RestController;
+import Fourteam.mediator.Mediator;
+import Fourteam.mediator.Response;
+import Model.Vuelos.Vuelo;
+import UseCases.Command.Vuelos.Crear.CrearVueloCommand;
+import UseCases.Command.Vuelos.Editar.EditarVueloCommand;
+import UseCases.Command.Vuelos.Eliminar.EliminarVueloCommand;
+import UseCases.Queries.Vuelos.GetAll.GetAllVueloQuery;
+import UseCases.Queries.Vuelos.GetByKey.GetVueloByKeyQuery;
+
+@RestController
+@RequestMapping(&quot;/vuelo&quot;)
+public class VueloController {
+
+	private Mediator _mediator;
+
+<span class="fc" id="L30">	public VueloController(Mediator mediator) {</span>
+<span class="fc" id="L31">		_mediator = mediator;</span>
+<span class="fc" id="L32">	}</span>
+
+	@GetMapping(&quot;/&quot;)
+	public List&lt;VueloDto&gt; getAll() throws HttpException {
+		try {
+<span class="nc" id="L37">			Response&lt;List&lt;VueloDto&gt;&gt; lista = _mediator.send(new GetAllVueloQuery());</span>
+<span class="nc" id="L38">			return lista.data;</span>
+<span class="fc" id="L39">		} catch (Exception e) {</span>
+<span class="fc" id="L40">			e.printStackTrace();</span>
+<span class="fc" id="L41">			throw new HttpException(404, &quot;Error &quot; + e.getMessage());</span>
+		}
+	}
+
+	@PostMapping(&quot;/registro&quot;)
+	public Vuelo register(@RequestBody CrearVueloCommand vuelo)
+			throws Exception {
+<span class="nc" id="L48">		return (Vuelo) _mediator.send(vuelo).data;</span>
+	}
+
+	@GetMapping(&quot;/{key}&quot;)
+	public Response&lt;VueloDto&gt; getByKey(@PathVariable GetVueloByKeyQuery request)
+			throws HttpException {
+		try {
+<span class="nc" id="L55">			return _mediator.send(request);</span>
+<span class="nc" id="L56">		} catch (Exception e) {</span>
+<span class="nc" id="L57">			throw new HttpException(404, e.getMessage());</span>
+		}
+	}
+
+	@PutMapping(&quot;/{key}&quot;)
+	public VueloDto edit(
+			@RequestBody Vuelo vuelo,
+			@PathVariable EditarVueloCommand request) throws HttpException {
+<span class="nc" id="L65">		request.vueloDto.setNroVuelo(vuelo.getNroVuelo());</span>
+<span class="nc" id="L66">		request.vueloDto.setKeyAeronave(vuelo.getKeyAeronave());</span>
+<span class="nc" id="L67">		request.vueloDto.setOrigen(vuelo.getOrigen());</span>
+<span class="nc" id="L68">		request.vueloDto.setDestino(vuelo.getDestino());</span>
+<span class="nc" id="L69">		request.vueloDto.setFechaSalida(vuelo.getFechaSalida());</span>
+<span class="nc" id="L70">		request.vueloDto.setFechaArribe(vuelo.getFechaArribe());</span>
+<span class="nc" id="L71">		request.vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());</span>
+		try {
+<span class="nc" id="L73">			return (VueloDto) _mediator.send(request).data;</span>
+<span class="nc" id="L74">		} catch (Exception e) {</span>
+<span class="nc" id="L75">			throw (HttpException) e.getCause();</span>
+		}
+	}
+
+	@DeleteMapping(&quot;/{key}&quot;)
+	public Response&lt;VueloDto&gt; delete(@PathVariable EliminarVueloCommand request)
+			throws HttpException {
+		try {
+<span class="nc" id="L83">			return _mediator.send(request);</span>
+<span class="nc" id="L84">		} catch (Exception e) {</span>
+<span class="nc" id="L85">			throw new HttpException(404, e.getMessage());</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

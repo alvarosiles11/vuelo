@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetAllTripulacionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Application</a> &gt; <a href="index.source.html" class="el_package">UseCases.Queries.Tripulacion.GetAll</a> &gt; <span class="el_source">GetAllTripulacionHandler.java</span></div><h1>GetAllTripulacionHandler.java</h1><pre class="source lang-java linenums">package UseCases.Queries.Tripulacion.GetAll;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Dto.TripulacionDto;
+import Dto.TripulanteDto;
+import Fourteam.mediator.RequestHandler;
+import Model.Tripulacion.Tripulacion;
+import Model.Tripulacion.Tripulante;
+import Repositories.ITripulacionRepository;
+
+public class GetAllTripulacionHandler implements RequestHandler&lt;GetAllTripulacionQuery, List&lt;TripulacionDto&gt;&gt; {
+
+	private ITripulacionRepository iTripulanteRepository;
+
+<span class="nc" id="L17">	public GetAllTripulacionHandler(ITripulacionRepository iTripulanteRepository) {</span>
+<span class="nc" id="L18">		this.iTripulanteRepository = iTripulanteRepository;</span>
+<span class="nc" id="L19">	}</span>
+
+	@Override
+	public List&lt;TripulacionDto&gt; handle(GetAllTripulacionQuery request) throws Exception {
+
+<span class="nc" id="L24">		List&lt;Tripulacion&gt; lista = iTripulanteRepository.GetAll();</span>
+<span class="nc" id="L25">		List&lt;TripulacionDto&gt; resp = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">		for (Tripulacion tripulacion : lista) {</span>
+<span class="nc" id="L27">			TripulacionDto tripulacionDto = new TripulacionDto();</span>
+<span class="nc" id="L28">			tripulacionDto.setKeyTripulacion(tripulacion.getKey());</span>
+<span class="nc" id="L29">			tripulacionDto.setDescripcion(tripulacion.getDescripcion());</span>
+<span class="nc" id="L30">			tripulacionDto.setEstado(tripulacion.getEstado());</span>
+
+<span class="nc" id="L32">			resp.add(tripulacionDto);</span>
+<span class="nc" id="L33">			List&lt;TripulanteDto&gt; tripulanteDtos = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L35" title="All 2 branches missed.">			for (Tripulante tripulante : tripulacion.tripulantes) {</span>
+<span class="nc" id="L36">				tripulanteDtos.add(new TripulanteDto(tripulante.keyTripulacion, tripulante.key, tripulante.nombre,</span>
+						tripulante.apellido, tripulante.cargo, tripulante.estado));
+<span class="nc" id="L38">			}</span>
+<span class="nc" id="L39">			tripulacionDto.setTripulantes(tripulanteDtos);</span>
+<span class="nc" id="L40">		}</span>
+<span class="nc" id="L41">		return resp;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
