@@ -31,7 +31,6 @@ public class UnitOfWorkTest {
 		try {
 			unitOfWork.commit();
 		} catch (HttpException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -42,7 +41,6 @@ public class UnitOfWorkTest {
 		try {
 			unitOfWork.commit();
 		} catch (HttpException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
