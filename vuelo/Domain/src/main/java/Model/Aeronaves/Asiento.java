@@ -21,7 +21,6 @@ public class Asiento extends Entity<UUID> {
 		this.disponibilidad = disponibilidad;
 	}
 
-
 	public UUID getKeyAeronave() {
 		return keyAeronave;
 	}

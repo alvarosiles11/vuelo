@@ -51,4 +51,7 @@ public class Aeronave extends AggregateRoot<UUID> {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public void agregarAsiento(Asiento asiento001) {
+	}
 }

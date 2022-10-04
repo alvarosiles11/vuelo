@@ -53,4 +53,10 @@ public class Tripulacion extends AggregateRoot<UUID> {
 		this.estado = estado;
 	}
 
+	public void agregarTripulante(Tripulante tripulante001) {
+	}
+
+	public void agregarAsiento(Tripulante tripulante002) {
+	}
+
 }
