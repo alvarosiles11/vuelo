@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 
 import Dto.VueloDto;
 import Fourteam.mediator.Mediator;
+import Fourteam.mediator.Response;
 import Model.Aeronaves.Asiento;
 import Model.Tripulacion.Tripulante;
 import Model.Vuelos.Vuelo;
@@ -42,13 +43,16 @@ public class VueloControllerTest {
 		final UUID keyTripulacion = UUID.randomUUID();
 		final List<Tripulante> tripulantes = new ArrayList<>();
 
-		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion, asientos,
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
+				asientos,
 				tripulantes);
 
 		VueloDto vueloDto = new VueloDto();
 
-		GetAllVueloQuery getAllVueloQuery = new GetAllVueloQuery();
-		vueloController.getAll();
+		Response<List<VueloDto>> lista = mediator.send(new GetAllVueloQuery());
+
+		// GetAllVueloQuery getAllVueloQuery = new GetAllVueloQuery();
+		// vueloController.getAll();
 
 		CrearVueloCommand crearVueloCommand = new CrearVueloCommand(vueloDto);
 		vueloController.register(crearVueloCommand);

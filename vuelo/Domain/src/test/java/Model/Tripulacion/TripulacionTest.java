@@ -10,6 +10,12 @@ import org.junit.Test;
 import core.AggregateRoot;
 
 public class TripulacionTest extends AggregateRoot<UUID> {
+
+	@Test
+	public void constructorVoid_accept() {
+		Assert.assertNotNull(new Tripulacion());
+	}
+
 	@Test
 	public void CheckConstructor() {
 		final UUID keyTripulacion = UUID.randomUUID();
@@ -18,6 +24,14 @@ public class TripulacionTest extends AggregateRoot<UUID> {
 		final List<Tripulante> tripulantes = new ArrayList<>();
 
 		final Tripulacion tripulacion = new Tripulacion(keyTripulacion, descripcion, estado);
+
+		Assert.assertNotNull(descripcion, tripulacion.getDescripcion());
+		Assert.assertNotNull(estado, tripulacion.getEstado());
+		Assert.assertEquals(tripulantes, tripulacion.getTripulantes());
+
+		tripulacion.setDescripcion(descripcion);
+		tripulacion.setEstado(estado);
+		tripulacion.setTripulantes(tripulantes);
 
 		Assert.assertNotNull(descripcion, tripulacion.getDescripcion());
 		Assert.assertNotNull(estado, tripulacion.getEstado());
@@ -57,10 +71,12 @@ public class TripulacionTest extends AggregateRoot<UUID> {
 
 		Tripulacion tripulacion = new Tripulacion(keyTripulacion, descripcion, estado);
 
-		Tripulante tripulante001 = new Tripulante(UUID.randomUUID(), UUID.randomUUID(), "mario", "mamani", "auxiliar", "1");
+		Tripulante tripulante001 = new Tripulante(UUID.randomUUID(), UUID.randomUUID(), "mario", "mamani", "auxiliar",
+				"1");
 		tripulacion.agregarTripulante(tripulante001);
 
-		Tripulante tripulante002 = new Tripulante(UUID.randomUUID(), UUID.randomUUID(), "mario", "mamani", "auxiliar", "1");
+		Tripulante tripulante002 = new Tripulante(UUID.randomUUID(), UUID.randomUUID(), "mario", "mamani", "auxiliar",
+				"1");
 		tripulante002.key = tripulante001.key;
 
 		try {

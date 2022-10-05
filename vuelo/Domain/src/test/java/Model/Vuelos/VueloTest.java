@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
 
-import Model.Aeronaves.Aeronave;
 import Model.Aeronaves.Asiento;
 import Model.Tripulacion.Tripulante;
 
@@ -16,7 +15,7 @@ public class VueloTest {
 
 	@Test
 	public void constructorVoid_accept() {
-		Assert.assertNotNull(new Aeronave());
+		Assert.assertNotNull(new Vuelo());
 	}
 
 	@Test
@@ -44,6 +43,17 @@ public class VueloTest {
 		Assert.assertEquals(fechaArribe, vuelo.getFechaArribe());
 		Assert.assertEquals(keyTripulacion, vuelo.getKeyTripulacion());
 		Assert.assertEquals(tripulantes, vuelo.getTripulantes());
+
+		// vuelo.setKey(key);
+		vuelo.setNroVuelo(nroVuelo);
+		vuelo.setKeyAeronave(keyAeronave);
+		vuelo.setAsientos(asientos);
+		vuelo.setOrigen(origen);
+		vuelo.setDestino(destino);
+		vuelo.setFechaSalida(fechaSalida);
+		vuelo.setFechaArribe(fechaArribe);
+		vuelo.setKeyTripulacion(keyTripulacion);
+		vuelo.setTripulantes(tripulantes);
 	}
 
 	@Test
@@ -59,7 +69,8 @@ public class VueloTest {
 		final UUID keyTripulacion = null;
 		final List<Tripulante> tripulantes = null;
 
-		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion, asientos,
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
+				asientos,
 				tripulantes);
 
 		Assert.assertEquals(vuelo.key, null);
@@ -88,7 +99,8 @@ public class VueloTest {
 		final UUID keyTripulacion = UUID.randomUUID();
 		final List<Tripulante> tripulantes = new ArrayList<>();
 
-		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion, asientos,
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
+				asientos,
 				tripulantes);
 		vuelo.eventCreado();
 		Assert.assertEquals(vuelo.domainEvents.size(), 1);

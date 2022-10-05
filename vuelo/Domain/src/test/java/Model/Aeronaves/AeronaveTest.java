@@ -42,13 +42,17 @@ public class AeronaveTest extends AggregateRoot<UUID> {
 	public void addAsiento_accept() {
 		final UUID keyAeronave = UUID.randomUUID();
 		final String matricula = "xyz-1990";
-		// final List<Asiento> listdaAsientos = new ArrayList<>();
+		final List<Asiento> listdaAsientos1 = new ArrayList<>();
 		final String estado = "0";
 
 		Aeronave aeronave = new Aeronave(keyAeronave, matricula, estado);
 
 		aeronave.agregarAsiento(UUID.randomUUID(), UUID.randomUUID(), 1, "comercial", 200.00, 0);
 		Assert.assertEquals(aeronave.asientos.size(), 1);
+
+		aeronave.setMatricula(matricula);
+		aeronave.setAsientos(listdaAsientos1);
+		aeronave.setEstado(estado);
 	}
 
 	@Test

@@ -6,6 +6,7 @@ public class DomainTest {
 	public void addDomain_accept() {
 		Assert.assertNotNull(new Domain());
 		Domain.addDomain();
+		SharedKernel.AddKernel();
 		Assert.assertTrue(true);
 	}
 }

@@ -26,11 +26,13 @@ public class UnitOfWorkTest {
 	public void commit_accept() throws Exception {
 		UnitOfWork unitOfWork = new UnitOfWork(_context, _mediator);
 		List<Object> list = new ArrayList<Object>();
-		list.add(new DomainEvent());
+		list.add(new DomainEvent() {
+		});
 		when(_context.getDomainEvents()).thenReturn(list);
 		try {
 			unitOfWork.commit();
 		} catch (HttpException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -41,8 +43,8 @@ public class UnitOfWorkTest {
 		try {
 			unitOfWork.commit();
 		} catch (HttpException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }

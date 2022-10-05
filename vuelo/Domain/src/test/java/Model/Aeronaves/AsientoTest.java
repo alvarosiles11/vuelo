@@ -23,5 +23,17 @@ public class AsientoTest extends Entity<UUID> {
 		Assert.assertEquals(clase, asiento.getClase());
 		Assert.assertEquals(precio, asiento.getPrecio());
 		Assert.assertEquals(disponibilidad, asiento.getDisponibilidad());
+
+		asiento.setKeyAeronave(keyAeronave);
+		asiento.setNumero(numero);
+		asiento.setClase(clase);
+		asiento.setPrecio(precio);
+		asiento.setDisponibilidad(disponibilidad);
+
+		Assert.assertEquals(keyAeronave, asiento.getKeyAeronave());
+		Assert.assertEquals(numero, asiento.getNumero());
+		Assert.assertEquals(clase, asiento.getClase());
+		Assert.assertEquals(precio, asiento.getPrecio());
+		Assert.assertEquals(disponibilidad, asiento.getDisponibilidad());
 	}
 }
