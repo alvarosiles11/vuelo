@@ -33,14 +33,23 @@ public class EditarVueloCommandTest {
 		vueloDto.setKeyTripulacion(keyTripulacion);
 
 		EditarVueloCommand command = new EditarVueloCommand(vueloDto.getKey());
-		Assert.assertEquals(key, vueloDto.getKey());
-		Assert.assertEquals(nroVuelo, vueloDto.nroVuelo);
-		Assert.assertEquals(keyAeronave, vueloDto.keyAeronave);
-		Assert.assertEquals(origen, vueloDto.origen);
-		Assert.assertEquals(destino, vueloDto.destino);
-		Assert.assertEquals(fechaSalida, vueloDto.fechaSalida);
-		Assert.assertEquals(fechaArribe, vueloDto.fechaArribe);
-		Assert.assertEquals(keyTripulacion, vueloDto.keyTripulacion);
+		command.vueloDto.setKey(key);
+		command.vueloDto.setNroVuelo(nroVuelo);
+		command.vueloDto.setKeyAeronave(keyAeronave);
+		command.vueloDto.setOrigen(origen);
+		command.vueloDto.setDestino(destino);
+		command.vueloDto.setFechaSalida(fechaSalida);
+		command.vueloDto.setFechaArribe(fechaArribe);
+		command.vueloDto.setKeyTripulacion(keyTripulacion);
+
+		Assert.assertEquals(key, command.vueloDto.getKey());
+		Assert.assertEquals(nroVuelo, command.vueloDto.nroVuelo);
+		Assert.assertEquals(keyAeronave, command.vueloDto.keyAeronave);
+		Assert.assertEquals(origen, command.vueloDto.origen);
+		Assert.assertEquals(destino, command.vueloDto.destino);
+		Assert.assertEquals(fechaSalida, command.vueloDto.fechaSalida);
+		Assert.assertEquals(fechaArribe, command.vueloDto.fechaArribe);
+		Assert.assertEquals(keyTripulacion, command.vueloDto.keyTripulacion);
 
 	}
 

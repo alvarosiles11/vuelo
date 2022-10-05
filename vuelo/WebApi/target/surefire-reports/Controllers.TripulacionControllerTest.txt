@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: Controllers.TripulacionControllerTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.214 s <<< FAILURE! - in Controllers.TripulacionControllerTest
-HandleVueloController_Ok(Controllers.TripulacionControllerTest)  Time elapsed: 0.207 s  <<< ERROR!
-Fourteam.http.Exception.HttpException: Error null
-	at Controllers.TripulacionControllerTest.HandleVueloController_Ok(TripulacionControllerTest.java:40)
-

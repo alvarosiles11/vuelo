@@ -19,8 +19,6 @@ import Fourteam.http.Exception.HttpException;
 import Model.Aeronaves.Asiento;
 import Model.Tripulacion.Tripulante;
 import Model.Vuelos.Vuelo;
-import Repositories.IAeronaveRepository;
-import Repositories.ITripulacionRepository;
 import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
 
@@ -30,8 +28,10 @@ public class EliminarVueloHandlerTest {
 	IVueloRepository iVueloRepository = Mockito.mock(IVueloRepository.class);
 	IUnitOfWork iUnitOfWork = Mockito.mock(IUnitOfWork.class);
 
-	IAeronaveRepository iAeronaveRepository = Mockito.mock(IAeronaveRepository.class);
-	ITripulacionRepository iTripulacionRepository = Mockito.mock(ITripulacionRepository.class);
+	// IAeronaveRepository iAeronaveRepository =
+	// Mockito.mock(IAeronaveRepository.class);
+	// ITripulacionRepository iTripulacionRepository =
+	// Mockito.mock(ITripulacionRepository.class);
 
 	@Before
 	public void setUp() {
@@ -47,12 +47,14 @@ public class EliminarVueloHandlerTest {
 		final Date fechaSalida = new Date();
 		final Date fechaArribe = new Date();
 		final UUID keyTripulacion = UUID.randomUUID();
-		final List<Asiento> asientos = getListAsiento();
-		final List<Tripulante> tripulantes = getListdaTripulantes();
+		final List<Asiento> asientos = new ArrayList<>();
 
+		final List<Tripulante> tripulantes = new ArrayList<>();
 		final Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
 				asientos,
 				tripulantes);
+		vuelo.key = key;
+
 		when(iVueloRepository.FindByKey(any())).thenReturn(vuelo);
 		when(iVueloRepository.Delete(any())).thenReturn(vuelo);
 
@@ -70,6 +72,7 @@ public class EliminarVueloHandlerTest {
 		vueloDto.setTripulantes(new ArrayList<>());
 
 		final EliminarVueloCommand command = new EliminarVueloCommand(vueloDto.key);
+		// UUID res = handler.handle(command);
 
 		// command.vueloDto.setKey(key);
 		// command.vueloDto.setNroVuelo(nroVuelo);
@@ -83,17 +86,17 @@ public class EliminarVueloHandlerTest {
 		// command.vueloDto.setTripulantes(new ArrayList<>());
 
 		// TDO coman editarvuelo handler en fourteam o sharekernel
-		final Vuelo response = handler.handle(command);
-		Assert.assertEquals(vuelo.key, response.getKey());
+		UUID response = handler.handle(command);
+		Assert.assertEquals(vuelo.key, response);
 	}
 
-	private List<Asiento> getListAsiento() {
-		return new ArrayList<>();
-	}
+	// private List<Asiento> getListAsiento() {
+	// return new ArrayList<>();
+	// }
 
-	private List<Tripulante> getListdaTripulantes() {
-		return new ArrayList<>();
-	}
+	// private List<Tripulante> getListdaTripulantes() {
+	// return new ArrayList<>();
+	// }
 
 	@Test
   public void HandleFailed() throws Exception {
@@ -101,34 +104,33 @@ public class EliminarVueloHandlerTest {
     EliminarVueloHandler  handler = new EliminarVueloHandler(iVueloFactory, iVueloRepository, iUnitOfWork);
 
 
-		final UUID key = UUID.randomUUID();
-		final String nroVuelo = "scz-cba-513184";
-		final UUID keyAeronave = UUID.randomUUID();
-		final String origen = "Scz-ViruViru";
-		final String destino = "CBA-CBA";
-		final Date fechaSalida = new Date();
-		final Date fechaArribe = new Date();
-		final UUID keyTripulacion = UUID.randomUUID();
+		// final UUID key = UUID.randomUUID();
+		// final String nroVuelo = "scz-cba-513184";
+		// final UUID keyAeronave = UUID.randomUUID();
+		// final String origen = "Scz-ViruViru";
+		// final String destino = "CBA-CBA";
+		// final Date fechaSalida = new Date();
+		// final Date fechaArribe = new Date();
+		// final UUID keyTripulacion = UUID.randomUUID();
 
 
 		VueloDto vueloDto = new VueloDto();
 
-		vueloDto.setKey(key);
-		vueloDto.setNroVuelo(nroVuelo);
-		vueloDto.setKeyAeronave(keyAeronave);
+		vueloDto.setKey(UUID.randomUUID());
+		vueloDto.setNroVuelo("scz-cba-513184");
+		vueloDto.setKeyAeronave(UUID.randomUUID());
 		vueloDto.setAsientos(new ArrayList<>());
-		vueloDto.setOrigen(origen);
-		vueloDto.setDestino(destino);
-		vueloDto.setFechaSalida(fechaSalida);
-		vueloDto.setFechaArribe(fechaArribe);
-		vueloDto.setKeyTripulacion(keyTripulacion);
+		vueloDto.setOrigen("Scz-ViruViru");
+		vueloDto.setDestino("CBA-CBA");
+		vueloDto.setFechaSalida(new Date());
+		vueloDto.setFechaArribe(new Date());
+		vueloDto.setKeyTripulacion(UUID.randomUUID());
 		vueloDto.setTripulantes(new ArrayList<>());
 
-    EliminarVueloCommand  command = new EliminarVueloCommand(vueloDto.getKey());
+    EliminarVueloCommand command = new EliminarVueloCommand(vueloDto.getKey());
     try {
-      Vuelo resp = handler.handle(command);
-      System.out.println(resp);
-     } catch (HttpException e) {
+		UUID resp = handler.handle(command);
+      } catch (HttpException e) {
       Assert.assertEquals(400, e.getCode());
     }
   }

@@ -1,5 +1,7 @@
 package UseCases.Command.Vuelos.Eliminar;
 
+import java.util.UUID;
+
 import Factories.IVueloFactory;
 import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
@@ -9,7 +11,7 @@ import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
 
 public class EliminarVueloHandler
-		implements RequestHandler<EliminarVueloCommand, Vuelo> {
+		implements RequestHandler<EliminarVueloCommand, UUID> {
 
 	private IVueloFactory iVueloFactory;
 	private IVueloRepository iVueloRepository;
@@ -25,12 +27,12 @@ public class EliminarVueloHandler
 	}
 
 	@Override
-	public Vuelo handle(EliminarVueloCommand request) throws Exception {
+	public UUID handle(EliminarVueloCommand request) throws Exception {
 		Vuelo vuelo = iVueloRepository.FindByKey(request.vueloDto.getKey());
 		if (vuelo == null) {
 			throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrada");
 		}
 
-		return iVueloRepository.Delete(vuelo);
+		return iVueloRepository.Delete(vuelo).key;
 	}
 }

@@ -1,8 +1,0 @@
-UnitOfWorkTest.class
-Context/IWriteDbContextTest.class
-InfraestructureTest.class
-Context/IWriteDbContextTest$Context.class
-Repository/AeronaveRepositoryTest.class
-Repository/VueloRepositoryTest.class
-Context/MongoDB/WriteDbContextTest.class
-Repository/TripulacionRepositoryTest.class

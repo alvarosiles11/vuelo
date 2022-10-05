@@ -1,6 +1,5 @@
 package UseCases.Command.Vuelos.Editar;
 
-import Dto.VueloDto;
 import Factories.IVueloFactory;
 import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
@@ -10,7 +9,7 @@ import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
 
 public class EditarVueloHandler
-		implements RequestHandler<EditarVueloCommand, VueloDto> {
+		implements RequestHandler<EditarVueloCommand, Vuelo> {
 
 	private IVueloFactory iVueloFactory;
 	private IVueloRepository iVueloRepository;
@@ -26,7 +25,7 @@ public class EditarVueloHandler
 	}
 
 	@Override
-	public VueloDto handle(EditarVueloCommand request) throws Exception {
+	public Vuelo handle(EditarVueloCommand request) throws Exception {
 		Vuelo vuelo = iVueloRepository.FindByKey(request.vueloDto.getKey());
 		if (vuelo == null) {
 			throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrada");
@@ -42,15 +41,15 @@ public class EditarVueloHandler
 		iVueloRepository.Update(vuelo);
 
 		// consultar a los otros si les muestra el editar
-		VueloDto vueloDto = new VueloDto();
-		vueloDto.setKey(vuelo.getKey());
-		vueloDto.setNroVuelo(vuelo.getNroVuelo());
-		vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
-		vueloDto.setOrigen(vuelo.getOrigen());
-		vueloDto.setDestino(vuelo.getDestino());
-		vueloDto.setFechaSalida(vuelo.getFechaSalida());
-		vueloDto.setFechaArribe(vuelo.getFechaArribe());
-		vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
-		return vueloDto;
+		// VueloDto vueloDto = new VueloDto();
+		// vueloDto.setKey(vuelo.getKey());
+		// vueloDto.setNroVuelo(vuelo.getNroVuelo());
+		// vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
+		// vueloDto.setOrigen(vuelo.getOrigen());
+		// vueloDto.setDestino(vuelo.getDestino());
+		// vueloDto.setFechaSalida(vuelo.getFechaSalida());
+		// vueloDto.setFechaArribe(vuelo.getFechaArribe());
+		// vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
+		return vuelo;
 	}
 }

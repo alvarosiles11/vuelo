@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: Controllers.VueloControllerTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.091 s <<< FAILURE! - in Controllers.VueloControllerTest
-HandleVueloController_Ok(Controllers.VueloControllerTest)  Time elapsed: 0.084 s  <<< ERROR!
-Fourteam.http.Exception.HttpException: Error null
-	at Controllers.VueloControllerTest.HandleVueloController_Ok(VueloControllerTest.java:51)
-

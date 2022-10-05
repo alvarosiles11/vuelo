@@ -19,7 +19,6 @@ public class AsientoDto {
 		this.keyAeronave = keyAeronave;
 		this.numero = numero;
 		this.clase = clase;
-		this.clase = clase;
 		this.precio = precio;
 	}
 
@@ -69,9 +68,5 @@ public class AsientoDto {
 
 	public void setDisponibilidad(int disponibilidad) {
 		this.disponibilidad = disponibilidad;
-	}
-
-	public static void main(String[] args) {
-		System.out.println("hola");
 	}
 }
