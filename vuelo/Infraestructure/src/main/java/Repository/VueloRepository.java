@@ -1,5 +1,6 @@
 package Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +46,12 @@ public class VueloRepository implements IVueloRepository {
 
 	@Override
 	public Vuelo findNroVuelo(String nro) throws Exception {
-		return _vuelos.Single(obj -> obj.nroVuelo.equals(nro));
+		return _vuelos.Single(obj -> obj.getNroVuelo().equals(nro));
+	}
+
+	@Override
+	public Vuelo findFechaSalida(Date fechaSalida) throws Exception {
+		return _vuelos.Single(obj -> obj.getFechaSalida().equals(fechaSalida));
+
 	}
 }

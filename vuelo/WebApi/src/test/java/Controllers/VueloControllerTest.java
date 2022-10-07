@@ -44,8 +44,7 @@ public class VueloControllerTest {
 		final List<Tripulante> tripulantes = new ArrayList<>();
 
 		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos,
-				tripulantes);
+				origen, destino, asientos, tripulantes);
 
 		VueloDto vueloDto = new VueloDto();
 

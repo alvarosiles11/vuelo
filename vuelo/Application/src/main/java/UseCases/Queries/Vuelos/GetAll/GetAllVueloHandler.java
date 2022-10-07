@@ -37,17 +37,19 @@ public class GetAllVueloHandler implements RequestHandler<GetAllVueloQuery, List
 			vueloDto.setFechaSalida(vuelo.getFechaSalida());
 			vueloDto.setFechaArribe(vuelo.getFechaArribe());
 			vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
+			vueloDto.setObservacion(vuelo.getObservacion());
+			vueloDto.setEstado(vuelo.getEstado());
 
 			resp.add(vueloDto);
 
 			List<AsientoDto> asientosDtos = new ArrayList<>();
-			for (Asiento asiento : vuelo.asientos) {
+			for (Asiento asiento : vuelo.getAsientos()) {
 				asientosDtos.add(new AsientoDto(asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
 			}
 			vueloDto.setAsientos(asientosDtos);
 
 			List<TripulanteDto> tripulanteDtos = new ArrayList<>();
-			for (Tripulante tripulante : vuelo.tripulantes) {
+			for (Tripulante tripulante : vuelo.getTripulantes()) {
 				tripulanteDtos.add(new TripulanteDto(tripulante.keyTripulacion, tripulante.key, tripulante.nombre,
 						tripulante.apellido, tripulante.cargo, tripulante.estado));
 			}

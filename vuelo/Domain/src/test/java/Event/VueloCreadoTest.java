@@ -17,6 +17,9 @@ public class VueloCreadoTest {
 	Date fechaArribe = new Date();
 	UUID keyTripulacion = UUID.randomUUID();
 
+	String observacion = "En horario";
+	String estado = "1";
+
 	@Test
 	public void CheckPropertiesValid() {
 		VueloCreado vuelo = new VueloCreado();
@@ -52,7 +55,7 @@ public class VueloCreadoTest {
 	@Test
 	public void CheckConstructor() {
 		VueloCreado vuelo = new VueloCreado(key, nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe,
-				keyTripulacion);
+				keyTripulacion, observacion, estado);
 		Assert.assertEquals(key, vuelo.getKey());
 		Assert.assertEquals(nroVuelo, vuelo.getNroVuelo());
 		Assert.assertEquals(keyAeronave, vuelo.getKeyAeronave());

@@ -32,7 +32,6 @@ public class EliminarVueloHandler
 		if (vuelo == null) {
 			throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrada");
 		}
-
 		return iVueloRepository.Delete(vuelo).key;
 	}
 }

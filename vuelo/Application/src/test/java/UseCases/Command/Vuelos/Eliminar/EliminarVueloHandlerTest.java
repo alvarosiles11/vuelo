@@ -47,12 +47,13 @@ public class EliminarVueloHandlerTest {
 		final Date fechaSalida = new Date();
 		final Date fechaArribe = new Date();
 		final UUID keyTripulacion = UUID.randomUUID();
+		final String observacion = "Abordando";
+		final String estado = "1";
 		final List<Asiento> asientos = new ArrayList<>();
-
 		final List<Tripulante> tripulantes = new ArrayList<>();
+
 		final Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos,
-				tripulantes);
+				observacion, estado, asientos, tripulantes);
 		vuelo.key = key;
 
 		when(iVueloRepository.FindByKey(any())).thenReturn(vuelo);

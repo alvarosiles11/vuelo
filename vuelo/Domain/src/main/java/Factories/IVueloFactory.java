@@ -17,6 +17,8 @@ public interface IVueloFactory {
 			Date fecha_salida,
 			Date fecha_arribe,
 			UUID keyTripulacion,
+			String observacion,
+			String estado,
 			List<Asiento> asientos,
 			List<Tripulante> tripulantes);
 }

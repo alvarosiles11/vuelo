@@ -7,62 +7,51 @@ import java.util.UUID;
 import Event.VueloCreado;
 import Model.Aeronaves.Asiento;
 import Model.Tripulacion.Tripulante;
-import Model.Vuelos.ValueObjects.NumeroVuelo;
 import core.AggregateRoot;
-import core.BussinessRuleValidateExeption;
 
 public class Vuelo extends AggregateRoot<UUID> {
 
-	public String nroVuelo;
-	public UUID keyAeronave;
-	public String origen;
-	public String destino;
-	public Date fechaSalida;
-	public Date fechaArribe;
-	public UUID keyTripulacion;
-
-	// para ver mi getllHandler
-	public List<Tripulante> tripulantes;
-	public List<Asiento> asientos;
+	String nroVuelo;
+	UUID keyAeronave;
+	String origen;
+	String destino;
+	Date fechaSalida;
+	Date fechaArribe;
+	UUID keyTripulacion;
+	String observacion;
+	String estado;
+	List<Asiento> asientos;
+	List<Tripulante> tripulantes;
 
 	public Vuelo() {
 	}
 
-	public Vuelo(
-			String _nroVuelo,
-			UUID _keyAeronave,
-			String _origen,
-			String _destino,
-			Date _fechaSalida,
-			Date _fechaArribe,
-			UUID _keyTripulacion,
-			List<Asiento> _asientos,
-			List<Tripulante> _tripulantes) {
-		// validaciones value objects y reglas de negocio
-		try {
-			this.nroVuelo = new NumeroVuelo(_nroVuelo).toString();
-		} catch (BussinessRuleValidateExeption e) {
-			System.out.println("Error en el NumeroVuelo Vuelo");
-			return;
-		}
-		key = UUID.randomUUID();
-		nroVuelo = _nroVuelo;
-		keyAeronave = _keyAeronave;
-		origen = _origen;
-		destino = _destino;
-		fechaSalida = _fechaSalida;
-		fechaArribe = _fechaArribe;
-		keyTripulacion = _keyTripulacion;
-		asientos = _asientos;
-		tripulantes = _tripulantes;
-
-		System.out.println("Se a creado un nuevo vuelo");
+	public Vuelo(String nroVuelo, UUID keyAeronave, String origen, String destino, Date fechaSalida, Date fechaArribe,
+			UUID keyTripulacion, String observacion, String estado, List<Asiento> asientos,
+			List<Tripulante> tripulantes) {
+		// try {
+		// this.nroVuelo = new NumeroVuelo(nroVuelo).toString();
+		// } catch (BussinessRuleValidateExeption e) {
+		// System.out.println("Error en el NumeroVuelo Vuelo");
+		// return;
+		// }
+		this.key = UUID.randomUUID();
+		this.nroVuelo = nroVuelo;
+		this.keyAeronave = keyAeronave;
+		this.origen = origen;
+		this.destino = destino;
+		this.fechaSalida = fechaSalida;
+		this.fechaArribe = fechaArribe;
+		this.keyTripulacion = keyTripulacion;
+		this.observacion = observacion;
+		this.estado = estado;
+		this.asientos = asientos;
+		this.tripulantes = tripulantes;
 	}
 
 	public void eventCreado() {
-		addDomainEvent(
-				new VueloCreado(key, nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe,
-						keyTripulacion));
+		addDomainEvent(new VueloCreado(key, nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe,
+				keyTripulacion, observacion, estado));
 	}
 
 	public String getNroVuelo() {
@@ -136,4 +125,21 @@ public class Vuelo extends AggregateRoot<UUID> {
 	public void setKeyTripulacion(UUID keyTripulacion) {
 		this.keyTripulacion = keyTripulacion;
 	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 }

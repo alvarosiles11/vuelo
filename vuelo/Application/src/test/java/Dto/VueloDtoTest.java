@@ -19,13 +19,14 @@ public class VueloDtoTest {
 		final UUID key = UUID.randomUUID();
 		final String nroVuelo = "scz-cba-513184";
 		final UUID keyAeronave = UUID.randomUUID();
-		final List<AsientoDto> asientos = getListAsiento();
 		final String origen = "Scz-ViruViru";
 		final String destino = "CBA-CBA";
 		final Date fechaSalida = new Date();
 		final Date fechaArribe = new Date();
 		final UUID keyTripulacion = UUID.randomUUID();
-
+		final String observacion = "En horario";
+		final String estado = "1";
+		final List<AsientoDto> asientos = getListAsiento();
 		final List<TripulanteDto> tripulantes = getListdaTripulantes();
 
 		final VueloDto vueloDto = new VueloDto();
@@ -34,13 +35,14 @@ public class VueloDtoTest {
 		Assert.assertNull(null, vueloDto.getNroVuelo());
 		Assert.assertNull(null, vueloDto.getKeyAeronave());
 		Assert.assertEquals(0, asientos.size());
-
 		Assert.assertNull(null, vueloDto.getOrigen());
 		Assert.assertNull(null, vueloDto.getDestino());
 		Assert.assertNull(null, vueloDto.getFechaSalida());
 		Assert.assertNull(null, vueloDto.getFechaArribe());
 		Assert.assertNull(null, vueloDto.getKeyTripulacion());
 		Assert.assertEquals(0, tripulantes.size());
+		Assert.assertNull(null, vueloDto.getObservacion());
+		Assert.assertNull(null, vueloDto.getEstado());
 
 		vueloDto.setKey(key);
 		vueloDto.setNroVuelo(nroVuelo);
@@ -52,6 +54,8 @@ public class VueloDtoTest {
 		vueloDto.setFechaArribe(fechaArribe);
 		vueloDto.setKeyTripulacion(keyTripulacion);
 		vueloDto.setTripulantes(tripulantes);
+		vueloDto.setObservacion(observacion);
+		vueloDto.setEstado(estado);
 
 		Assert.assertEquals(key, vueloDto.getKey());
 		Assert.assertEquals(nroVuelo, vueloDto.getNroVuelo());
@@ -63,6 +67,9 @@ public class VueloDtoTest {
 		Assert.assertEquals(fechaArribe, vueloDto.getFechaArribe());
 		Assert.assertEquals(keyTripulacion, vueloDto.getKeyTripulacion());
 		Assert.assertEquals(tripulantes, vueloDto.getTripulantes());
+		Assert.assertEquals(observacion, vueloDto.getObservacion());
+		Assert.assertEquals(estado, vueloDto.getEstado());
+
 	}
 
 	private List<AsientoDto> getListAsiento() {

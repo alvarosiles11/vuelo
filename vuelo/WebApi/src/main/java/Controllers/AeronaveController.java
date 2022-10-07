@@ -3,6 +3,7 @@ package Controllers;
 import java.util.List;
 
 import Dto.AeronaveDto;
+import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.http.annotation.GetMapping;
 import Fourteam.http.annotation.PathVariable;
@@ -30,7 +31,7 @@ public class AeronaveController {
 			return lista.data;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new HttpException(404, "Error " + e.getMessage());
+			throw new HttpException(HttpStatus.BAD_REQUEST, "Error " + e.getMessage());
 		}
 	}
 
@@ -40,7 +41,7 @@ public class AeronaveController {
 		try {
 			return _mediator.send(request);
 		} catch (Exception e) {
-			throw new HttpException(404, e.getMessage());
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 

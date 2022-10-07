@@ -1,5 +1,6 @@
 package Dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -9,19 +10,21 @@ public class VueloDto {
 	public UUID key;
 	public String nroVuelo;
 	public UUID keyAeronave;
-	public List<AsientoDto> asientos;
 	public String origen;
 	public String destino;
 	public Date fechaSalida;
 	public Date fechaArribe;
 	public UUID keyTripulacion;
+	public String observacion;
+	public String estado;
+	public List<AsientoDto> asientos;
 	public List<TripulanteDto> tripulantes;
 
 	public VueloDto() {
 	}
 
-	public VueloDto(String nroVuelo, UUID keyAeronave, String origen, String destino, Date fechaSalida, Date fechaArribe,
-			UUID keyTripulacion) {
+	public VueloDto(String nroVuelo, UUID keyAeronave, String origen, String destino, Date fechaSalida,
+			Date fechaArribe, UUID keyTripulacion, String observacion, String estado) {
 		this.nroVuelo = nroVuelo;
 		this.keyAeronave = keyAeronave;
 		this.origen = origen;
@@ -29,6 +32,10 @@ public class VueloDto {
 		this.fechaSalida = fechaSalida;
 		this.fechaArribe = fechaArribe;
 		this.keyTripulacion = keyTripulacion;
+		this.observacion = observacion;
+		this.estado = estado;
+		this.asientos = new ArrayList<>();
+		this.tripulantes = new ArrayList<>();
 	}
 
 	public UUID getKey() {
@@ -111,4 +118,19 @@ public class VueloDto {
 		this.tripulantes = tripulantes;
 	}
 
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 }

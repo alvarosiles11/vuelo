@@ -1,6 +1,5 @@
 package Event;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,15 +15,15 @@ public class VueloCreado extends DomainEvent {
 	public Date fechaSalida;
 	public Date fechaArribe;
 	public UUID keyTripulacion;
+	public String observacion;
+	public String estado;
 
 	public VueloCreado() {
 		super();
 	}
 
-	public VueloCreado(UUID key, String nroVuelo, UUID keyAeronave,
-			String origen, String destino, Date fechaSalida, Date fechaArribe,
-			UUID keyTripulacion) {
-		super(LocalDateTime.now());
+	public VueloCreado(UUID key, String nroVuelo, UUID keyAeronave, String origen, String destino, Date fechaSalida,
+			Date fechaArribe, UUID keyTripulacion, String observacion, String estado) {
 		this.key = key;
 		this.nroVuelo = nroVuelo;
 		this.keyAeronave = keyAeronave;
@@ -33,6 +32,8 @@ public class VueloCreado extends DomainEvent {
 		this.fechaSalida = fechaSalida;
 		this.fechaArribe = fechaArribe;
 		this.keyTripulacion = keyTripulacion;
+		this.observacion = observacion;
+		this.estado = estado;
 	}
 
 	public UUID getKey() {
@@ -98,4 +99,21 @@ public class VueloCreado extends DomainEvent {
 	public void setKeyTripulacion(UUID keyTripulacion) {
 		this.keyTripulacion = keyTripulacion;
 	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 }

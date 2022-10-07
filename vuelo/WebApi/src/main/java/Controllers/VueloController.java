@@ -3,6 +3,7 @@ package Controllers;
 import java.util.List;
 
 import Dto.VueloDto;
+import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.http.annotation.DeleteMapping;
 import Fourteam.http.annotation.GetMapping;
@@ -38,7 +39,7 @@ public class VueloController {
 			return lista.data;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new HttpException(404, "Error " + e.getMessage());
+			throw new HttpException(HttpStatus.BAD_REQUEST, "Error " + e.getMessage());
 		}
 	}
 
@@ -54,7 +55,7 @@ public class VueloController {
 		try {
 			return _mediator.send(request);
 		} catch (Exception e) {
-			throw new HttpException(404, e.getMessage());
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 
@@ -82,7 +83,7 @@ public class VueloController {
 		try {
 			return _mediator.send(request);
 		} catch (Exception e) {
-			throw new HttpException(404, e.getMessage());
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 }

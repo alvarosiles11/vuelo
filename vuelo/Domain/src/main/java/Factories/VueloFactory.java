@@ -22,17 +22,11 @@ public class VueloFactory implements IVueloFactory {
 			Date fecha_salida,
 			Date fecha_arribe,
 			UUID keyTripulacion,
+			String observacion,
+			String estado,
 			List<Asiento> asientos,
 			List<Tripulante> tripulantes) {
-		return new Vuelo(
-				nroVuelo,
-				keyAeronave,
-				origen,
-				destino,
-				fecha_salida,
-				fecha_arribe,
-				keyTripulacion,
-				asientos,
-				tripulantes);
+		return new Vuelo(nroVuelo, keyAeronave, origen, destino, fecha_salida, fecha_arribe, keyTripulacion,
+				observacion, estado, asientos, tripulantes);
 	}
 }

@@ -1,5 +1,6 @@
 package UseCases.Command.Vuelos.Crear;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -43,14 +45,15 @@ public class CrearVueloHandlerTest {
 		final Date fechaSalida = new Date();
 		final Date fechaArribe = new Date();
 		final UUID keyTripulacion = UUID.randomUUID();
+		final String observacion = "En horario";
+		final String estado = "1";
 		final List<Asiento> asientos = getListAsiento();
 		final List<Tripulante> tripulantes = getListdaTripulantes();
 
 		final Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos,
-				tripulantes);
+				observacion, estado, asientos, tripulantes);
 		when(iVueloFactory.Create(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos, tripulantes)).thenReturn(vuelo);
+				observacion, estado, asientos, tripulantes));
 
 		final CrearVueloHandler handler = new CrearVueloHandler(iVueloFactory, iVueloRepository, iAeronaveRepository,
 				iTripulacionRepository, iUnitOfWork);
@@ -65,13 +68,17 @@ public class CrearVueloHandlerTest {
 		vueloDto.setFechaArribe(fechaArribe);
 		vueloDto.setKeyTripulacion(keyTripulacion);
 		vueloDto.setTripulantes(new ArrayList<>());
+		vueloDto.setObservacion(observacion);
+		vueloDto.setEstado(estado);
 
 		final CrearVueloCommand command = new CrearVueloCommand(vueloDto);
 		// TDO coman crear vuelos handler en fourteam o sharekernel
 		// final Vuelo response = handler.handle(command);
+		UUID response = handler.handle(command);
 
 		// verify(iVueloRepository).Create(response);
-		// verify(iUnitOfWork).commit();
+		verify(iUnitOfWork).commit();
+		Assert.assertNotNull(response);
 
 		// Assert.assertEquals(
 		// Event.VueloCreado.class,

@@ -17,7 +17,7 @@ public class AsientoDtoTest {
 	@Test
 	public void CheckPropertiesValid() {
 
-		final AsientoDto asientoDto = new AsientoDto();
+		AsientoDto asientoDto = new AsientoDto();
 
 		Assert.assertEquals(null, asientoDto.getKeyAeronave());
 		Assert.assertEquals(null, asientoDto.getKeyAsiento());

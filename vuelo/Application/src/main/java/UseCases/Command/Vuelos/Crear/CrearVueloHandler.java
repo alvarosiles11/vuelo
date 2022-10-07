@@ -2,8 +2,11 @@ package UseCases.Command.Vuelos.Crear;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import Factories.IVueloFactory;
+import Fourteam.http.HttpStatus;
+import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 import Model.Aeronaves.Aeronave;
 import Model.Aeronaves.Asiento;
@@ -16,7 +19,7 @@ import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
 
 public class CrearVueloHandler
-		implements RequestHandler<CrearVueloCommand, Vuelo> {
+		implements RequestHandler<CrearVueloCommand, UUID> {
 
 	private IVueloFactory iVueloFactory;
 	private IVueloRepository iVueloRepository;
@@ -39,40 +42,40 @@ public class CrearVueloHandler
 	}
 
 	@Override
-	public Vuelo handle(CrearVueloCommand arg0) throws Exception {
+	public UUID handle(CrearVueloCommand request) throws Exception {
 
 		// ✅ verifico nro aeronave si existe en la BD
-		// Vuelo vueloNro = iVueloRepository.findNroVuelo(arg0.data.nroVuelo);
-		// if (vueloNro != null)
-		// throw new HttpException(404, "el numero de vuelo existe, otro ingresar");
-
-		// ✅ verifico aeropuerto el origen y destino
-		// if (arg0.data.origen == arg0.data.destino)
-		// throw new HttpException(404, "son iguales origen y destino, ingresar otro ");
+		Vuelo nroVuelo = iVueloRepository.findNroVuelo(request.data.nroVuelo);
+		if (nroVuelo != null)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "el numero de vuelo existe, otro ingresar");
 
 		// ✅ verifico aeronave si existe en la BD
-		Aeronave aeronave = iAeronaveRepository.FindByKey(arg0.data.keyAeronave);
-		// if (aeronave == null)
-		// throw new HttpException(404, "no existe la eronave");
-
+		Aeronave aeronave = iAeronaveRepository.FindByKey(request.data.keyAeronave);
+		if (aeronave == null)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la eronave");
 		// ⚠️ verifico si la tripulacion, ya esta en vuelo
-		// if (aeronave.estado.equals("2"))
-		// throw new HttpException(404, "aeronave esta en vuelo, usar otra");
+		if (aeronave.estado.equals("2"))
+			throw new HttpException(HttpStatus.BAD_REQUEST, "aeronave esta en vuelo, usar otra");
 
+		// ✅ verifico aeropuerto el origen y destino
+		if (request.data.origen == request.data.destino)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "son iguales origen y destino, ingresar otro ");
+
+		// ✅ verifico la fecha de salida del aeronave si existe en la BD
+		Vuelo fechaSalida = iVueloRepository.findFechaSalida(request.data.fechaSalida);
+		if (fechaSalida != null)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "la fecha de salida del vuelo ya existe.");
 		// ✅ validar la fecha distinto
-		// if (arg0.data.fechaArribe.before(arg0.data.fechaSalida))
-		// throw new HttpException(404, "debe ingresar otra hora");
-
-		// ⚠️ verifico si la aeronave, ya esta en vuelo
+		if (request.data.fechaArribe.before(request.data.fechaSalida))
+			throw new HttpException(HttpStatus.BAD_REQUEST, "debe ingresar otra hora");
 
 		// ✅ verifico tripulacion si existe en la BD
-		Tripulacion tripulacion = iTripulacionRepository.FindByKey(arg0.data.keyTripulacion);
-		// if (tripulacion == null)
-		// throw new HttpException(404, "no existe la tripulacion");
-
+		Tripulacion tripulacion = iTripulacionRepository.FindByKey(request.data.keyTripulacion);
+		if (tripulacion == null)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la tripulacion");
 		// ⚠️ verifico si la tripulacion, ya esta en vuelo
-		// if (tripulacion.estado.equals("2"))
-		// throw new HttpException(404, "la tripulacion esta en vuelo, usar otra");
+		if (tripulacion.estado.equals("2"))
+			throw new HttpException(HttpStatus.BAD_REQUEST, "la tripulacion esta en vuelo, usar otra");
 
 		List<Asiento> asientos = new ArrayList<>();
 		for (Asiento asientoDto : aeronave.asientos) {
@@ -87,18 +90,19 @@ public class CrearVueloHandler
 							tripulante.cargo, tripulante.estado));
 		}
 
-		Vuelo vuelo = iVueloFactory.Create(arg0.data.nroVuelo, arg0.data.keyAeronave, arg0.data.origen,
-				arg0.data.destino, arg0.data.fechaSalida, arg0.data.fechaArribe, arg0.data.keyTripulacion, asientos,
+		Vuelo vuelo = iVueloFactory.Create(request.data.nroVuelo, request.data.keyAeronave, request.data.origen,
+				request.data.destino, request.data.fechaSalida, request.data.fechaArribe, request.data.keyTripulacion,
+				request.data.observacion, request.data.estado, asientos,
 				tripulantes);
 
 		tripulacion.setEstado("2");
-		Tripulacion tripulacion2 = iTripulacionRepository.Update(tripulacion);
+		iTripulacionRepository.Update(tripulacion);
 		aeronave.setEstado("2");
-		Aeronave aeronave2 = iAeronaveRepository.Update(aeronave);
+		iAeronaveRepository.Update(aeronave);
 
 		vuelo.eventCreado();
 		iVueloRepository.Create(vuelo);
 		unitOfWor.commit();
-		return vuelo;
+		return vuelo.getKey();
 	}
 }

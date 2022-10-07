@@ -46,14 +46,17 @@ public class EditarVueloHandlerTest {
 		final UUID keyTripulacion = UUID.randomUUID();
 		final List<Asiento> asientos = getListAsiento();
 		final List<Tripulante> tripulantes = getListdaTripulantes();
+		final String observacion = "Abordando";
+		final String estado = "1";
 
-		final Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos,
-				tripulantes);
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
+				origen, destino, asientos, tripulantes);
+
 		when(iVueloRepository.FindByKey(any())).thenReturn(vuelo);
 		// TODO verificar si al actualizar cambia la tripulacion o la aeroanve la lista
 		// de asientos...
-		final EditarVueloHandler handler = new EditarVueloHandler(iVueloFactory, iVueloRepository, iUnitOfWork);
+		final EditarVueloHandler handler = new EditarVueloHandler(iVueloFactory, iVueloRepository, iAeronaveRepository,
+				iTripulacionRepository, iUnitOfWork);
 		final VueloDto vueloDto = new VueloDto();
 		vueloDto.setKey(key);
 		vueloDto.setNroVuelo(nroVuelo);
@@ -65,7 +68,8 @@ public class EditarVueloHandlerTest {
 		vueloDto.setFechaArribe(fechaArribe);
 		vueloDto.setKeyTripulacion(keyTripulacion);
 		vueloDto.setTripulantes(new ArrayList<>());
-
+		vueloDto.setObservacion(observacion);
+		vueloDto.setEstado(estado);
 		final EditarVueloCommand command = new EditarVueloCommand(vueloDto.key);
 
 		command.vueloDto.setKey(key);
@@ -78,6 +82,8 @@ public class EditarVueloHandlerTest {
 		command.vueloDto.setFechaArribe(fechaArribe);
 		command.vueloDto.setKeyTripulacion(keyTripulacion);
 		command.vueloDto.setTripulantes(new ArrayList<>());
+		command.vueloDto.setObservacion(observacion);
+		command.vueloDto.setEstado(estado);
 
 		// TDO coman editarvuelo handler en fourteam o sharekernel
 		// final Vuelo response = handler.handle(command);
@@ -106,7 +112,7 @@ public class EditarVueloHandlerTest {
 	@Test
   public void HandleFailed() throws Exception {
     when(iVueloRepository.FindByKey(any())).thenReturn(null);
-    EditarVueloHandler handler = new EditarVueloHandler(iVueloFactory, iVueloRepository, iUnitOfWork);
+    EditarVueloHandler handler = new EditarVueloHandler(iVueloFactory, iVueloRepository, iAeronaveRepository, iTripulacionRepository, iUnitOfWork);
 
 
 		final UUID key = UUID.randomUUID();
@@ -132,6 +138,9 @@ public class EditarVueloHandlerTest {
 		vueloDto.setFechaArribe(fechaArribe);
 		vueloDto.setKeyTripulacion(keyTripulacion);
 		vueloDto.setTripulantes(new ArrayList<>());
+		vueloDto.setObservacion(destino);
+		vueloDto.setEstado(destino);
+
 
     EditarVueloCommand command = new EditarVueloCommand(vueloDto.getKey());
     // try {

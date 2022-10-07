@@ -30,9 +30,11 @@ public class VueloTest {
 		final Date fechaArribe = new Date();
 		final UUID keyTripulacion = UUID.randomUUID();
 		final List<Tripulante> tripulantes = new ArrayList<>();
+		final String observacion = "En horario";
+		final String estado = "1";
 
 		final Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos, tripulantes);
+				observacion, estado, asientos, tripulantes);
 
 		Assert.assertEquals(nroVuelo, vuelo.getNroVuelo());
 		Assert.assertEquals(keyAeronave, vuelo.getKeyAeronave());
@@ -68,10 +70,11 @@ public class VueloTest {
 		final Date fechaArribe = null;
 		final UUID keyTripulacion = null;
 		final List<Tripulante> tripulantes = null;
+		final String observacion = "";
+		final String estado = "";
 
 		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos,
-				tripulantes);
+				observacion, estado, asientos, tripulantes);
 
 		Assert.assertEquals(vuelo.key, null);
 		Assert.assertEquals(vuelo.nroVuelo, null);
@@ -98,10 +101,10 @@ public class VueloTest {
 		final Date fechaArribe = new Date();
 		final UUID keyTripulacion = UUID.randomUUID();
 		final List<Tripulante> tripulantes = new ArrayList<>();
-
+		final String observacion = "En horario";
+		final String estado = "1";
 		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
-				asientos,
-				tripulantes);
+				observacion, estado, asientos, tripulantes);
 		vuelo.eventCreado();
 		Assert.assertEquals(vuelo.domainEvents.size(), 1);
 	}

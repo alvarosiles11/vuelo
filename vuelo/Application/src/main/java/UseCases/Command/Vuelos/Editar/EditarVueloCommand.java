@@ -12,6 +12,5 @@ public class EditarVueloCommand implements Request<VueloDto> {
 	public EditarVueloCommand(UUID key) {
 		this.vueloDto = new VueloDto();
 		this.vueloDto.setKey(key);
-
 	}
 }
