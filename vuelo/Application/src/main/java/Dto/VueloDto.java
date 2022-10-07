@@ -17,6 +17,20 @@ public class VueloDto {
 	public UUID keyTripulacion;
 	public List<TripulanteDto> tripulantes;
 
+	public VueloDto() {
+	}
+
+	public VueloDto(String nroVuelo, UUID keyAeronave, String origen, String destino, Date fechaSalida, Date fechaArribe,
+			UUID keyTripulacion) {
+		this.nroVuelo = nroVuelo;
+		this.keyAeronave = keyAeronave;
+		this.origen = origen;
+		this.destino = destino;
+		this.fechaSalida = fechaSalida;
+		this.fechaArribe = fechaArribe;
+		this.keyTripulacion = keyTripulacion;
+	}
+
 	public UUID getKey() {
 		return key;
 	}
