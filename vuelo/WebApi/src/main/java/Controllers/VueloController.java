@@ -70,6 +70,12 @@ public class VueloController {
 		request.vueloDto.setFechaSalida(vuelo.getFechaSalida());
 		request.vueloDto.setFechaArribe(vuelo.getFechaArribe());
 		request.vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
+		request.vueloDto.setObservacion(vuelo.getObservacion());
+		request.vueloDto.setEstado(vuelo.getEstado());
+		request.vueloDto.getAsientos();
+		request.vueloDto.getTripulantes();
+		// request.vueloDto.setAsientos(vuelo.getAsientos());
+		// request.vueloDto.setTripulantes(vuelo.getTripulantes());
 		try {
 			return (VueloDto) _mediator.send(request).data;
 		} catch (Exception e) {

@@ -68,27 +68,38 @@ public class EditarVueloHandler
 		vuelo.setObservacion(request.vueloDto.getObservacion());
 		vuelo.setEstado(request.vueloDto.getEstado());
 
-		List<Asiento> asientos = new ArrayList<>();
-		for (Asiento asientoDto : aeronave.asientos) {
-			asientos.add(new Asiento(asientoDto.key, asientoDto.keyAeronave,
-					asientoDto.numero, asientoDto.clase,
-					200.00, 0));
+		List<Asiento> listaAsientos = new ArrayList<>();
+		for (Asiento asiento : aeronave.asientos) {
+			listaAsientos.add(new Asiento(asiento.key, asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio,
+					asiento.disponibilidad));
 		}
+		vuelo.setAsientos(listaAsientos);
 
-		List<Tripulante> tripulantes = new ArrayList<>();
+		List<Tripulante> listaTripulantes = new ArrayList<>();
 		for (Tripulante tripulante : tripulacion.tripulantes) {
-			tripulantes.add(
+			listaTripulantes.add(
 					new Tripulante(tripulante.key, tripulante.keyTripulacion, tripulante.nombre, tripulante.apellido,
 							tripulante.cargo, tripulante.estado));
 		}
 
-		vuelo.setAsientos(asientos);
-		vuelo.setTripulantes(tripulantes);
+		vuelo.setTripulantes(listaTripulantes);
+
+		VueloDto vueloDto = new VueloDto();
+		vueloDto.setKey(vuelo.getKey());
+		vueloDto.setNroVuelo(vuelo.getNroVuelo());
+		vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
+		vueloDto.setOrigen(vuelo.getOrigen());
+		vueloDto.setDestino(vuelo.getDestino());
+		vueloDto.setFechaSalida(vuelo.getFechaSalida());
+		vueloDto.setFechaArribe(vuelo.getFechaArribe());
+		vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
+		vueloDto.setObservacion(vuelo.getObservacion());
+		vueloDto.setEstado(vuelo.getEstado());
 
 		iVueloRepository.Update(vuelo);
 
 		return new VueloDto(vuelo.getNroVuelo(), vuelo.getKeyAeronave(), vuelo.getOrigen(), vuelo.getDestino(),
 				vuelo.getFechaSalida(), vuelo.getFechaArribe(), vuelo.getKeyTripulacion(), vuelo.getObservacion(),
-				vuelo.getEstado());
+				vuelo.getEstado(), vueloDto.getAsientos(), vueloDto.getTripulantes());
 	}
 }

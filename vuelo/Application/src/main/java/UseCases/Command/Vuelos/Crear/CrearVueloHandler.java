@@ -2,7 +2,6 @@ package UseCases.Command.Vuelos.Crear;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import Factories.IVueloFactory;
 import Fourteam.http.HttpStatus;
@@ -19,7 +18,7 @@ import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
 
 public class CrearVueloHandler
-		implements RequestHandler<CrearVueloCommand, UUID> {
+		implements RequestHandler<CrearVueloCommand, Vuelo> {
 
 	private IVueloFactory iVueloFactory;
 	private IVueloRepository iVueloRepository;
@@ -42,7 +41,7 @@ public class CrearVueloHandler
 	}
 
 	@Override
-	public UUID handle(CrearVueloCommand request) throws Exception {
+	public Vuelo handle(CrearVueloCommand request) throws Exception {
 
 		// ✅ verifico nro aeronave si existe en la BD
 		Vuelo nroVuelo = iVueloRepository.findNroVuelo(request.data.nroVuelo);
@@ -103,6 +102,6 @@ public class CrearVueloHandler
 		vuelo.eventCreado();
 		iVueloRepository.Create(vuelo);
 		unitOfWor.commit();
-		return vuelo.getKey();
+		return vuelo;
 	}
 }

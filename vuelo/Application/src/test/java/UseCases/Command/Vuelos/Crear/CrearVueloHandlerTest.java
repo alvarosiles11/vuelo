@@ -73,8 +73,8 @@ public class CrearVueloHandlerTest {
 
 		final CrearVueloCommand command = new CrearVueloCommand(vueloDto);
 		// TDO coman crear vuelos handler en fourteam o sharekernel
-		// final Vuelo response = handler.handle(command);
-		UUID response = handler.handle(command);
+		final Vuelo response = handler.handle(command);
+		// UUID response = handler.handle(command);
 
 		// verify(iVueloRepository).Create(response);
 		verify(iUnitOfWork).commit();
