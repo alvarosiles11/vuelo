@@ -5,8 +5,6 @@ import java.util.List;
 
 import Dto.VueloDto;
 import Factories.IVueloFactory;
-import Fourteam.http.HttpStatus;
-import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 import Model.Aeronaves.Aeronave;
 import Model.Aeronaves.Asiento;
@@ -43,20 +41,22 @@ public class EditarVueloHandler
 	@Override
 	public VueloDto handle(EditarVueloCommand request) throws Exception {
 
+		// INFO
+
 		// ✅ verifico aeronave si existe en la BD
 		Aeronave aeronave = iAeronaveRepository.FindByKey(request.vueloDto.keyAeronave);
-		if (aeronave == null)
-			throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la eronave");
+		// if (aeronave == null)
+		// throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la eronave");
 
 		// ✅ verifico tripulacion si existe en la BD
 		Tripulacion tripulacion = iTripulacionRepository.FindByKey(request.vueloDto.keyTripulacion);
-		if (tripulacion == null)
-			throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la tripulacion");
+		// if (tripulacion == null)
+		// throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la tripulacion");
 
 		Vuelo vuelo = iVueloRepository.FindByKey(request.vueloDto.key);
-		if (vuelo == null) {
-			throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrado");
-		}
+		// if (vuelo == null) {
+		// throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrado");
+		// }
 
 		vuelo.setNroVuelo(request.vueloDto.getNroVuelo());
 		vuelo.setKeyAeronave(request.vueloDto.getKeyAeronave());

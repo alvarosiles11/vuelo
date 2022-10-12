@@ -39,6 +39,8 @@ public class PublishIntegrationEventWhenVueloCreadoHandler
 			evento.setOrigen(vuelo.getOrigen());
 			evento.setDestino(vuelo.getDestino());
 			evento.setKeyTripulacion(vuelo.getKeyTripulacion());
+			evento.setObservacion(vuelo.getObservacion());
+			evento.setEstado(vuelo.getEstado());
 
 			List<IntegrationEvents.dto.AsientoDto> arr = new ArrayList<>();
 			aeronave.asientos.iterator().forEachRemaining(asiento -> {

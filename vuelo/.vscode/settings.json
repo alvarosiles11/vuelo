@@ -4,6 +4,7 @@
   // "java.format.settings.url": "eclipse-formatter.xml",
 	// "java.saveActions.organizeImports": true,
 
+	// INFO
 
 
 
@@ -13,5 +14,7 @@
 	},
 	// 📒 formateador
 	"editor.formatOnSave": true,
+	"java.dependency.packagePresentation": "flat",
+	"java.dependency.syncWithFolderExplorer": false,
 
   }
