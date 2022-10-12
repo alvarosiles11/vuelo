@@ -19,6 +19,7 @@ public class AeronaveTest extends AggregateRoot<UUID> {
 		final String estado = "0";
 
 		final Aeronave aeronave = new Aeronave(keyAeronave, matricula, estado);
+		Aeronave aeronaveTest = new Aeronave();
 
 		Assert.assertEquals(matricula, aeronave.getMatricula());
 		Assert.assertEquals(listdaAsientos, aeronave.getAsientos());

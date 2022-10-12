@@ -1,5 +1,9 @@
 package Dto;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyString;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,14 +12,12 @@ import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
 
+import Model.Vuelos.Vuelo;
+
 public class VueloDtoTest {
 	@Test
 	public void CheckPropertiesValid() {
 
-		// Todo el nro de vuelo tiene que ser consecurtivo?
-		// si o si tiene que haver horario, porque podria haver la misma fecha y a que
-		// hora saldria!!!?
-		// ver si el objeto Date tiene hora
 		final UUID key = UUID.randomUUID();
 		final String nroVuelo = "scz-cba-513184";
 		final UUID keyAeronave = UUID.randomUUID();
@@ -56,6 +58,11 @@ public class VueloDtoTest {
 		vueloDto.setTripulantes(tripulantes);
 		vueloDto.setObservacion(observacion);
 		vueloDto.setEstado(estado);
+
+		Vuelo vuelo = new Vuelo();
+		VueloDto vueloTest1 = new VueloDto(vuelo);
+		VueloDto vueloTest2 = new VueloDto(anyString(), any(), anyString(), anyString(), any(), any(), any(),
+				anyString(), anyString(), anyList(), anyList());
 
 		Assert.assertEquals(key, vueloDto.getKey());
 		Assert.assertEquals(nroVuelo, vueloDto.getNroVuelo());

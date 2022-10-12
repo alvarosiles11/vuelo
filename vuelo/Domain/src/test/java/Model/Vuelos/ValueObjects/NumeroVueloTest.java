@@ -1,23 +1,24 @@
-// package Model.Vuelos.ValueObjects;
+package Model.Vuelos.ValueObjects;
 
-// import org.junit.Test;
+import org.junit.Test;
 
-// import core.BussinessRuleValidateExeption;
-// import rule.StringNotNullOrEmptyRule;
+import rule.StringNotNullOrEmptyRule;
 
-// public class NumeroVueloTest {
-// public String value;
+public class NumeroVueloTest {
+	public String value;
 
-// @Test
-// public void NumeroVueloTest(String _value) throws
-// BussinessRuleValidateExeption {
-// CheckRule(new StringNotNullOrEmptyRule(_value));
-// this.value = _value;
-// }
+	@Test
+	public void NumeroVueloTest(String _value) throws Throwable {
+		CheckRule(new StringNotNullOrEmptyRule(_value));
+		this.value = _value;
+	}
 
-// @Test
-// public String toString() {
-// return value;
-// }
+	private void CheckRule(StringNotNullOrEmptyRule stringNotNullOrEmptyRule) {
+	}
 
-// }
+	@Test
+	public String toString() {
+		return value;
+	}
+
+}

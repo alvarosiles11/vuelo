@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.UUID;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -17,6 +18,11 @@ public class TripulacionRepositoryTest {
 	IWriteDbContext database = Mockito.mock(IWriteDbContext.class);
 	DbSet<Tripulacion> Tripulacions = Mockito.mock(DbSet.class);
 
+	@Before
+	public void setUp() {
+		database.Tripulacion = Tripulacions;
+	}
+
 	@Test
 	public void constructor_accept() {
 		TripulacionRepository repository = new TripulacionRepository(database);
@@ -25,13 +31,9 @@ public class TripulacionRepositoryTest {
 
 	@Test
 	public void FindByKey_accept() throws Exception {
-		// Mockito.verify(_Tripulacions).Single(obj ->
-		// obj.key.equals(UUID.randomUUID()));
 		Tripulacion a = new Tripulacion();
 		when(Tripulacions.Single(any())).thenReturn(a);
 		TripulacionRepository repository = new TripulacionRepository(database);
-		// ArgumentCaptor<Tripulacion> captor =
-		// ArgumentCaptor.forClass(Tripulacion.class);
 		repository.FindByKey(UUID.randomUUID());
 		Assert.assertNotNull(repository);
 	}
@@ -63,26 +65,4 @@ public class TripulacionRepositoryTest {
 		repository.Update(new Tripulacion());
 		Assert.assertNotNull(repository);
 	}
-	// @Test
-	// public void HandlePersonalRegistrado_Ok() throws HttpException {
-	// final UUID keyTripulacion = UUID.randomUUID();
-	// final String descripcion = "Grupo-A";
-	// final String estado = "0";
-	// final List<Tripulante> tripulantes = new ArrayList<>();
-
-	// TripulacionRepository tripulacionRepository = new
-	// TripulacionRepository(database);
-	// Tripulacion tripulacion = new Tripulacion(keyTripulacion, descripcion,
-	// estado);
-	// try {
-
-	// tripulacionRepository.GetAll();
-	// tripulacionRepository.FindByKey(keyTripulacion);
-	// tripulacionRepository.Create(tripulacion);
-	// tripulacionRepository.Update(tripulacion);
-	// tripulacionRepository.Delete(tripulacion);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
 }
