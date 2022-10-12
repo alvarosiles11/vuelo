@@ -1,8 +1,6 @@
 package UseCases.Command.Vuelos.Eliminar;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,15 +50,17 @@ public class EliminarVueloHandlerTest {
 		final List<Asiento> asientos = new ArrayList<>();
 		final List<Tripulante> tripulantes = new ArrayList<>();
 
-		final Vuelo vuelo = new Vuelo(anyString(), any(), anyString(), anyString(), any(), any(), any(),
-				anyString(), anyString(), anyList(), anyList());
-		// final Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino,
-		// fechaSalida, fechaArribe, keyTripulacion,
-		// observacion, estado, asientos, tripulantes);
+		// Vuelo vuelo = new Vuelo(anyString(), any(), anyString(), anyString(), any(),
+		// any(), any(),
+		// anyString(), anyString(), anyList(), anyList());
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino,
+				fechaSalida, fechaArribe, keyTripulacion,
+				observacion, estado, asientos, tripulantes);
+
 		vuelo.key = key;
 
-		// when(iVueloRepository.FindByKey(any())).thenReturn(vuelo);
-		// when(iVueloRepository.Delete(any())).thenReturn(vuelo);
+		when(iVueloRepository.FindByKey(vuelo.getKey())).thenReturn(vuelo);
+		when(iVueloRepository.Delete(vuelo)).thenReturn(vuelo);
 
 		final EliminarVueloHandler handler = new EliminarVueloHandler(iVueloFactory, iVueloRepository, iUnitOfWork);
 		final VueloDto vueloDto = new VueloDto();

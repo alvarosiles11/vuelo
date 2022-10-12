@@ -4,7 +4,7 @@ public class WebApiTest {
 
 	@Test
 	public void webTest() {
-		WebApi webApi = new WebApi();
+		new WebApi();
 		WebApi.AddControllers();
 		WebApi.openApi();
 	}

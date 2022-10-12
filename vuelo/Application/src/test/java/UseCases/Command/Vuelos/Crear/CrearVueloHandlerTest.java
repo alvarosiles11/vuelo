@@ -5,6 +5,11 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +17,8 @@ import org.mockito.Mockito;
 
 import Dto.VueloDto;
 import Factories.IVueloFactory;
-import Model.Aeronaves.Aeronave;
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulante;
 import Model.Vuelos.Vuelo;
 import Repositories.IAeronaveRepository;
 import Repositories.ITripulacionRepository;
@@ -30,10 +36,6 @@ public class CrearVueloHandlerTest {
 
 	@Before
 	public void setUp() {
-	}
-
-	@Test
-	public void testName() {
 
 		VueloDto data = new VueloDto();
 		CrearVueloCommand command = new CrearVueloCommand(data);
@@ -42,26 +44,38 @@ public class CrearVueloHandlerTest {
 
 	@Test
 	public void HandleCorrectly() throws Exception {
+		UUID key = UUID.randomUUID();
+		String nroVuelo = "scz-cba-513184";
+		UUID keyAeronave = UUID.randomUUID();
+		String origen = "Scz-ViruViru";
+		String destino = "CBA-CBA";
+		Date fechaSalida = new Date();
+		Date fechaArribe = new Date();
+		UUID keyTripulacion = UUID.randomUUID();
+		String observacion = "Abordando";
+		String estado = "1";
+		List<Asiento> asientos = new ArrayList<>();
+		List<Tripulante> tripulantes = new ArrayList<>();
 
 		CrearVueloHandler handler = new CrearVueloHandler(iVueloFactory, iVueloRepository, iAeronaveRepository,
 				iTripulacionRepository, iUnitOfWork);
 
 		VueloDto vueloDto = new VueloDto();
-		vueloDto.setKey(any());
-		vueloDto.setNroVuelo(anyString());
-		vueloDto.setKeyAeronave(any());
-		vueloDto.setAsientos(anyList());
-		vueloDto.setOrigen(anyString());
-		vueloDto.setDestino(anyString());
-		vueloDto.setFechaSalida(any());
-		vueloDto.setFechaArribe(any());
-		vueloDto.setKeyTripulacion(any());
-		vueloDto.setTripulantes(anyList());
-		vueloDto.setObservacion(anyString());
-		vueloDto.setEstado(anyString());
+		vueloDto.setKey(key);
+		vueloDto.setNroVuelo(nroVuelo);
+		vueloDto.setKeyAeronave(keyAeronave);
+		// vueloDto.setAsientos(asientos);
+		vueloDto.setOrigen(origen);
+		vueloDto.setDestino(destino);
+		vueloDto.setFechaSalida(fechaSalida);
+		vueloDto.setFechaArribe(fechaArribe);
+		vueloDto.setKeyTripulacion(keyTripulacion);
+		// vueloDto.setTripulantes(tripulantes);
+		vueloDto.setObservacion(observacion);
+		vueloDto.setEstado(estado);
 
-		Vuelo nroVuelo = iVueloRepository.findNroVuelo(anyString());
-		Aeronave aeronave = iAeronaveRepository.FindByKey(any());
+		// Vuelo nroVuelo87 = iVueloRepository.findNroVuelo(anyString());
+		// Aeronave aeronave = iAeronaveRepository.FindByKey(any());
 		// Aeronave nroVuelo = iVueloRepository.findNroVuelo(anyString());
 
 		CrearVueloCommand command = new CrearVueloCommand(vueloDto);
