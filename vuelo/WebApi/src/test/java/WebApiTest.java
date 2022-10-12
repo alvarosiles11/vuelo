@@ -2,8 +2,12 @@ import org.junit.Test;
 
 public class WebApiTest {
 	@Test
-	public void webTest() {
-		new WebApi();
-		WebApi.AddControllers();
+	public void testAddControllers() {
+
+	}
+
+	@Test
+	public void testOpenApi() {
+
 	}
 }

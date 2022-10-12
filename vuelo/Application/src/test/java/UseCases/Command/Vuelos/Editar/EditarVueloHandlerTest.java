@@ -1,8 +1,5 @@
 package UseCases.Command.Vuelos.Editar;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,7 +49,7 @@ public class EditarVueloHandlerTest {
 		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
 				origen, destino, asientos, tripulantes);
 
-		when(iVueloRepository.FindByKey(any())).thenReturn(vuelo);
+		// when(iVueloRepository.FindByKey(any())).thenReturn(vuelo);
 		// TODO verificar si al actualizar cambia la tripulacion o la aeroanve la lista
 		// de asientos...
 		final EditarVueloHandler handler = new EditarVueloHandler(iVueloFactory, iVueloRepository, iAeronaveRepository,
@@ -110,10 +107,10 @@ public class EditarVueloHandlerTest {
 	}
 
 	@Test
-  public void HandleFailed() throws Exception {
-    when(iVueloRepository.FindByKey(any())).thenReturn(null);
-    EditarVueloHandler handler = new EditarVueloHandler(iVueloFactory, iVueloRepository, iAeronaveRepository, iTripulacionRepository, iUnitOfWork);
-
+	public void HandleFailed() throws Exception {
+		// when(iVueloRepository.FindByKey(any())).thenReturn(null);
+		EditarVueloHandler handler = new EditarVueloHandler(iVueloFactory, iVueloRepository, iAeronaveRepository,
+				iTripulacionRepository, iUnitOfWork);
 
 		final UUID key = UUID.randomUUID();
 		final String nroVuelo = "scz-cba-513184";
@@ -141,13 +138,12 @@ public class EditarVueloHandlerTest {
 		vueloDto.setObservacion(destino);
 		vueloDto.setEstado(destino);
 
-
-    EditarVueloCommand command = new EditarVueloCommand(vueloDto.getKey());
-    // try {
-    //   // Vuelo resp = handler.handle(command);
-    //   // System.out.println(resp);
-    //  } catch (HttpException e) {
-    //   Assert.assertEquals(400, e.getCode());
-    // }
-  }
+		EditarVueloCommand command = new EditarVueloCommand(vueloDto.getKey());
+		// try {
+		// // Vuelo resp = handler.handle(command);
+		// // System.out.println(resp);
+		// } catch (HttpException e) {
+		// Assert.assertEquals(400, e.getCode());
+		// }
+	}
 }
