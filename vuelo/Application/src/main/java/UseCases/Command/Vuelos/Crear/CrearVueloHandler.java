@@ -24,7 +24,6 @@ public class CrearVueloHandler
 	private IVueloRepository iVueloRepository;
 	private IAeronaveRepository iAeronaveRepository;
 	private ITripulacionRepository iTripulacionRepository;
-
 	private IUnitOfWork unitOfWor;
 
 	public CrearVueloHandler(

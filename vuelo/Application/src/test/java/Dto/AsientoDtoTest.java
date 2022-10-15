@@ -52,4 +52,10 @@ public class AsientoDtoTest {
 		Assert.assertEquals(precio, asientoDto.getPrecio());
 		Assert.assertEquals(disponibilidad, asientoDto.getDisponibilidad());
 	}
+
+	@Test
+	public void ConstructorVoid_accept() {
+		Assert.assertNotNull(new AsientoDto());
+	}
+
 }

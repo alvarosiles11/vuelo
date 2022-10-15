@@ -58,6 +58,7 @@ public class VueloTest {
 		vuelo.setTripulantes(tripulantes);
 		vuelo.setObservacion(observacion);
 		vuelo.setEstado(estado);
+		vuelo.eventCreado();
 	}
 
 	@Test
@@ -77,26 +78,26 @@ public class VueloTest {
 				observacion, estado, asientos, tripulantes);
 	}
 
-	// @Test
-	// public void addDomainEvent_accept() {
+	@Test
+	public void addDomainEvent_accept() {
 
-	// // final UUID key = UUID.randomUUID();
-	// final String nroVuelo = "scz-cba-513184";
-	// final UUID keyAeronave = UUID.randomUUID();
-	// final List<Asiento> asientos = new ArrayList<>();
-	// final String origen = "Scz-ViruViru";
-	// final String destino = "CBA-CBA";
-	// final Date fechaSalida = new Date();
-	// final Date fechaArribe = new Date();
-	// final UUID keyTripulacion = UUID.randomUUID();
-	// final List<Tripulante> tripulantes = new ArrayList<>();
-	// final String observacion = "En horario";
-	// final String estado = "1";
-	// Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida,
-	// fechaArribe, keyTripulacion,
-	// observacion, estado, asientos, tripulantes);
-	// vuelo.eventCreado();
-	// Assert.assertEquals(vuelo.domainEvents.size(), 1);
-	// }
+		// final UUID key = UUID.randomUUID();
+		final String nroVuelo = "scz-cba-513184";
+		final UUID keyAeronave = UUID.randomUUID();
+		final List<Asiento> asientos = new ArrayList<>();
+		final String origen = "Scz-ViruViru";
+		final String destino = "CBA-CBA";
+		final Date fechaSalida = new Date();
+		final Date fechaArribe = new Date();
+		final UUID keyTripulacion = UUID.randomUUID();
+		final List<Tripulante> tripulantes = new ArrayList<>();
+		final String observacion = "En horario";
+		final String estado = "1";
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida,
+				fechaArribe, keyTripulacion,
+				observacion, estado, asientos, tripulantes);
+		vuelo.eventCreado();
+		Assert.assertEquals(vuelo.domainEvents.size(), 1);
+	}
 
 }
