@@ -6,6 +6,6 @@ public class WebApiTest {
 	public void webTest() {
 		new WebApi();
 		WebApi.AddControllers();
-		WebApi.openApi();
+		// WebApi.openApi();
 	}
 }
