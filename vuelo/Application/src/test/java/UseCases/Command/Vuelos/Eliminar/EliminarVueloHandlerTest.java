@@ -62,7 +62,8 @@ public class EliminarVueloHandlerTest {
 		when(iVueloRepository.FindByKey(vuelo.getKey())).thenReturn(vuelo);
 		when(iVueloRepository.Delete(vuelo)).thenReturn(vuelo);
 
-		final EliminarVueloHandler handler = new EliminarVueloHandler(iVueloFactory, iVueloRepository, iUnitOfWork);
+		// final EliminarVueloHandler handler = new EliminarVueloHandler(iVueloFactory,
+		// iVueloRepository, iUnitOfWork);
 		final VueloDto vueloDto = new VueloDto();
 		vueloDto.setKey(key);
 		vueloDto.setNroVuelo(nroVuelo);

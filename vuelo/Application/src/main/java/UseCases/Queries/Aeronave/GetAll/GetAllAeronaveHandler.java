@@ -34,7 +34,8 @@ public class GetAllAeronaveHandler implements RequestHandler<GetAllAeronaveQuery
 			List<AsientoDto> asientosDtos = new ArrayList<>();
 
 			for (Asiento asiento : aeronave.asientos) {
-				asientosDtos.add(new AsientoDto(asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
+				asientosDtos
+						.add(new AsientoDto(asiento.key, asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
 			}
 			aeronave_dto.setListaAsientos(asientosDtos);
 		}

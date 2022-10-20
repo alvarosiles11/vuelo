@@ -42,18 +42,16 @@ public class CrearVueloHandler
 	@Override
 	public Vuelo handle(CrearVueloCommand request) throws Exception {
 
-		// INFO
-
 		// ✅ verifico nro aeronave si existe en la BD
-		Vuelo nroVuelo = iVueloRepository.findNroVuelo(request.data.nroVuelo);
+		// Vuelo nroVuelo = iVueloRepository.findNroVuelo(request.data.nroVuelo);
 		// if (nroVuelo != null)
 		// throw new HttpException(HttpStatus.BAD_REQUEST, "el numero de vuelo existe,
 		// otro ingresar");
 
-		// ✅ verifico aeronave si existe en la BD
+		// ✅ verifico aeronave
 		Aeronave aeronave = iAeronaveRepository.FindByKey(request.data.keyAeronave);
-		// if (aeronave == null)
-		// throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la eronave");
+		if (aeronave == null)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la eronave");
 		// ⚠️ verifico si la tripulacion, ya esta en vuelo
 		// if (aeronave.estado.equals("2"))
 		// throw new HttpException(HttpStatus.BAD_REQUEST, "aeronave esta en vuelo, usar

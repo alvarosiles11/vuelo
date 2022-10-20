@@ -44,7 +44,8 @@ public class GetAllVueloHandler implements RequestHandler<GetAllVueloQuery, List
 
 			List<AsientoDto> asientosDtos = new ArrayList<>();
 			for (Asiento asiento : vuelo.getAsientos()) {
-				asientosDtos.add(new AsientoDto(asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
+				asientosDtos
+						.add(new AsientoDto(asiento.key, asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio));
 			}
 			vueloDto.setAsientos(asientosDtos);
 

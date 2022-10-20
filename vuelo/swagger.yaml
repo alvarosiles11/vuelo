@@ -2,6 +2,18 @@ servers:
 - {url: 'http://localhost:8080/api/'}
 openapi: 3.0.0
 paths:
+  /vuelo/arrive/{key}:
+    put:
+      summary: /vuelo arrive
+      operationId: /vuelo_arrive
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/vuelo]
   /aeronave/:
     get:
       summary: /aeronave getAll
@@ -65,10 +77,10 @@ paths:
       responses:
         '200': {description: Response 200}
       tags: [/vuelo]
-  /aeronave/{key}:
-    get:
-      summary: /aeronave getByKey
-      operationId: /aeronave_getByKey
+  /vuelo/cancel/{key}:
+    put:
+      summary: /vuelo cancel
+      operationId: /vuelo_cancel
       responses:
         '200': {description: Response 200}
       parameters:
@@ -76,25 +88,13 @@ paths:
         in: path
         name: key
         required: true
-      tags: [/aeronave]
+      tags: [/vuelo]
   /tripulacion/:
     get:
       summary: /tripulacion getAll
       operationId: /tripulacion_getAll
       responses:
         '200': {description: Response 200}
-      tags: [/tripulacion]
-  /tripulacion/{key}:
-    get:
-      summary: /tripulacion getByKey
-      operationId: /tripulacion_getByKey
-      responses:
-        '200': {description: Response 200}
-      parameters:
-      - schema: {type: string}
-        in: path
-        name: key
-        required: true
       tags: [/tripulacion]
 info: {description: FuourTeam API description, title: FourTeam API, version: 1.0.1}
 tags:

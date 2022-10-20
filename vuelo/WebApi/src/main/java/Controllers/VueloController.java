@@ -16,6 +16,8 @@ import Fourteam.http.annotation.RestController;
 import Fourteam.mediator.Mediator;
 import Fourteam.mediator.Response;
 import Model.Vuelos.Vuelo;
+import UseCases.Command.Vuelos.Arribar.ArribarVueloCommand;
+import UseCases.Command.Vuelos.Cancelar.CancelarVueloCommand;
 import UseCases.Command.Vuelos.Crear.CrearVueloCommand;
 import UseCases.Command.Vuelos.Editar.EditarVueloCommand;
 import UseCases.Command.Vuelos.Eliminar.EliminarVueloCommand;
@@ -72,14 +74,30 @@ public class VueloController {
 		request.vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
 		request.vueloDto.setObservacion(vuelo.getObservacion());
 		request.vueloDto.setEstado(vuelo.getEstado());
-		request.vueloDto.getAsientos();
-		request.vueloDto.getTripulantes();
-		// request.vueloDto.setAsientos(vuelo.getAsientos());
-		// request.vueloDto.setTripulantes(vuelo.getTripulantes());
 		try {
 			return (VueloDto) _mediator.send(request).data;
 		} catch (Exception e) {
 			throw (HttpException) e.getCause();
+		}
+	}
+
+	@PutMapping("/cancel/{key}")
+	public Response<VueloDto> cancel(@PathVariable CancelarVueloCommand request)
+			throws HttpException {
+		try {
+			return _mediator.send(request);
+		} catch (Exception e) {
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+
+	@PutMapping("/arrive/{key}")
+	public Response<VueloDto> arrive(@PathVariable ArribarVueloCommand request)
+			throws HttpException {
+		try {
+			return _mediator.send(request);
+		} catch (Exception e) {
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 
@@ -92,4 +110,5 @@ public class VueloController {
 			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
+
 }

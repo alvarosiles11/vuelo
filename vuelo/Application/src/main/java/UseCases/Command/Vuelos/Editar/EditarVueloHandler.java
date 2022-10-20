@@ -5,6 +5,8 @@ import java.util.List;
 
 import Dto.VueloDto;
 import Factories.IVueloFactory;
+import Fourteam.http.HttpStatus;
+import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 import Model.Aeronaves.Aeronave;
 import Model.Aeronaves.Asiento;
@@ -41,22 +43,21 @@ public class EditarVueloHandler
 	@Override
 	public VueloDto handle(EditarVueloCommand request) throws Exception {
 
-		// INFO
-
-		// ✅ verifico aeronave si existe en la BD
+		// ✅ verifico aeronave
 		Aeronave aeronave = iAeronaveRepository.FindByKey(request.vueloDto.keyAeronave);
-		// if (aeronave == null)
-		// throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la eronave");
+		if (aeronave == null)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la eronave");
 
-		// ✅ verifico tripulacion si existe en la BD
+		// ✅ verifico tripulacion
 		Tripulacion tripulacion = iTripulacionRepository.FindByKey(request.vueloDto.keyTripulacion);
-		// if (tripulacion == null)
-		// throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la tripulacion");
+		if (tripulacion == null)
+			throw new HttpException(HttpStatus.BAD_REQUEST, "no existe la tripulacion");
 
+		// ✅ verifico vuelo
 		Vuelo vuelo = iVueloRepository.FindByKey(request.vueloDto.key);
-		// if (vuelo == null) {
-		// throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrado");
-		// }
+		if (vuelo == null) {
+			throw new HttpException(HttpStatus.BAD_REQUEST, "Vuelo no encontrado");
+		}
 
 		vuelo.setNroVuelo(request.vueloDto.getNroVuelo());
 		vuelo.setKeyAeronave(request.vueloDto.getKeyAeronave());
@@ -67,22 +68,21 @@ public class EditarVueloHandler
 		vuelo.setKeyTripulacion(request.vueloDto.getKeyTripulacion());
 		vuelo.setObservacion(request.vueloDto.getObservacion());
 		vuelo.setEstado(request.vueloDto.getEstado());
-
 		List<Asiento> listaAsientos = new ArrayList<>();
 		for (Asiento asiento : aeronave.asientos) {
 			listaAsientos.add(new Asiento(asiento.key, asiento.keyAeronave, asiento.numero, asiento.clase, asiento.precio,
 					asiento.disponibilidad));
 		}
 		vuelo.setAsientos(listaAsientos);
-
 		List<Tripulante> listaTripulantes = new ArrayList<>();
 		for (Tripulante tripulante : tripulacion.tripulantes) {
 			listaTripulantes.add(
 					new Tripulante(tripulante.key, tripulante.keyTripulacion, tripulante.nombre, tripulante.apellido,
 							tripulante.cargo, tripulante.estado));
 		}
-
 		vuelo.setTripulantes(listaTripulantes);
+
+		iVueloRepository.Update(vuelo);
 
 		VueloDto vueloDto = new VueloDto();
 		vueloDto.setKey(vuelo.getKey());
@@ -94,12 +94,6 @@ public class EditarVueloHandler
 		vueloDto.setFechaArribe(vuelo.getFechaArribe());
 		vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
 		vueloDto.setObservacion(vuelo.getObservacion());
-		vueloDto.setEstado(vuelo.getEstado());
-
-		iVueloRepository.Update(vuelo);
-
-		return new VueloDto(vuelo.getNroVuelo(), vuelo.getKeyAeronave(), vuelo.getOrigen(), vuelo.getDestino(),
-				vuelo.getFechaSalida(), vuelo.getFechaArribe(), vuelo.getKeyTripulacion(), vuelo.getObservacion(),
-				vuelo.getEstado(), vueloDto.getAsientos(), vueloDto.getTripulantes());
+		return vueloDto;
 	}
 }

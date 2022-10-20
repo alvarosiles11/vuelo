@@ -6,14 +6,14 @@ import Factories.TripulacionFactory;
 import Factories.VueloFactory;
 import Fourteam.extensions.IServiceCollection;
 import Fourteam.mediator.IMediator;
+import UseCases.Command.Vuelos.Arribar.ArribarVueloHandler;
+import UseCases.Command.Vuelos.Cancelar.CancelarVueloHandler;
 import UseCases.Command.Vuelos.Crear.CrearVueloHandler;
 import UseCases.Command.Vuelos.Editar.EditarVueloHandler;
 import UseCases.Command.Vuelos.Eliminar.EliminarVueloHandler;
 import UseCases.DomainEventHandler.Vuelo.PublishIntegrationEventWhenVueloCreadoHandler;
 import UseCases.Queries.Aeronave.GetAll.GetAllAeronaveHandler;
-import UseCases.Queries.Aeronave.GetByKey.GetAeronaveByKeyHandler;
 import UseCases.Queries.Tripulacion.GetAll.GetAllTripulacionHandler;
-import UseCases.Queries.Tripulacion.GetByKey.GetTripulacionByKeyHandler;
 import UseCases.Queries.Vuelos.GetAll.GetAllVueloHandler;
 import UseCases.Queries.Vuelos.GetByKey.GetVueloByKeyHandler;
 
@@ -23,30 +23,20 @@ public class Application {
 		// USE CASE: VUELO
 		IMediator.registerHandler(GetAllVueloHandler.class);
 		IMediator.registerHandler(GetVueloByKeyHandler.class);
+
 		IMediator.registerHandler(CrearVueloHandler.class);
 		IMediator.registerHandler(EditarVueloHandler.class);
 		IMediator.registerHandler(EliminarVueloHandler.class);
+		IMediator.registerHandler(CancelarVueloHandler.class);
+		IMediator.registerHandler(ArribarVueloHandler.class);
+		// IMediator.registerHandler(EliminarVueloHandler.class);
 
-		// USE CASE:Tripulacion
-		IMediator.registerHandler(GetAllTripulacionHandler.class);
-		IMediator.registerHandler(GetTripulacionByKeyHandler.class);
-		// IMediator.registerHandler(CrearTripulacionHandler.class);
-		// IMediator.registerHandler(EditarTripulacionHandler.class);
-		// IMediator.registerHandler(EliminarTripulacionHandler.class);
-
-		// USE CASE:Aeronave
+		// Aeronave - Tripulacion GETALL
 		IMediator.registerHandler(GetAllAeronaveHandler.class);
-		IMediator.registerHandler(GetAeronaveByKeyHandler.class);
-		// IMediator.registerHandler(CrearAeronaveHandler.class);
-		// IMediator.registerHandler(EditarAeronaveHandler.class);
-		// IMediator.registerHandler(EliminarAeronaveHandler.class);
-
-		// USE CASE:Asiento
-		// IMediator.registerHandler(EditarAsientoHandler.class);
+		IMediator.registerHandler(GetAllTripulacionHandler.class);
 
 		// publish
 		IMediator.registerHandler(PublishIntegrationEventWhenVueloCreadoHandler.class);
-
 		// Transient
 		IServiceCollection.AddTransient(IVueloFactory.class, VueloFactory.class);
 		IServiceCollection.AddTransient(IAeronaveFactory.class, AeronaveFactory.class);
