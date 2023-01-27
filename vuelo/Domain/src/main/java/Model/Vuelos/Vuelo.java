@@ -1,133 +1,139 @@
 package Model.Vuelos;
 
-import Event.VueloCreado;
-import Model.Vuelos.ValueObjects.NumeroVuelo;
-import core.AggregateRoot;
-import core.BussinessRuleValidateExeption;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import Event.VueloCreado;
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulante;
+import core.AggregateRoot;
+
 public class Vuelo extends AggregateRoot<UUID> {
 
-  private String nroVuelo;
-  private String keyAeronave;
-  private String keyAeropuertoOrigen;
-  private String keyAeropuertoDestino;
-  private Date fechaSalida;
-  private Date fechaArribe;
-  public List<Tripulante> listaTripulante;
+	String nroVuelo;
+	UUID keyAeronave;
+	String origen;
+	String destino;
+	Date fechaSalida;
+	Date fechaArribe;
+	UUID keyTripulacion;
+	String observacion;
+	String estado;
+	List<Asiento> asientos;
+	List<Tripulante> tripulantes;
 
-  public Vuelo() {}
+	public Vuelo() {
+	}
 
-  public Vuelo(
-    String _nroVuelo,
-    String _keyAeronave,
-    String _keyAeropuertoOrigen,
-    String _keyAeropuertoDestino,
-    Date _fechaSalida,
-    Date _fechaArribe
-  ) {
-    key = UUID.randomUUID();
+	public Vuelo(String nroVuelo, UUID keyAeronave, String origen, String destino, Date fechaSalida, Date fechaArribe,
+			UUID keyTripulacion, String observacion, String estado, List<Asiento> asientos,
+			List<Tripulante> tripulantes) {
+		this.key = UUID.randomUUID();
+		this.nroVuelo = nroVuelo;
+		this.keyAeronave = keyAeronave;
+		this.origen = origen;
+		this.destino = destino;
+		this.fechaSalida = fechaSalida;
+		this.fechaArribe = fechaArribe;
+		this.keyTripulacion = keyTripulacion;
+		this.observacion = observacion;
+		this.estado = estado;
+		this.asientos = asientos;
+		this.tripulantes = tripulantes;
+	}
 
-    // validaciones value objects y reglas de negocio
-    try {
-      this.nroVuelo = new NumeroVuelo(_nroVuelo).toString();
-    } catch (BussinessRuleValidateExeption e) {
-      System.out.println("Error en el NumeroVuelo Vuelo");
-      return;
-    }
+	public void eventCreado() {
+		addDomainEvent(new VueloCreado(key, nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe,
+				keyTripulacion, observacion, estado));
+	}
 
-    nroVuelo = _nroVuelo;
-    keyAeronave = _keyAeronave;
-    keyAeropuertoOrigen = _keyAeropuertoOrigen;
-    keyAeropuertoDestino = _keyAeropuertoDestino;
-    fechaSalida = _fechaSalida;
-    fechaArribe = _fechaArribe;
-    listaTripulante = new ArrayList<Tripulante>();
-    System.out.println("Se a creado un nuevo vuelo");
-  }
+	public String getNroVuelo() {
+		return nroVuelo;
+	}
 
-  public void eventCreado() {
-    addDomainEvent(
-      new VueloCreado(
-        key,
-        nroVuelo,
-        keyAeronave,
-        keyAeropuertoOrigen,
-        keyAeropuertoDestino,
-        fechaSalida,
-        fechaArribe,
-        listaTripulante
-      )
-    );
-  }
+	public void setNroVuelo(String nroVuelo) {
+		this.nroVuelo = nroVuelo;
+	}
 
-  public void AgregarTripulante(Tripulante tripulante) {
-    listaTripulante
-      .parallelStream()
-      .filter(p -> p.getKey() == tripulante.getKey())
-      .findFirst()
-      .ifPresent(p -> {
-        throw new RuntimeException("El tripulante ya existe");
-      });
-    listaTripulante.add(tripulante);
-  }
+	public UUID getKeyAeronave() {
+		return keyAeronave;
+	}
 
-  public String getNroVuelo() {
-    return nroVuelo;
-  }
+	public void setKeyAeronave(UUID keyAeronave) {
+		this.keyAeronave = keyAeronave;
+	}
 
-  public void setNroVuelo(String nroVuelo) {
-    this.nroVuelo = nroVuelo;
-  }
+	public String getOrigen() {
+		return origen;
+	}
 
-  public String getKeyAeronave() {
-    return keyAeronave;
-  }
+	public void setOrigen(String origen) {
+		this.origen = origen;
+	}
 
-  public void setKeyAeronave(String keyAeronave) {
-    this.keyAeronave = keyAeronave;
-  }
+	public String getDestino() {
+		return destino;
+	}
 
-  public String getKeyAeropuertoOrigen() {
-    return keyAeropuertoOrigen;
-  }
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
 
-  public void setKeyAeropuertoOrigen(String keyAeropuertoOrigen) {
-    this.keyAeropuertoOrigen = keyAeropuertoOrigen;
-  }
+	public List<Tripulante> getTripulantes() {
+		return tripulantes;
+	}
 
-  public String getKeyAeropuertoDestino() {
-    return keyAeropuertoDestino;
-  }
+	public void setTripulantes(List<Tripulante> tripulantes) {
+		this.tripulantes = tripulantes;
+	}
 
-  public void setKeyAeropuertoDestino(String keyAeropuertoDestino) {
-    this.keyAeropuertoDestino = keyAeropuertoDestino;
-  }
+	public List<Asiento> getAsientos() {
+		return asientos;
+	}
 
-  public Date getfechaSalida() {
-    return fechaSalida;
-  }
+	public void setAsientos(List<Asiento> asientos) {
+		this.asientos = asientos;
+	}
 
-  public void setfechaSalida(Date fechaSalida) {
-    this.fechaSalida = fechaSalida;
-  }
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
 
-  public Date getfechaArribe() {
-    return fechaArribe;
-  }
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
 
-  public void setfechaArribe(Date fechaArribe) {
-    this.fechaArribe = fechaArribe;
-  }
+	public Date getFechaArribe() {
+		return fechaArribe;
+	}
 
-  public List<Tripulante> getListaTripulante() {
-    return listaTripulante;
-  }
+	public void setFechaArribe(Date fechaArribe) {
+		this.fechaArribe = fechaArribe;
+	}
 
-  public void setListaTripulante(List<Tripulante> listaTripulante) {
-    this.listaTripulante = listaTripulante;
-  }
+	public UUID getKeyTripulacion() {
+		return keyTripulacion;
+	}
+
+	public void setKeyTripulacion(UUID keyTripulacion) {
+		this.keyTripulacion = keyTripulacion;
+	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 }

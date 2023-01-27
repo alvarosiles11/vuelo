@@ -4,133 +4,100 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulante;
+
 public class VueloTest {
 
-  int cont = 1;
-  UUID key = UUID.randomUUID();
-  String nroVuelo = "A12345";
-  String keyAeronave = "xyz-1990";
-  String keyAeropuertoOrigen = UUID.randomUUID().toString();
-  String keyAeropuertoDestino = UUID.randomUUID().toString();
-  Date fechaSalida = new Date();
-  Date fechaArribe = new Date();
-  List<Tripulante> listaTripulante = new ArrayList<>();
+	@Test
+	public void constructorVoid_accept() {
+		Assert.assertNotNull(new Vuelo());
+	}
 
-  @Test
-  public void constructorVoid_accept() {
-    Assert.assertNotNull(new Vuelo());
-  }
+	@Test
+	public void constructor_accept() {
+		String nroVuelo = "scz-cba-513184";
+		UUID keyAeronave = UUID.randomUUID();
+		List<Asiento> asientos = new ArrayList<>();
+		String origen = "Scz-ViruViru";
+		String destino = "CBA-CBA";
+		Date fechaSalida = new Date();
+		Date fechaArribe = new Date();
+		UUID keyTripulacion = UUID.randomUUID();
+		List<Tripulante> tripulantes = new ArrayList<>();
+		String observacion = "En horario";
+		String estado = "1";
 
-  @Test
-  public void constructor_accept() {
-    Vuelo vuelo = new Vuelo(
-      nroVuelo,
-      keyAeronave,
-      keyAeropuertoOrigen,
-      keyAeropuertoDestino,
-      fechaSalida,
-      fechaArribe
-    );
-    Assert.assertEquals(key, vuelo.getKey());
-    Assert.assertEquals(nroVuelo, vuelo.getNroVuelo());
-    Assert.assertEquals(keyAeronave, vuelo.getKeyAeronave());
-    Assert.assertEquals(keyAeropuertoOrigen, vuelo.getKeyAeropuertoOrigen());
-    Assert.assertEquals(keyAeropuertoDestino, vuelo.getKeyAeropuertoDestino());
-    Assert.assertEquals(fechaSalida, vuelo.getfechaSalida());
-    Assert.assertEquals(fechaArribe, vuelo.getfechaArribe());
-    Assert.assertEquals(listaTripulante, vuelo.getListaTripulante());
-  }
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
+				observacion, estado, asientos, tripulantes);
 
-  @Test
-  public void constructor_denied() {
-    String _nroVuelo = null;
-    String _keyAeronave = null;
-    String _keyAeropuertoOrigen = null;
-    String _keyAeropuertoDestino = null;
-    // String _keyAeropuertoDestino = "";
-    Date _fecha_salida = null;
-    Date _fecha_arribe = null;
-    // List<Tripulante> listaTripulante = new ArrayList<>();
-    Vuelo vuelo = new Vuelo(
-      _nroVuelo,
-      _keyAeronave,
-      _keyAeropuertoOrigen,
-      _keyAeropuertoDestino,
-      _fecha_salida,
-      _fecha_arribe
-    );
+		Assert.assertEquals(nroVuelo, vuelo.getNroVuelo());
+		Assert.assertEquals(keyAeronave, vuelo.getKeyAeronave());
+		Assert.assertEquals(asientos, vuelo.getAsientos());
+		Assert.assertEquals(origen, vuelo.getOrigen());
+		Assert.assertEquals(destino, vuelo.getDestino());
+		Assert.assertEquals(fechaSalida, vuelo.getFechaSalida());
+		Assert.assertEquals(fechaArribe, vuelo.getFechaArribe());
+		Assert.assertEquals(keyTripulacion, vuelo.getKeyTripulacion());
+		Assert.assertEquals(tripulantes, vuelo.getTripulantes());
+		Assert.assertEquals(observacion, vuelo.getObservacion());
+		Assert.assertEquals(estado, vuelo.getEstado());
 
-    Assert.assertEquals(vuelo.getNroVuelo(), _nroVuelo);
-    Assert.assertEquals(vuelo.getKeyAeronave(), _keyAeronave);
-    Assert.assertEquals(vuelo.getKeyAeropuertoOrigen(), _keyAeropuertoOrigen);
-    Assert.assertEquals(vuelo.getKeyAeropuertoDestino(), _keyAeropuertoDestino);
-    Assert.assertEquals(vuelo.getfechaSalida(), _fecha_salida);
-    Assert.assertEquals(vuelo.getfechaArribe(), _fecha_arribe);
-  }
+		vuelo.setNroVuelo(nroVuelo);
+		vuelo.setKeyAeronave(keyAeronave);
+		vuelo.setAsientos(asientos);
+		vuelo.setOrigen(origen);
+		vuelo.setDestino(destino);
+		vuelo.setFechaSalida(fechaSalida);
+		vuelo.setFechaArribe(fechaArribe);
+		vuelo.setKeyTripulacion(keyTripulacion);
+		vuelo.setTripulantes(tripulantes);
+		vuelo.setObservacion(observacion);
+		vuelo.setEstado(estado);
+		vuelo.eventCreado();
+	}
 
-  @Test
-  public void addDomainEvent_accept() {
-    Vuelo vuelo = new Vuelo(
-      nroVuelo,
-      keyAeronave,
-      keyAeropuertoOrigen,
-      keyAeropuertoDestino,
-      fechaSalida,
-      fechaArribe
-    );
-    vuelo.eventCreado();
-    Assert.assertEquals(vuelo.domainEvents.size(), cont);
-  }
+	@Test
+	public void constructor_denied() {
+		String nroVuelo = "";
+		UUID keyAeronave = null;
+		List<Asiento> asientos = null;
+		String origen = "";
+		String destino = "";
+		Date fechaSalida = null;
+		Date fechaArribe = null;
+		UUID keyTripulacion = null;
+		List<Tripulante> tripulantes = null;
+		String observacion = "";
+		String estado = "";
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida, fechaArribe, keyTripulacion,
+				observacion, estado, asientos, tripulantes);
+	}
 
-  @Test
-  public void addTripulante() {
-    Vuelo objVuelo = new Vuelo(
-      nroVuelo,
-      keyAeronave,
-      keyAeropuertoOrigen,
-      keyAeropuertoDestino,
-      fechaSalida,
-      fechaArribe
-    );
-    objVuelo.AgregarTripulante(
-      new Tripulante(UUID.randomUUID(), "xyz-1990", "Piloto")
-    );
-    objVuelo.eventCreado();
-    Assert.assertEquals(objVuelo.listaTripulante.size(), cont);
-  }
+	@Test
+	public void addDomainEvent_accept() {
 
-  @Test
-  public void addTripulante_denied() {
-    Vuelo vuelo = new Vuelo(
-      nroVuelo,
-      keyAeronave,
-      keyAeropuertoOrigen,
-      keyAeropuertoDestino,
-      fechaSalida,
-      fechaArribe
-    );
+		// final UUID key = UUID.randomUUID();
+		String nroVuelo = "scz-cba-513184";
+		UUID keyAeronave = UUID.randomUUID();
+		List<Asiento> asientos = new ArrayList<>();
+		String origen = "Scz-ViruViru";
+		String destino = "CBA-CBA";
+		Date fechaSalida = new Date();
+		Date fechaArribe = new Date();
+		UUID keyTripulacion = UUID.randomUUID();
+		List<Tripulante> tripulantes = new ArrayList<>();
+		String observacion = "En horario";
+		String estado = "1";
+		Vuelo vuelo = new Vuelo(nroVuelo, keyAeronave, origen, destino, fechaSalida,
+				fechaArribe, keyTripulacion,
+				observacion, estado, asientos, tripulantes);
+		vuelo.eventCreado();
+		Assert.assertEquals(vuelo.domainEvents.size(), 1);
+	}
 
-    Tripulante tripulante = new Tripulante(
-      UUID.randomUUID(),
-      "xyz-1990",
-      "Piloto"
-    );
-    vuelo.AgregarTripulante(tripulante);
-
-    Tripulante tripulante2 = new Tripulante(
-      UUID.randomUUID(),
-      "xyz-1990",
-      "Piloto"
-    );
-    tripulante2.keyTripulante = tripulante.keyTripulante;
-
-    try {
-      vuelo.AgregarTripulante(tripulante2);
-    } catch (Exception e) {
-      Assert.assertTrue(true);
-    }
-  }
 }

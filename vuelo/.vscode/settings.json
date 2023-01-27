@@ -1,14 +1,21 @@
 {
-	"java.configuration.updateBuildConfiguration": "automatic",
-	"liveServer.settings.port": 5501,
-	// "problems.decorations.enabled": false,
-	// /target/
-	// !.mvn/wrapper/maven-wrapper.jar
-	"files.exclude": {
-		// "**/test": true,
-		// "**/target": true,
-		// "**/pom.xml": true,
-		// "**/fourteam": true,
-		// "**/SharedKernel": true,
-	}
-}
+  // "java.configuration.updateBuildConfiguration": "automatic",
+  // "maven.view": "flat",
+  // "java.format.settings.url": "eclipse-formatter.xml",
+	// "java.saveActions.organizeImports": true,
+
+	// INFO
+
+
+
+	//🍕 organizador
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true
+	},
+	// 📒 formateador
+	"editor.formatOnSave": true,
+	"java.dependency.packagePresentation": "flat",
+	"java.dependency.syncWithFolderExplorer": false,
+	"java.configuration.updateBuildConfiguration": "interactive",
+
+  }

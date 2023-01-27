@@ -1,34 +1,42 @@
-// import Repositories.*;
-// import fourteam.extensions.IServiceCollection;
-// import Context.IWriteDbContext;
-// import Repository.*;
 
-// import Repositories.IAeronaveRepository;
 import Context.IWriteDbContext;
 import Context.MongoDB.WriteDbContext;
-import Repositories.ITripulanteRepository;
+import Fourteam.config.Config;
+import Fourteam.extensions.IServiceCollection;
+import Repositories.IAeronaveRepository;
+import Repositories.ITripulacionRepository;
 import Repositories.IUnitOfWork;
 import Repositories.IVueloRepository;
-// import Repository.AeronaveRepository;
-import Repository.TripulanteRepository;
+import Repository.AeronaveRepository;
+import Repository.TripulacionRepository;
 import Repository.VueloRepository;
-import fourteam.extensions.IServiceCollection;
+import UseCases.Consumers.AeronaveChangeConsumer;
+import UseCases.Consumers.TripulacionChangeConsumer;
 
 public class Infraestructure {
 
-  public static void AddInfraestructure() {
-    IServiceCollection.AddMediator();
+	public static void AddInfraestructure() {
+		IServiceCollection.AddMediator();
+		IServiceCollection.AddScoped(IWriteDbContext.class, WriteDbContext.class);
+		IServiceCollection.AddScoped(IUnitOfWork.class, UnitOfWork.class);
+		IServiceCollection.AddScoped(IVueloRepository.class, VueloRepository.class);
+		IServiceCollection.AddScoped(ITripulacionRepository.class, TripulacionRepository.class);
+		IServiceCollection.AddScoped(IAeronaveRepository.class, AeronaveRepository.class);
 
-    IServiceCollection.AddScoped(IWriteDbContext.class, WriteDbContext.class);
-    IServiceCollection.AddScoped(IUnitOfWork.class, UnitOfWork.class);
-    IServiceCollection.AddScoped(IVueloRepository.class, VueloRepository.class);
-    IServiceCollection.AddScoped(
-      ITripulanteRepository.class,
-      TripulanteRepository.class
-    );
-    // IServiceCollection.AddScoped(IAeronaveRepository.class,
-    // AeronaveRepository.class);
+		Application.AddApplication();
+		AddRabbitMq();
+	}
 
-    Application.AddApplication();
-  }
+	private static void AddRabbitMq() {
+		IServiceCollection.AddMassTransit(config -> {
+			config.AddConsumer(AeronaveChangeConsumer.class);
+			config.AddConsumer(TripulacionChangeConsumer.class);
+			config.UsingRabbitMq((context, cfg) -> {
+				cfg.Host = Config.getProperty("rabit.host");
+				cfg.User = Config.getProperty("rabit.user");
+				cfg.Password = Config.getProperty("rabit.pass");
+			});
+		});
+	}
+
 }

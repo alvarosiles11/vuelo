@@ -1,109 +1,119 @@
 package Event;
 
-import Model.Vuelos.Tripulante;
-import core.DomainEvent;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
+
+import core.DomainEvent;
 
 public class VueloCreado extends DomainEvent {
 
-  protected UUID keyVuelo;
-  protected String nroVuelo;
-  protected String keyAeronave;
-  protected String keyAeropuertoOrigen;
-  protected String keyAeropuertoDestino;
-  protected Date fechaSalida;
-  protected Date fechaArribe;
-  protected List<Tripulante> listaTripulante;
+	public UUID key;
+	public String nroVuelo;
+	public UUID keyAeronave;
+	public String origen;
+	public String destino;
+	public Date fechaSalida;
+	public Date fechaArribe;
+	public UUID keyTripulacion;
+	public String observacion;
+	public String estado;
 
-  public VueloCreado() {
-    super();
-  }
+	public VueloCreado() {
+		super();
+	}
 
-  public VueloCreado(
-    UUID keyVuelo,
-    String nroVuelo,
-    String keyAeronave,
-    String keyAeropuertoOrigen,
-    String keyAeropuertoDestino,
-    Date fechaSalida,
-    Date fechaArribe,
-    List<Tripulante> listaTripulante
-  ) {
-    super(LocalDateTime.now());
-    this.keyVuelo = keyVuelo;
-    this.nroVuelo = nroVuelo;
-    this.keyAeronave = keyAeronave;
-    this.keyAeropuertoOrigen = keyAeropuertoOrigen;
-    this.keyAeropuertoDestino = keyAeropuertoDestino;
-    this.fechaSalida = fechaSalida;
-    this.fechaArribe = fechaArribe;
-    this.listaTripulante = listaTripulante;
-  }
+	public VueloCreado(UUID key, String nroVuelo, UUID keyAeronave, String origen, String destino, Date fechaSalida,
+			Date fechaArribe, UUID keyTripulacion, String observacion, String estado) {
+		this.key = key;
+		this.nroVuelo = nroVuelo;
+		this.keyAeronave = keyAeronave;
+		this.origen = origen;
+		this.destino = destino;
+		this.fechaSalida = fechaSalida;
+		this.fechaArribe = fechaArribe;
+		this.keyTripulacion = keyTripulacion;
+		this.observacion = observacion;
+		this.estado = estado;
+	}
 
-  public UUID getKeyVuelo() {
-    return keyVuelo;
-  }
+	public UUID getKey() {
+		return key;
+	}
 
-  public void setKeyVuelo(UUID keyVuelo) {
-    this.keyVuelo = keyVuelo;
-  }
+	public void setKey(UUID key) {
+		this.key = key;
+	}
 
-  public String getNroVuelo() {
-    return nroVuelo;
-  }
+	public String getNroVuelo() {
+		return nroVuelo;
+	}
 
-  public void setNroVuelo(String nroVuelo) {
-    this.nroVuelo = nroVuelo;
-  }
+	public void setNroVuelo(String nroVuelo) {
+		this.nroVuelo = nroVuelo;
+	}
 
-  public String getKeyAeronave() {
-    return keyAeronave;
-  }
+	public UUID getKeyAeronave() {
+		return keyAeronave;
+	}
 
-  public void setKeyAeronave(String keyAeronave) {
-    this.keyAeronave = keyAeronave;
-  }
+	public void setKeyAeronave(UUID keyAeronave) {
+		this.keyAeronave = keyAeronave;
+	}
 
-  public String getKeyAeropuertoOrigen() {
-    return keyAeropuertoOrigen;
-  }
+	public String getOrigen() {
+		return origen;
+	}
 
-  public void setKeyAeropuertoOrigen(String keyAeropuertoOrigen) {
-    this.keyAeropuertoOrigen = keyAeropuertoOrigen;
-  }
+	public void setOrigen(String origen) {
+		this.origen = origen;
+	}
 
-  public String getKeyAeropuertoDestino() {
-    return keyAeropuertoDestino;
-  }
+	public String getDestino() {
+		return destino;
+	}
 
-  public void setKeyAeropuertoDestino(String keyAeropuertoDestino) {
-    this.keyAeropuertoDestino = keyAeropuertoDestino;
-  }
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
 
-  public Date getfechaSalida() {
-    return fechaSalida;
-  }
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
 
-  public void setfechaSalida(Date fechaSalida) {
-    this.fechaSalida = fechaSalida;
-  }
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
 
-  public Date getfechaArribe() {
-    return fechaArribe;
-  }
+	public Date getFechaArribe() {
+		return fechaArribe;
+	}
 
-  public void setfechaArribe(Date fechaArribe) {
-    this.fechaArribe = fechaArribe;
-  }
+	public void setFechaArribe(Date fechaArribe) {
+		this.fechaArribe = fechaArribe;
+	}
 
-  public List<Tripulante> getListaTripulante() {
-    return listaTripulante;
-  }
+	public UUID getKeyTripulacion() {
+		return keyTripulacion;
+	}
 
-  public void setListaTripulante(List<Tripulante> listaTripulante) {
-    this.listaTripulante = listaTripulante;
-  }
+	public void setKeyTripulacion(UUID keyTripulacion) {
+		this.keyTripulacion = keyTripulacion;
+	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 }

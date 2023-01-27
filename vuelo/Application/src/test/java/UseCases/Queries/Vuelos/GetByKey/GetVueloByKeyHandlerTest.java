@@ -1,134 +1,71 @@
 package UseCases.Queries.Vuelos.GetByKey;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import Dto.TripulanteDto;
-import Dto.VueloDto;
-import Model.Vuelos.Tripulante;
-import Model.Vuelos.Vuelo;
-import Repositories.IVueloRepository;
-import fourteam.http.Exception.HttpException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import Fourteam.http.Exception.HttpException;
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulante;
+import Model.Vuelos.Vuelo;
+import Repositories.IVueloRepository;
+
 public class GetVueloByKeyHandlerTest {
 
-  IVueloRepository _IVueloRep = Mockito.mock(IVueloRepository.class);
+	IVueloRepository iVueloRepository = Mockito.mock(IVueloRepository.class);
 
-  @Test
-  public void HandleCorrectly() throws HttpException {
-    UUID key = UUID.randomUUID();
-    String nroVuelo = "A12345";
-    String keyAeronave = "xyz-1990";
-    String keyAeropuertoOrigen = "aeropuerto100";
-    String keyAeropuertoDestino = "aeropuerto200";
-    Date fecha_salida = new Date();
-    Date fecha_arribe = new Date();
+	@Test
+	public void HandleCorrectly() throws Exception {
 
-    Vuelo vuelo = new Vuelo(
-      nroVuelo,
-      keyAeronave,
-      keyAeropuertoOrigen,
-      keyAeropuertoDestino,
-      fecha_salida,
-      fecha_arribe
-    );
-    vuelo.AgregarTripulante(
-      new Tripulante(UUID.randomUUID(), UUID.randomUUID().toString(), "Piloto")
-    );
-    when(_IVueloRep.FindByKey(any())).thenReturn(vuelo);
+		Asiento asiento = new Asiento(UUID.randomUUID(), UUID.randomUUID(), 0, "comercial", 20.00, 1);
+		List<Asiento> listAsiento = new ArrayList<Asiento>();
+		listAsiento.add(asiento);
 
-    VueloDto vueloDto = new VueloDto();
-    vueloDto.setKey(key);
-    vueloDto.setNroVuelo(nroVuelo);
-    vueloDto.setKeyAeronave(keyAeronave);
-    vueloDto.setKeyAeropuertoOrigen(keyAeropuertoOrigen);
-    vueloDto.setKeyAeropuertoDestino(keyAeropuertoDestino);
-    vueloDto.setfechaSalida(fecha_salida);
-    vueloDto.setfechaArribe(fecha_arribe);
+		Tripulante tripulante = new Tripulante(UUID.randomUUID(), UUID.randomUUID(), "carlos", "marcos", "piloto", "1");
+		List<Tripulante> listTripulante = new ArrayList<Tripulante>();
+		listTripulante.add(tripulante);
 
-    GetVueloByKeyHandler handler = new GetVueloByKeyHandler(_IVueloRep);
-    GetVueloByKeyQuery command = new GetVueloByKeyQuery(key);
+		Vuelo a = new Vuelo("1", UUID.randomUUID(), "sc", "cbba", new Date(), new Date(), UUID.randomUUID(),
+				"en horario", "1", new ArrayList<>(), new ArrayList<>());
 
-    TripulanteDto tripulanteDto = new TripulanteDto();
-    tripulanteDto.setKey(UUID.randomUUID());
-    tripulanteDto.setKeyVuelo(UUID.randomUUID());
-    tripulanteDto.setKeyTripulante("12345");
-    tripulanteDto.setCargo("Piloto");
+		a.setAsientos(listAsiento);
+		a.setTripulantes(listTripulante);
 
-    vuelo.listaTripulante
-      .iterator()
-      .forEachRemaining(obj -> {
-        vueloDto.listaTripulante.add(
-          new TripulanteDto(UUID.randomUUID(), "12345", "Piloto")
-        );
-      });
+		List<Vuelo> list = new ArrayList<Vuelo>();
+		list.add(a);
 
-    VueloDto result = handler.handle(command);
-    System.out.println(result);
-  }
+		when(iVueloRepository.FindByKey(any())).thenReturn(a);
+		GetVueloByKeyHandler handler = new GetVueloByKeyHandler(iVueloRepository);
+		GetVueloByKeyQuery query = new GetVueloByKeyQuery(a.key);
+		try {
+			Assert.assertEquals(a.key, handler.handle(query).key);
+		} catch (Exception e) {
+			Assert.fail();
+		}
+		verify(iVueloRepository).FindByKey(a.key);
+	}
 
-  @Test
-  public void testAsIterable() {
-    UUID key = UUID.randomUUID();
-    String nroVuelo = "A12345";
-    String keyAeronave = "xyz-1990";
-    String keyAeropuertoOrigen = "aeropuerto100";
-    String keyAeropuertoDestino = "aeropuerto200";
-    Date fecha_salida = new Date();
-    Date fecha_arribe = new Date();
+	@Test
+	public void HandleFail() throws Exception {
 
-    VueloDto vueloDto = new VueloDto();
-    vueloDto.setKey(key);
-    vueloDto.setNroVuelo(nroVuelo);
-    vueloDto.setKeyAeronave(keyAeronave);
-    vueloDto.setKeyAeropuertoOrigen(keyAeropuertoOrigen);
-    vueloDto.setKeyAeropuertoDestino(keyAeropuertoDestino);
-    vueloDto.setfechaSalida(fecha_salida);
-    vueloDto.setfechaArribe(fecha_arribe);
+		Vuelo a = new Vuelo("1", UUID.randomUUID(), "sc", "cbba", new Date(), new Date(), UUID.randomUUID(),
+				"en horario", "1", new ArrayList<>(), new ArrayList<>());
 
-    TripulanteDto tripulanteDto = new TripulanteDto();
-    tripulanteDto.setKey(UUID.randomUUID());
-    tripulanteDto.setKeyVuelo(UUID.randomUUID());
-    tripulanteDto.setKeyTripulante("12345");
-    tripulanteDto.setCargo("Piloto");
+		when(iVueloRepository.FindByKey(any())).thenReturn(null);
+		GetVueloByKeyHandler handler = new GetVueloByKeyHandler(iVueloRepository);
+		GetVueloByKeyQuery query = new GetVueloByKeyQuery(a.key);
 
-    Vuelo vuelo = new Vuelo(
-      nroVuelo,
-      keyAeronave,
-      keyAeropuertoOrigen,
-      keyAeropuertoDestino,
-      fecha_salida,
-      fecha_arribe
-    );
-
-    vuelo.listaTripulante
-      .iterator()
-      .forEachRemaining(obj -> {
-        vueloDto.listaTripulante.add(
-          new TripulanteDto(UUID.randomUUID(), "12345", "Piloto")
-        );
-      });
-  }
-
-  @Test
-  public void HandleFailed() throws HttpException {
-    Vuelo vuelo = new Vuelo();
-    when(_IVueloRep.FindByKey(any())).thenReturn(any());
-
-    UUID key = UUID.randomUUID();
-    GetVueloByKeyHandler handler = new GetVueloByKeyHandler(_IVueloRep);
-    GetVueloByKeyQuery command = new GetVueloByKeyQuery(key);
-
-    try {
-      VueloDto resp = handler.handle(command);
-      System.out.println(vuelo + "" + resp);
-    } catch (HttpException e) {
-      Assert.assertEquals(400, e.getCode());
-    }
-  }
+		Assert.assertThrows(HttpException.class, () -> {
+			handler.handle(query);
+		});
+	}
 }
