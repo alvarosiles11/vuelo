@@ -1,75 +1,114 @@
 package Controllers;
 
+import java.util.List;
+
 import Dto.VueloDto;
+import Fourteam.http.HttpStatus;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.annotation.DeleteMapping;
+import Fourteam.http.annotation.GetMapping;
+import Fourteam.http.annotation.PathVariable;
+import Fourteam.http.annotation.PostMapping;
+import Fourteam.http.annotation.PutMapping;
+import Fourteam.http.annotation.RequestBody;
+import Fourteam.http.annotation.RequestMapping;
+import Fourteam.http.annotation.RestController;
+import Fourteam.mediator.Mediator;
+import Fourteam.mediator.Response;
 import Model.Vuelos.Vuelo;
+import UseCases.Command.Vuelos.Arribar.ArribarVueloCommand;
+import UseCases.Command.Vuelos.Cancelar.CancelarVueloCommand;
 import UseCases.Command.Vuelos.Crear.CrearVueloCommand;
 import UseCases.Command.Vuelos.Editar.EditarVueloCommand;
 import UseCases.Command.Vuelos.Eliminar.EliminarVueloCommand;
 import UseCases.Queries.Vuelos.GetAll.GetAllVueloQuery;
 import UseCases.Queries.Vuelos.GetByKey.GetVueloByKeyQuery;
-import fourteam.http.Exception.HttpException;
-import fourteam.http.annotation.DeleteMapping;
-import fourteam.http.annotation.GetMapping;
-import fourteam.http.annotation.PathVariable;
-import fourteam.http.annotation.PostMapping;
-import fourteam.http.annotation.PutMapping;
-import fourteam.http.annotation.RequestBody;
-import fourteam.http.annotation.RequestMapping;
-import fourteam.http.annotation.RestController;
-import fourteam.mediator.Mediator;
-import fourteam.mediator.Response;
-import java.util.List;
 
 @RestController
 @RequestMapping("/vuelo")
 public class VueloController {
 
-  private Mediator _mediator;
+	private Mediator _mediator;
 
-  public VueloController(Mediator mediator) {
-    _mediator = mediator;
-  }
+	public VueloController(Mediator mediator) {
+		_mediator = mediator;
+	}
 
-  @GetMapping("/")
-  public Response<List<Vuelo>> getAll() throws HttpException {
-    System.out.println("vuelo getAll exitoso");
-    return _mediator.send(new GetAllVueloQuery());
-  }
+	@GetMapping("/")
+	public List<VueloDto> getAll() throws HttpException {
+		try {
+			Response<List<VueloDto>> lista = _mediator.send(new GetAllVueloQuery());
+			return lista.data;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new HttpException(HttpStatus.BAD_REQUEST, "Error " + e.getMessage());
+		}
+	}
 
-  @PostMapping("/registro")
-  public Response<Vuelo> register(@RequestBody CrearVueloCommand _vuelo)
-    throws HttpException {
-    System.out.println("vuelo register exitoso");
-    return _mediator.send(_vuelo);
-  }
+	@PostMapping("/registro")
+	public Vuelo register(@RequestBody CrearVueloCommand vuelo)
+			throws Exception {
+		return (Vuelo) _mediator.send(vuelo).data;
+	}
 
-  @GetMapping("/{key}")
-  public Response<VueloDto> getByKey(@PathVariable GetVueloByKeyQuery request)
-    throws HttpException {
-    System.out.println("vuelo getByKey exitoso");
-    return _mediator.send(request);
-  }
+	@GetMapping("/{key}")
+	public Response<VueloDto> getByKey(@PathVariable GetVueloByKeyQuery request)
+			throws HttpException {
+		try {
+			return _mediator.send(request);
+		} catch (Exception e) {
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
 
-  @PutMapping("/{key}")
-  public Response<Vuelo> edit(
-    @RequestBody Vuelo vuelo,
-    @PathVariable EditarVueloCommand request
-  ) throws HttpException {
-    request.vueloDto.setNroVuelo(vuelo.getNroVuelo());
-    request.vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
-    request.vueloDto.setKeyAeropuertoOrigen(vuelo.getKeyAeropuertoOrigen());
-    request.vueloDto.setKeyAeropuertoDestino(vuelo.getKeyAeropuertoDestino());
-    request.vueloDto.setfechaSalida(vuelo.getfechaSalida());
-    request.vueloDto.setfechaArribe(vuelo.getfechaArribe());
+	@PutMapping("/{key}")
+	public VueloDto edit(
+			@RequestBody Vuelo vuelo,
+			@PathVariable EditarVueloCommand request) throws HttpException {
+		request.vueloDto.setNroVuelo(vuelo.getNroVuelo());
+		request.vueloDto.setKeyAeronave(vuelo.getKeyAeronave());
+		request.vueloDto.setOrigen(vuelo.getOrigen());
+		request.vueloDto.setDestino(vuelo.getDestino());
+		request.vueloDto.setFechaSalida(vuelo.getFechaSalida());
+		request.vueloDto.setFechaArribe(vuelo.getFechaArribe());
+		request.vueloDto.setKeyTripulacion(vuelo.getKeyTripulacion());
+		request.vueloDto.setObservacion(vuelo.getObservacion());
+		request.vueloDto.setEstado(vuelo.getEstado());
+		try {
+			return (VueloDto) _mediator.send(request).data;
+		} catch (Exception e) {
+			throw (HttpException) e.getCause();
+		}
+	}
 
-    System.out.println("vuelo edit exitoso");
-    return _mediator.send(request);
-  }
+	@PutMapping("/cancel/{key}")
+	public Response<VueloDto> cancel(@PathVariable CancelarVueloCommand request)
+			throws HttpException {
+		try {
+			return _mediator.send(request);
+		} catch (Exception e) {
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
 
-  @DeleteMapping("/{key}")
-  public Response<Vuelo> delete(@PathVariable EliminarVueloCommand request)
-    throws HttpException {
-    System.out.println("vuelo delete exitoso");
-    return _mediator.send(request);
-  }
+	@PutMapping("/arrive/{key}")
+	public Response<VueloDto> arrive(@PathVariable ArribarVueloCommand request)
+			throws HttpException {
+		try {
+			return _mediator.send(request);
+		} catch (Exception e) {
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+
+	@DeleteMapping("/{key}")
+	public Response<VueloDto> delete(@PathVariable EliminarVueloCommand request)
+			throws HttpException {
+		try {
+			return _mediator.send(request);
+		} catch (Exception e) {
+			throw new HttpException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+
 }

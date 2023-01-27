@@ -1,23 +1,24 @@
 package Factories;
 
-import Model.Vuelos.Vuelo;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
+
 import org.junit.Test;
 
-public class VueloFactoryTest {
+import Model.Aeronaves.Asiento;
+import Model.Tripulacion.Tripulante;
 
-  @Test
-  public void dataValid() {
-    VueloFactory vueloFactory = new VueloFactory();
-    Vuelo vuelo = vueloFactory.Create(
-      "xyz-1990",
-      UUID.randomUUID().toString(),
-      UUID.randomUUID().toString(),
-      UUID.randomUUID().toString(),
-      new Date(),
-      new Date()
-    );
-    System.out.println(vuelo);
-  }
+public class VueloFactoryTest {
+	@Test
+	public void dataValid() {
+
+		final List<Asiento> asientos = new ArrayList<>();
+		final List<Tripulante> tripulantes = new ArrayList<>();
+		VueloFactory vueloFactory = new VueloFactory();
+		vueloFactory.Create("134", UUID.randomUUID(), "SCR-VIruViru", "CBBA", new Date(), new Date(), UUID.randomUUID(),
+				"cerrado", "1", asientos, tripulantes);
+
+	}
 }
